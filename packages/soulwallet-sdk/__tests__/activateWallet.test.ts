@@ -6,16 +6,16 @@ import {
     UserOpUtils,
     UserOpErrors,
     UserOpErrorCodes,
-    L1KeyStore,
+    // L1KeyStore,
     Ok, Err, Result,
     UserOpReceipt,
     UserOpDetail,
     UserOpGas,
     Bundler,
     Transaction,
-    KeyStoreInfo,
+    // KeyStoreInfo,
     GuardianSignature,
-    KeyStoreTypedDataType,
+    // KeyStoreTypedDataType,
     InitialKey,
     ECCPoint,
     SignkeyType,
@@ -33,14 +33,18 @@ import {
 
 describe('ActivateWallet', () => {
     test('Activate', async () => {
-        const RPC = "https://sepolia.base.org";
-        const BundlerRPC = "https://api-dev.soulwallet.io/appapi/bundler/base-sepolia/rpc";
+        const RPC = "https://optimism-rpc.publicnode.com";
+        const BunlderAPIKEY = "";
+        const pimlicoAPIKEY = ""
+        if (BunlderAPIKEY == "" || pimlicoAPIKEY == "") {
+            return;
+        }
+        const BundlerRPC = `https://api.pimlico.io/v2/optimism/rpc?apikey=${BunlderAPIKEY}`;
+        const pimlicoSponsorRPC = `https://api.pimlico.io/v2/optimism/rpc?apikey=${pimlicoAPIKEY}`;
 
         const SoulWalletDefaultValidator = '0x82621ac52648b738fEdd381a3678851933505762';
-        const SoulwalletInstance = '0x50E964af1Dcf5fA3c6C8Ee5C0A903838E9Aa7aa4';
-        const SoulwalletFactory = '0xF78Ae187CED0Ca5Fb98100d3F0EAB7a6461d6fC6';
+        const SoulwalletFactory = '0xD49A10281cD035a4219428D53a08DbC1e97bd741';
         const DefaultCallbackHandler = '0x880c6eb80583795625935B08AA28EB37F16732C7';
-        const AaveUsdcSaveAutomationBaseSepolia = '0x8107e6c74980Df3fDDc8478F6597670742e4B542';
 
         const Web3RPC = new ethers.JsonRpcProvider(RPC);
 
@@ -48,15 +52,13 @@ describe('ActivateWallet', () => {
             Web3RPC,
             BundlerRPC,
             SoulwalletFactory,
-            SoulWalletDefaultValidator,
             DefaultCallbackHandler,
-            undefined,
             undefined
         );
 
         // new EOASigner  
         const signer = ethers.Wallet.createRandom();
-        //const signer = new ethers.Wallet('0x0000000000000000000000000000000000000000000000000000000000000004');
+        //const signer = new ethers.Wallet('0x0000000000000000000000000000000000000000000000000000000000000001');
 
         const index: number = 0;
         const initialKeys: InitialKey[] = [signer.address];
@@ -110,57 +112,81 @@ describe('ActivateWallet', () => {
             userOp.paymasterPostOpGasLimit = 0;
             userOp.paymasterData = "0x";
             userOp.signature = (await soulWallet.getSemiValidSignature(SoulWalletDefaultValidator, userOp, SignkeyType.EOA)).OK;
-            // const SponsorRPC = new ethers.JsonRpcProvider('https://api.pimlico.io/v2/base-sepolia/rpc?apikey=58e25ab4-7814-4e56-87bb-af3016dae2df');
+            const usePimlico = true;
+            if (usePimlico) {
+                const SponsorRPC = new ethers.JsonRpcProvider(
+                    pimlicoSponsorRPC, undefined, { batchMaxCount: 1 }
+                );
 
-            // try {
-            //     const result = await SponsorRPC.send(
-            //         "pm_sponsorUserOperation", [
-            //         UserOpUtils.userOperationToJSON(userOp),
-            //         {
-            //             entryPoint: entryPoint
-            //         }
-            //     ]);
-            //     console.log('result', result);
-            // } catch (e) {
-            //     console.log('error', e);
-            // }
-            const sponsorUrl = "https://api-dev.soulwallet.io/appapi/sponsor/sponsor-op";
-            const sponsorData = {
-                chainId: chainId,
-                entryPoint: entryPoint,
-                op: JSON.parse(UserOpUtils.userOperationToJSON(userOp))
-            };
-            const re = await fetch(sponsorUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(sponsorData),
-            });
-            const json = await re.json();
-            if (
-                typeof json === 'object' &&
-                typeof json.msg === 'string' &&
-                json.msg === "success" &&
-                typeof json.data === 'object' &&
-                typeof json.data.callGasLimit === 'string' &&
-                typeof json.data.paymaster === 'string' &&
-                typeof json.data.paymasterData === 'string' &&
-                typeof json.data.paymasterPostOpGasLimit === 'string' &&
-                typeof json.data.paymasterVerificationGasLimit === 'string' &&
-                typeof json.data.verificationGasLimit === 'string'
-            ) {
-                userOp.callGasLimit = BigInt(json.data.callGasLimit);
-                userOp.paymaster = json.data.paymaster;
-                userOp.paymasterData = json.data.paymasterData;
-                userOp.paymasterPostOpGasLimit = BigInt(json.data.paymasterPostOpGasLimit);
-                userOp.paymasterVerificationGasLimit = BigInt(json.data.paymasterVerificationGasLimit);
-                userOp.preVerificationGas = BigInt(json.data.preVerificationGas);
-                userOp.verificationGasLimit = BigInt(json.data.verificationGasLimit);
+                const json = await SponsorRPC.send(
+                    "pm_sponsorUserOperation", [
+                    JSON.parse(UserOpUtils.userOperationToJSON(userOp)),
+                    entryPoint,
+                    {
+                        sponsorshipPolicyId: "sp_slow_vivisector"
+                    }
+                ]);
+                if (
+                    typeof json === 'object' &&
+                    typeof json.callGasLimit === 'string' &&
+                    typeof json.paymaster === 'string' &&
+                    typeof json.paymasterData === 'string' &&
+                    typeof json.paymasterPostOpGasLimit === 'string' &&
+                    typeof json.paymasterVerificationGasLimit === 'string' &&
+                    typeof json.verificationGasLimit === 'string'
+                ) {
+                    userOp.callGasLimit = BigInt(json.callGasLimit);
+                    userOp.paymaster = json.paymaster;
+                    userOp.paymasterData = json.paymasterData;
+                    userOp.paymasterPostOpGasLimit = BigInt(json.paymasterPostOpGasLimit);
+                    userOp.paymasterVerificationGasLimit = BigInt(json.paymasterVerificationGasLimit);
+                    userOp.preVerificationGas = BigInt(json.preVerificationGas);
+                    userOp.verificationGasLimit = BigInt(json.verificationGasLimit);
+                } else {
+                    throw new Error('sponsor failed');
+                }
+                console.log('json', json);
             } else {
-                throw new Error('sponsor failed');
+                const sponsorUrl = "https://api.stable.cash/alpha1/appapi/sponsor/sponsor-op";
+                const sponsorData = {
+                    chainId: chainId,
+                    entryPoint: entryPoint,
+                    op: JSON.parse(UserOpUtils.userOperationToJSON(userOp))
+                };
+                const re = await fetch(sponsorUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(sponsorData),
+                });
+                const json = await re.json();
+                if (
+                    typeof json === 'object' &&
+                    typeof json.msg === 'string' &&
+                    json.msg === "success" &&
+                    typeof json.data === 'object' &&
+                    typeof json.data.callGasLimit === 'string' &&
+                    typeof json.data.paymaster === 'string' &&
+                    typeof json.data.paymasterData === 'string' &&
+                    typeof json.data.paymasterPostOpGasLimit === 'string' &&
+                    typeof json.data.paymasterVerificationGasLimit === 'string' &&
+                    typeof json.data.verificationGasLimit === 'string'
+                ) {
+                    userOp.callGasLimit = BigInt(json.data.callGasLimit);
+                    userOp.paymaster = json.data.paymaster;
+                    userOp.paymasterData = json.data.paymasterData;
+                    userOp.paymasterPostOpGasLimit = BigInt(json.data.paymasterPostOpGasLimit);
+                    userOp.paymasterVerificationGasLimit = BigInt(json.data.paymasterVerificationGasLimit);
+                    userOp.preVerificationGas = BigInt(json.data.preVerificationGas);
+                    userOp.verificationGasLimit = BigInt(json.data.verificationGasLimit);
+                } else {
+                    throw new Error('sponsor failed');
+                }
+                console.log('json', json);
             }
-            console.log('json', json);
+
+
 
         } else {
             const preFund = await soulWallet.preFund(userOp);

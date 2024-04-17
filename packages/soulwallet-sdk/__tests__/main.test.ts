@@ -6,16 +6,17 @@ import {
     UserOpUtils,
     UserOpErrors,
     UserOpErrorCodes,
-    L1KeyStore,
+    // L1KeyStore,
+    SocialRecovery,
     Ok, Err, Result,
     UserOpReceipt,
     UserOpDetail,
     UserOpGas,
     Bundler,
     Transaction,
-    KeyStoreInfo,
+    // KeyStoreInfo,
     GuardianSignature,
-    KeyStoreTypedDataType,
+    // KeyStoreTypedDataType,
     InitialKey,
     ECCPoint,
     SignkeyType,
@@ -58,7 +59,7 @@ describe('SDK', () => {
         expect(p[1].y).toBe('0x4fbfe4a2f9934783c3b1af712ee87abc08f576e79346efc3b8355d931bd7b976');
     });
     test('packUserOpP256Signature', async () => {
-        const soulwallet = new SoulWallet('https://localhost/', 'https://localhost/', '0x0000000000000000000000000000000000000000', fakeValidatorAddress, '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000');
+        const soulwallet = new SoulWallet('https://localhost/', 'https://localhost/', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000');
         const signature = await soulwallet.packUserOpP256Signature(
             fakeValidatorAddress,
             {
@@ -80,27 +81,27 @@ describe('SDK', () => {
             + validatorSignature;
         expect(signature.OK).toBe(expectSignature);
     });
-    test('packKeystoreP256Signature', async () => {
-        const keystore = new L1KeyStore('https://localhost/', "0x0000000000000000000000000000000000000000");
-        const signature = await keystore.packKeystoreP256Signature(
-            {
-                messageHash: '0x83714056da6e6910b51595330c2c2cdfbf718f2deff5bdd84b95df7a7f36f6dd',
-                publicKey: {
-                    x: '0xe89e8b4be943fadb4dc599fe2e8af87a79b438adde328a3b72d43324506cd5b6',
-                    y: '0x4fbfe4a2f9934783c3b1af712ee87abc08f576e79346efc3b8355d931bd7b976'
-                },
-                r: '0x2ae3ddfe4cc414dc0fad7ff3a5c960d1cee1211722d3099ade76e5ac1826731a',
-                s: '0x87e5d654f357e4cd6cb52512b2da4d91eae0ae48e9d892ce532b9352f63a55d6',
-                authenticatorData: '0x49960de5880e8c687434170f6476605b8fe4aeb9a28632c7995cf3ba831d97630500000000',
-                clientDataSuffix: '","origin":"http://localhost:5500","crossOrigin":false}'
-            });
-        expect(signature.isOk()).toBe(true);
-        const validatorSignature = '02'/*passkey without validationData*/ + '00'/* type=P256 */ + "2ae3ddfe4cc414dc0fad7ff3a5c960d1cee1211722d3099ade76e5ac1826731a87e5d654f357e4cd6cb52512b2da4d91eae0ae48e9d892ce532b9352f63a55d61c0025000049960de5880e8c687434170f6476605b8fe4aeb9a28632c7995cf3ba831d97630500000000222c226f726967696e223a22687474703a2f2f6c6f63616c686f73743a35353030222c2263726f73734f726967696e223a66616c73657d";
-        const expectSignature = '0x' + validatorSignature;
-        expect(signature.OK).toBe(expectSignature);
-    });
+    // test('packKeystoreP256Signature', async () => {
+    //     const socialRecovery = new SocialRecovery();
+    //     const signature = await socialRecovery.packSocialRecoveryP256Signature(
+    //         {
+    //             messageHash: '0x83714056da6e6910b51595330c2c2cdfbf718f2deff5bdd84b95df7a7f36f6dd',
+    //             publicKey: {
+    //                 x: '0xe89e8b4be943fadb4dc599fe2e8af87a79b438adde328a3b72d43324506cd5b6',
+    //                 y: '0x4fbfe4a2f9934783c3b1af712ee87abc08f576e79346efc3b8355d931bd7b976'
+    //             },
+    //             r: '0x2ae3ddfe4cc414dc0fad7ff3a5c960d1cee1211722d3099ade76e5ac1826731a',
+    //             s: '0x87e5d654f357e4cd6cb52512b2da4d91eae0ae48e9d892ce532b9352f63a55d6',
+    //             authenticatorData: '0x49960de5880e8c687434170f6476605b8fe4aeb9a28632c7995cf3ba831d97630500000000',
+    //             clientDataSuffix: '","origin":"http://localhost:5500","crossOrigin":false}'
+    //         });
+    //     expect(signature.isOk()).toBe(true);
+    //     const validatorSignature = '02'/*passkey without validationData*/ + '00'/* type=P256 */ + "2ae3ddfe4cc414dc0fad7ff3a5c960d1cee1211722d3099ade76e5ac1826731a87e5d654f357e4cd6cb52512b2da4d91eae0ae48e9d892ce532b9352f63a55d61c0025000049960de5880e8c687434170f6476605b8fe4aeb9a28632c7995cf3ba831d97630500000000222c226f726967696e223a22687474703a2f2f6c6f63616c686f73743a35353030222c2263726f73734f726967696e223a66616c73657d";
+    //     const expectSignature = '0x' + validatorSignature;
+    //     expect(signature.OK).toBe(expectSignature);
+    // });
     test('packUserOpP256Signature-1', async () => {
-        const soulwallet = new SoulWallet('https://localhost/', 'https://localhost/', '0x0000000000000000000000000000000000000000', fakeValidatorAddress, '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000');
+        const soulwallet = new SoulWallet('https://localhost/', 'https://localhost/', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000');
         const signature = await soulwallet.packUserOpP256Signature(
             fakeValidatorAddress,
             {
@@ -117,7 +118,7 @@ describe('SDK', () => {
         expect(signature.isOk()).toBe(true);
     });
     test('packUserOpP256Signature-2', async () => {
-        const soulwallet = new SoulWallet('https://localhost/', 'https://localhost/', '0x0000000000000000000000000000000000000000', fakeValidatorAddress, '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000');
+        const soulwallet = new SoulWallet('https://localhost/', 'https://localhost/', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000');
         const signature = await soulwallet.packUserOpP256Signature(
             fakeValidatorAddress,
             {
@@ -134,7 +135,7 @@ describe('SDK', () => {
         expect(signature.isOk()).toBe(true);
     });
     test('packUserOpP256Signature-3', async () => {
-        const soulwallet = new SoulWallet('https://localhost/', 'https://localhost/', '0x0000000000000000000000000000000000000000', fakeValidatorAddress, '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000');
+        const soulwallet = new SoulWallet('https://localhost/', 'https://localhost/', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000');
         const signature = await soulwallet.packUserOpP256Signature(
             fakeValidatorAddress,
             {
@@ -151,7 +152,7 @@ describe('SDK', () => {
         expect(signature.isOk()).toBe(true);
     });
     test('packUserOpRS256Signature', async () => {
-        const soulwallet = new SoulWallet('https://localhost/', 'https://localhost/', '0x0000000000000000000000000000000000000000', fakeValidatorAddress, '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000');
+        const soulwallet = new SoulWallet('https://localhost/', 'https://localhost/', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000');
 
         const signature = await soulwallet.packUserOpRS256Signature(
             fakeValidatorAddress,
@@ -176,7 +177,7 @@ describe('SDK', () => {
         expect(signature.OK).toBe(expectSignature);
     });
     test('packEOASignature', async () => {
-        const soulwallet = new SoulWallet('https://localhost/', 'https://localhost/', '0x0000000000000000000000000000000000000000', fakeValidatorAddress, '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000');
+        const soulwallet = new SoulWallet('https://localhost/', 'https://localhost/', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000');
         const messageHash = '0x83714056da6e6910b51595330c2c2cdfbf718f2deff5bdd84b95df7a7f36f6dd';
         let _signKey: ethers.SigningKey = new ethers.SigningKey("0xa9b93cd9760363db3cb5ef267ad802973bbd0902adca497cd8eb75a6efc0995c");
         const rawSignature = _signKey!.sign(ethers.hashMessage(ethers.getBytes(messageHash))).serialized;
@@ -316,13 +317,11 @@ describe('SDK', () => {
     });
     test('calcWalletAddress', async () => {
         const soulwallet = new SoulWallet(
-            "https://base-sepolia-rpc.publicnode.com",
-            "https://api-dev.soulwallet.io/appapi/bundler/base-sepolia/rpc",
-            "0x148D4185ab1F3139ADe6AC3343A9b27A2488Dd9f",
-            "0xAF2a5BcC4c10b5289946Daaa87caa467f3abaDcC",
-            "0x4E73CC879D11916820FA49343Be19b0630a0bBA3",
-            undefined,
-            undefined
+            "https://sepolia-rollup.arbitrum.io/rpc",
+            "https://api-dev.soulwallet.io/walletapi/bundler/arbitrum-sepolia/rpc",
+            "0xF78Ae187CED0Ca5Fb98100d3F0EAB7a6461d6fC6",
+            "0x880c6eb80583795625935B08AA28EB37F16732C7",
+            "0x31378c4241626ced59cd770dbdf3747f6c8ee7ba"
         );
         const a2 = await soulwallet.calcWalletAddress(0, [
             "0x8f63d7dD6A3F5938616Ef06016BBf25BD6023315"
@@ -330,11 +329,12 @@ describe('SDK', () => {
         console.log(a2);
         const userop = await soulwallet.createUnsignedDeployWalletUserOp(0, [
             "0x8f63d7dD6A3F5938616Ef06016BBf25BD6023315"
-        ], "0x", undefined, undefined);
+        ], "0x55e85a731014097612c7d462fbdededcb5f50a5cb64b0c2068cfe017b51268d0");
         console.log(userop);
-        const re = await soulwallet.estimateUserOperationGas("0xAF2a5BcC4c10b5289946Daaa87caa467f3abaDcC", userop.OK);
+        expect(a2.OK).toBe(userop.OK.sender);
+        const re = await soulwallet.estimateUserOperationGas("0x82621ac52648b738fEdd381a3678851933505762", userop.OK);
         expect(re.isOk()).toBe(true);
-    }, 1000 * 15);
+    }, 1000 * 30);
 });
 
 

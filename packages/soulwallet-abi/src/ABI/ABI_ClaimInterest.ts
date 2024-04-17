@@ -10,12 +10,12 @@ export default [
         "internalType": "address"
       },
       {
-        "name": "_usdcAddr",
+        "name": "_signer",
         "type": "address",
         "internalType": "address"
       },
       {
-        "name": "_aaveUsdcPoolAddr",
+        "name": "_token",
         "type": "address",
         "internalType": "address"
       }
@@ -24,10 +24,82 @@ export default [
   },
   {
     "type": "function",
-    "name": "addBot",
+    "name": "changeSigner",
     "inputs": [
       {
-        "name": "bot",
+        "name": "newSigner",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "isSigner",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "claimInterest",
+    "inputs": [
+      {
+        "name": "interestAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "nonce",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "expiryTime",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "signature",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "deposit",
+    "inputs": [
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "getChainId",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "incrementNonce",
+    "inputs": [
+      {
+        "name": "user",
         "type": "address",
         "internalType": "address"
       }
@@ -37,7 +109,46 @@ export default [
   },
   {
     "type": "function",
-    "name": "bots",
+    "name": "nonces",
+    "inputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "owner",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "renounceOwnership",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "signers",
     "inputs": [
       {
         "name": "",
@@ -56,72 +167,16 @@ export default [
   },
   {
     "type": "function",
-    "name": "depositUsdcToAave",
-    "inputs": [
-      {
-        "name": "_user",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "amount",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
-    "outputs": [],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "depositUsdcToAaveBatch",
-    "inputs": [
-      {
-        "name": "_users",
-        "type": "address[]",
-        "internalType": "address[]"
-      },
-      {
-        "name": "amounts",
-        "type": "uint256[]",
-        "internalType": "uint256[]"
-      }
-    ],
-    "outputs": [],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "owner",
+    "name": "token",
     "inputs": [],
     "outputs": [
       {
         "name": "",
         "type": "address",
-        "internalType": "address"
+        "internalType": "contract IERC20"
       }
     ],
     "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "removeBot",
-    "inputs": [
-      {
-        "name": "bot",
-        "type": "address",
-        "internalType": "address"
-      }
-    ],
-    "outputs": [],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "renounceOwnership",
-    "inputs": [],
-    "outputs": [],
-    "stateMutability": "nonpayable"
   },
   {
     "type": "function",
@@ -137,27 +192,38 @@ export default [
     "stateMutability": "nonpayable"
   },
   {
-    "type": "event",
-    "name": "BotAdded",
+    "type": "function",
+    "name": "withdraw",
     "inputs": [
       {
-        "name": "bot",
+        "name": "to",
         "type": "address",
-        "indexed": false,
         "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
       }
     ],
-    "anonymous": false
+    "outputs": [],
+    "stateMutability": "nonpayable"
   },
   {
     "type": "event",
-    "name": "BotRemoved",
+    "name": "Deposited",
     "inputs": [
       {
-        "name": "bot",
+        "name": "addr",
         "type": "address",
-        "indexed": false,
+        "indexed": true,
         "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
       }
     ],
     "anonymous": false
@@ -183,12 +249,31 @@ export default [
   },
   {
     "type": "event",
-    "name": "UsdcDepositedToAave",
+    "name": "SignerChanged",
     "inputs": [
       {
-        "name": "user",
+        "name": "signer",
         "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "isSigner",
+        "type": "bool",
         "indexed": false,
+        "internalType": "bool"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Withdrawn",
+    "inputs": [
+      {
+        "name": "to",
+        "type": "address",
+        "indexed": true,
         "internalType": "address"
       },
       {
@@ -219,6 +304,33 @@ export default [
         "name": "account",
         "type": "address",
         "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "ECDSAInvalidSignature",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ECDSAInvalidSignatureLength",
+    "inputs": [
+      {
+        "name": "length",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "ECDSAInvalidSignatureS",
+    "inputs": [
+      {
+        "name": "s",
+        "type": "bytes32",
+        "internalType": "bytes32"
       }
     ]
   },
