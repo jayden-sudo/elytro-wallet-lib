@@ -5,13 +5,14 @@ import { TypeGuard } from "./tools/typeGuard.js";
 import { StorageCache } from "./tools/storageCache.js";
 import { ABI_SoulWalletFactory, ABI_SoulWallet, ABI_EntryPoint } from "@soulwallet/abi";
 import { HookInputData, Signature } from "./tools/signature.js";
-import { Hex } from "./tools/hex.js";
+// import { Hex } from "./tools/hex.js";
 // import { GasOverhead } from "./tools/gasOverhead.js";
 import { UserOpErrors, UserOpErrorCodes } from "./interface/IUserOpErrors.js";
 import { Bundler } from "./bundler.js";
 import { Ok, Err, Result } from '@soulwallet/result';
 import { getUserOpHash } from "./tools/userOpHash.js";
-import { L1KeyStore } from "./L1KeyStore.js";
+//import { L1KeyStore } from "./L1KeyStore.js";
+import { SocialRecovery } from "./socialRecovery.js";
 import { ECCPoint, RSAPublicKey } from "./tools/webauthn.js";
 import { WalletFactory } from "./tools/walletFactory.js";
 
@@ -34,9 +35,7 @@ export class SoulWallet implements ISoulWallet {
     readonly bundler: ethers.JsonRpcProvider;
     readonly soulWalletFactoryAddress: string;
     readonly defalutCallbackHandlerAddress?: string;
-    readonly keyStoreModuleAddress?: string;
-    readonly securityControlModuleAddress?: string;
-    readonly defaultValidator?: string;
+    readonly socialRecoveryModuleAddress?: string;
 
     readonly preVerificationGasDeploy: number = 10000000;
 
@@ -49,11 +48,8 @@ export class SoulWallet implements ISoulWallet {
         _provider: string | ethers.JsonRpcProvider,
         _bundler: string | ethers.JsonRpcProvider,
         _soulWalletFactoryAddress: string,
-        _defaultValidator?: string,
         _defalutCallbackHandlerAddress?: string,
-        _keyStoreModuleAddress?: string,
-        _securityControlModuleAddress?: string,
-
+        _socialRecoveryModuleAddress?: string
     ) {
         if (typeof _provider === 'string') {
             if (TypeGuard.httpOrHttps(_provider).isErr() === true) throw new Error("invalid provider");
@@ -70,16 +66,15 @@ export class SoulWallet implements ISoulWallet {
             this.bundler = _bundler;
         }
         if (TypeGuard.onlyAddress(_soulWalletFactoryAddress).isErr() === true) throw new Error("invalid soulWalletFactoryAddress");
-        if (_defaultValidator !== undefined && TypeGuard.onlyAddress(_defaultValidator).isErr() === true) throw new Error("invalid defaultValidator");
+        // if (_defaultValidator !== undefined && TypeGuard.onlyAddress(_defaultValidator).isErr() === true) throw new Error("invalid defaultValidator");
         if (_defalutCallbackHandlerAddress !== undefined && TypeGuard.onlyAddress(_defalutCallbackHandlerAddress).isErr() === true) throw new Error("invalid defalutCallbackHandlerAddress");
-        if (_keyStoreModuleAddress !== undefined && TypeGuard.onlyAddress(_keyStoreModuleAddress).isErr() === true) throw new Error("invalid keyStoreModuleAddress");
-        if (_securityControlModuleAddress !== undefined && TypeGuard.onlyAddress(_securityControlModuleAddress).isErr() === true) throw new Error("invalid securityControlModuleAddress");
+        if (_socialRecoveryModuleAddress !== undefined && TypeGuard.onlyAddress(_socialRecoveryModuleAddress).isErr() === true) throw new Error("invalid keyStoreModuleAddress");
+        // if (_securityControlModuleAddress !== undefined && TypeGuard.onlyAddress(_securityControlModuleAddress).isErr() === true) throw new Error("invalid securityControlModuleAddress");
 
         this.soulWalletFactoryAddress = _soulWalletFactoryAddress;
         this.defalutCallbackHandlerAddress = _defalutCallbackHandlerAddress;
-        this.keyStoreModuleAddress = _keyStoreModuleAddress;
-        this.securityControlModuleAddress = _securityControlModuleAddress;
-        this.defaultValidator = _defaultValidator;
+        this.socialRecoveryModuleAddress = _socialRecoveryModuleAddress;
+        // this.defaultValidator = _defaultValidator;
         this.Bundler = new Bundler(this.bundler);
     }
 
@@ -198,36 +193,31 @@ export class SoulWallet implements ISoulWallet {
 
     async initializeData(
         initialKeys: InitialKey[],
-        initialGuardianHash: string,
-        initialGuardianSafePeriod: number = L1KeyStore.defalutInitialGuardianSafePeriod,
-        securityControlModuleDelay: number = L1KeyStore.defalutInitialGuardianSafePeriod
+        initialGuardianHash: string = ethers.ZeroHash,
+        initialGuardianSafePeriod: number = SocialRecovery.defalutInitialGuardianSafePeriod
     ): Promise<Result<string, Error>> {
         /* 
             function initialize(
                 bytes32[] anOwner,
                 address defalutCallbackHandler,
                 bytes[] calldata modules,
-                bytes[] calldata plugins
+                bytes[] calldata hooks
             )
         */
-
-        const _initalkeys = L1KeyStore.initialKeysToAddress(initialKeys);
-        const initialKeyHash = L1KeyStore.getKeyHash(_initalkeys);
-
         const modules: string[] = [];
 
-        if (this.securityControlModuleAddress !== undefined) {
-            // default dely time is 2 days
-            const securityControlModuleAndData = (this.securityControlModuleAddress + Hex.paddingZero(securityControlModuleDelay, 32).substring(2)).toLowerCase();
-            modules.push(securityControlModuleAndData);
-        }
-        if (this.keyStoreModuleAddress !== undefined) {
-            /* 
-                (bytes32 initialKey, bytes32 initialGuardianHash, uint64 guardianSafePeriod) = abi.decode(_data, (bytes32, bytes32, uint64));
-             */
-            const keyStoreInitData = new ethers.AbiCoder().encode(["bytes32", "bytes32", "uint64"], [initialKeyHash, initialGuardianHash, initialGuardianSafePeriod]);
-            const keyStoreModuleAndData = (this.keyStoreModuleAddress + keyStoreInitData.substring(2)).toLowerCase();
-            modules.push(keyStoreModuleAndData);
+        // if (this.securityControlModuleAddress !== undefined) {
+        //     // default dely time is 2 days
+        //     const securityControlModuleAndData = (this.securityControlModuleAddress + Hex.paddingZero(securityControlModuleDelay, 32).substring(2)).toLowerCase();
+        //     modules.push(securityControlModuleAndData);
+        // }
+        if (this.socialRecoveryModuleAddress !== undefined) {
+            if (initialGuardianHash === '0x') {
+                initialGuardianHash = ethers.ZeroHash;
+            }
+            const socialRecoveryInitData = new ethers.AbiCoder().encode(["bytes32", "uint256"], [initialGuardianHash, initialGuardianSafePeriod]);
+            const socialRecoveryModuleAndData = (this.socialRecoveryModuleAddress + socialRecoveryInitData.substring(2)).toLowerCase();
+            modules.push(socialRecoveryModuleAndData);
         }
 
         const _onChainConfig = await this.getOnChainConfig();
@@ -236,7 +226,7 @@ export class SoulWallet implements ISoulWallet {
         }
         const _soulWallet = new ethers.Contract(_onChainConfig.OK.soulWalletLogic, ABI_SoulWallet, this.provider);
         const initializeData = _soulWallet.interface.encodeFunctionData("initialize", [
-            _initalkeys,
+            SocialRecovery.initialKeysToAddress(initialKeys),
             this.defalutCallbackHandlerAddress === undefined ? ethers.ZeroAddress : this.defalutCallbackHandlerAddress,
             modules,
             []
