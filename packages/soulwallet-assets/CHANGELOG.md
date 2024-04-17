@@ -1,5 +1,11 @@
 # @soulwallet/assets
 
+## 0.3.1
+
+### Patch Changes
+
+- b080ac3: 1. Compatibility with [savings](https://github.com/SoulWallet/soul-wallet-contract/commit/09082c1837df7c8c2f026b2e38775201a3bbf3bf) branch. 2. Removed `IL1KeyStore` from @soulwallet/sdk, added `SocialRecovery`.
+
 ## 0.3.0
 
 ### Minor Changes
