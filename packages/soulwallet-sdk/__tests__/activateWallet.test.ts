@@ -33,18 +33,18 @@ import {
 
 describe('ActivateWallet', () => {
     test('Activate', async () => {
-        const RPC = "https://optimism-rpc.publicnode.com";
-        const BunlderAPIKEY = "";
-        const pimlicoAPIKEY = ""
-        if (BunlderAPIKEY == "" || pimlicoAPIKEY == "") {
+        if (true) {
             return;
         }
-        const BundlerRPC = `https://api.pimlico.io/v2/optimism/rpc?apikey=${BunlderAPIKEY}`;
+        const RPC = "https://sepolia.optimism.io";
+        const pimlicoAPIKEY = "";
+        const BundlerRPC = `https://api-dev.soulwallet.io/walletapi/bundler/optimism-sepolia/rpc`;
         const pimlicoSponsorRPC = `https://api.pimlico.io/v2/optimism/rpc?apikey=${pimlicoAPIKEY}`;
 
         const SoulWalletDefaultValidator = '0x82621ac52648b738fEdd381a3678851933505762';
-        const SoulwalletFactory = '0xD49A10281cD035a4219428D53a08DbC1e97bd741';
+        const SoulwalletFactory = '0xF78Ae187CED0Ca5Fb98100d3F0EAB7a6461d6fC6';
         const DefaultCallbackHandler = '0x880c6eb80583795625935B08AA28EB37F16732C7';
+        const SocialRecoveryModule = "0x31378c4241626ced59cd770dbdf3747f6c8ee7ba";
 
         const Web3RPC = new ethers.JsonRpcProvider(RPC);
 
@@ -53,16 +53,16 @@ describe('ActivateWallet', () => {
             BundlerRPC,
             SoulwalletFactory,
             DefaultCallbackHandler,
-            undefined
+            SocialRecoveryModule
         );
 
         // new EOASigner  
-        const signer = ethers.Wallet.createRandom();
-        //const signer = new ethers.Wallet('0x0000000000000000000000000000000000000000000000000000000000000001');
+        //const signer = ethers.Wallet.createRandom();
+        const signer = new ethers.Wallet('0x0000000000000000000000000000000000000000000000000000000000000001');
 
         const index: number = 0;
         const initialKeys: InitialKey[] = [signer.address];
-        const initialGuardianHash: string = "0x";
+        const initialGuardianHash: string = "0x0000000000000000000000000000000000000000000000000000000000000001";
 
         const _walletAddress = await soulWallet.calcWalletAddress(
             index,
@@ -103,7 +103,7 @@ describe('ActivateWallet', () => {
             expect(re.isOk()).toBe(true);
         }
 
-        let usePaymaster = true;
+        let usePaymaster = false;
         if (usePaymaster) {
             const entryPoint = (await soulWallet.entryPoint()).OK;
             const chainId = '0x' + ((await Web3RPC.getNetwork()).chainId).toString(16);
@@ -194,6 +194,12 @@ describe('ActivateWallet', () => {
             // get balance
             const _balance = await Web3RPC.getBalance(walletAddress);
             const missfund = BigInt(preFund.OK.missfund);
+            if (missfund > _balance) {
+                const errStr = `balance:${ethers.formatEther(_balance)} missfund:${ethers.formatEther(missfund)}`;
+                console.error(errStr);
+                throw new Error(errStr);
+                debugger;
+            }
             expect(_balance >= missfund).toBe(true);
         }
 
