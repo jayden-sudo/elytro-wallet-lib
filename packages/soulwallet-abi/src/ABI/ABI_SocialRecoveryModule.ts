@@ -41,21 +41,27 @@ export default [
   },
   {
     "type": "function",
-    "name": "cancelAllRecovery",
-    "inputs": [],
-    "outputs": [],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "cancelRecovery",
+    "name": "approvedHashes",
     "inputs": [
       {
-        "name": "recoveryId",
+        "name": "",
         "type": "bytes32",
         "internalType": "bytes32"
       }
     ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "cancelAllRecovery",
+    "inputs": [],
     "outputs": [],
     "stateMutability": "nonpayable"
   },
@@ -162,6 +168,35 @@ export default [
     "outputs": [
       {
         "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getSocialRecoveryInfo",
+    "inputs": [
+      {
+        "name": "wallet",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "guardianHash",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "nonce",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "delayPeriod",
         "type": "uint256",
         "internalType": "uint256"
       }
