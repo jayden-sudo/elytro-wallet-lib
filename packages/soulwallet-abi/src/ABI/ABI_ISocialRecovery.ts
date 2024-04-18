@@ -3,19 +3,6 @@
 export default [
   {
     "type": "function",
-    "name": "cancelRecovery",
-    "inputs": [
-      {
-        "name": "recoveryId",
-        "type": "bytes32",
-        "internalType": "bytes32"
-      }
-    ],
-    "outputs": [],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
     "name": "executeRecovery",
     "inputs": [
       {
