@@ -1,5 +1,13 @@
 # @soulwallet/decoder
 
+## 0.3.2
+
+### Patch Changes
+
+- 910f948: Update to the latest contract version compatible.
+- Updated dependencies [910f948]
+  - @soulwallet/abi@0.3.2
+
 ## 0.3.1
 
 ### Patch Changes

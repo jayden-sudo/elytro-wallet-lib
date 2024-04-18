@@ -1,5 +1,11 @@
 # @soulwallet/abi
 
+## 0.3.2
+
+### Patch Changes
+
+- 910f948: Update to the latest contract version compatible.
+
 ## 0.3.1
 
 ### Patch Changes
