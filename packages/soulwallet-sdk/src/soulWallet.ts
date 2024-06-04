@@ -191,19 +191,21 @@ export class SoulWallet implements ISoulWallet {
         return new Ok(_onChainConfig.OK.entryPoint);
     }
 
-    async initializeData(
+    static initializeData(
+        socialRecoveryModuleAddress: string | undefined,
+        defalutCallbackHandlerAddress: string | undefined,
         initialKeys: InitialKey[],
         initialGuardianHash: string = ethers.ZeroHash,
         initialGuardianSafePeriod: number = SocialRecovery.defalutInitialGuardianSafePeriod
-    ): Promise<Result<string, Error>> {
+    ): Result<string, Error> {
         /* 
-            function initialize(
-                bytes32[] anOwner,
-                address defalutCallbackHandler,
-                bytes[] calldata modules,
-                bytes[] calldata hooks
-            )
-        */
+                   function initialize(
+                       bytes32[] anOwner,
+                       address defalutCallbackHandler,
+                       bytes[] calldata modules,
+                       bytes[] calldata hooks
+                   )
+               */
         const modules: string[] = [];
 
         // if (this.securityControlModuleAddress !== undefined) {
@@ -211,29 +213,38 @@ export class SoulWallet implements ISoulWallet {
         //     const securityControlModuleAndData = (this.securityControlModuleAddress + Hex.paddingZero(securityControlModuleDelay, 32).substring(2)).toLowerCase();
         //     modules.push(securityControlModuleAndData);
         // }
-        if (this.socialRecoveryModuleAddress !== undefined) {
+        if (socialRecoveryModuleAddress !== undefined) {
             if (initialGuardianHash === '0x') {
                 initialGuardianHash = ethers.ZeroHash;
             }
             const socialRecoveryInitData = new ethers.AbiCoder().encode(["bytes32", "uint256"], [initialGuardianHash, initialGuardianSafePeriod]);
-            const socialRecoveryModuleAndData = (this.socialRecoveryModuleAddress + socialRecoveryInitData.substring(2)).toLowerCase();
+            const socialRecoveryModuleAndData = (socialRecoveryModuleAddress + socialRecoveryInitData.substring(2)).toLowerCase();
             modules.push(socialRecoveryModuleAndData);
         }
 
-        const _onChainConfig = await this.getOnChainConfig();
-        if (_onChainConfig.isErr() === true) {
-            return new Err(_onChainConfig.ERR);
-        }
-        const _soulWallet = new ethers.Contract(_onChainConfig.OK.soulWalletLogic, ABI_SoulWallet, this.provider);
-        const initializeData = _soulWallet.interface.encodeFunctionData("initialize", [
+        const interfaceSoulWallet = new ethers.Interface(ABI_SoulWallet);
+        const initializeData = interfaceSoulWallet.encodeFunctionData("initialize", [
             SocialRecovery.initialKeysToAddress(initialKeys),
-            this.defalutCallbackHandlerAddress === undefined ? ethers.ZeroAddress : this.defalutCallbackHandlerAddress,
+            defalutCallbackHandlerAddress === undefined ? ethers.ZeroAddress : defalutCallbackHandlerAddress,
             modules,
             []
-        ]
-        );
+        ]);
 
         return new Ok(initializeData);
+    }
+
+    async initializeData(
+        initialKeys: InitialKey[],
+        initialGuardianHash: string = ethers.ZeroHash,
+        initialGuardianSafePeriod: number = SocialRecovery.defalutInitialGuardianSafePeriod
+    ): Promise<Result<string, Error>> {
+        return SoulWallet.initializeData(
+            this.socialRecoveryModuleAddress,
+            this.defalutCallbackHandlerAddress,
+            initialKeys,
+            initialGuardianHash,
+            initialGuardianSafePeriod
+        );
     }
 
     /**

@@ -72,5 +72,24 @@ writeFileSync(entryPointAbiFilePath, `${warning}export default ${entryPointABI};
 mainTsImport += `import ABI_EntryPoint from "./ABI/ABI_EntryPoint.js";\n`;
 mainTsExport += '    ABI_EntryPoint,\n';
 
+// zkemail
+{
+    const ABI_Name = "ABI_EmailApprover";
+    const ABI_Json = readFileSync(resolve(__dirname, 'src', 'zkemail', 'emailApprover.json'), 'utf-8');
+    const ABI_Path = resolve(__dirname, 'src', 'ABI', ABI_Name + '.ts');
+    writeFileSync(ABI_Path, `${warning}export default ${ABI_Json};`);
+    mainTsImport += `import ${ABI_Name} from "./ABI/${ABI_Name}.js";\n`;
+    mainTsExport += `    ${ABI_Name},\n`;
+}
+{
+    const ABI_Name = "ABI_EmailApproverFactory";
+    const ABI_Json = readFileSync(resolve(__dirname, 'src', 'zkemail', 'emailApproverFactory.json'), 'utf-8');
+    const ABI_Path = resolve(__dirname, 'src', 'ABI', ABI_Name + '.ts');
+    writeFileSync(ABI_Path, `${warning}export default ${ABI_Json};`);
+    mainTsImport += `import ${ABI_Name} from "./ABI/${ABI_Name}.js";\n`;
+    mainTsExport += `    ${ABI_Name},\n`;
+}
+
+
 const mainTsFilePath = resolve(__dirname, 'src', 'main.ts');
 writeFileSync(mainTsFilePath, mainTsImport + '\n\nexport { ' + mainTsExport + ' };' + '\n' + warning);

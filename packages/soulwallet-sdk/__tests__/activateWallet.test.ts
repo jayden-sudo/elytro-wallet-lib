@@ -7,6 +7,7 @@ import {
     UserOpErrors,
     UserOpErrorCodes,
     // L1KeyStore,
+    SocialRecovery,
     Ok, Err, Result,
     UserOpReceipt,
     UserOpDetail,
@@ -30,6 +31,7 @@ import { Hex } from '../src/tools/hex';
 import {
     randomBytes
 } from 'crypto';
+import { ABI_SocialRecoveryModule } from "@soulwallet/abi";
 
 describe('ActivateWallet', () => {
     test('Activate', async () => {
@@ -38,7 +40,7 @@ describe('ActivateWallet', () => {
         }
         const RPC = "https://sepolia.optimism.io";
         let signkeyType: SignkeyType;
-        signkeyType = SignkeyType.P256;
+        signkeyType = SignkeyType.EOA;
         const pimlicoAPIKEY = "";
         const BundlerRPC = `https://api-dev.soulwallet.io/walletapi/bundler/optimism-sepolia/rpc`;
         const pimlicoSponsorRPC = `https://api.pimlico.io/v2/optimism/rpc?apikey=${pimlicoAPIKEY}`;
@@ -46,9 +48,10 @@ describe('ActivateWallet', () => {
         const SoulWalletDefaultValidator = '0x82621ac52648b738fEdd381a3678851933505762';
         const SoulwalletFactory = '0xF78Ae187CED0Ca5Fb98100d3F0EAB7a6461d6fC6';
         const DefaultCallbackHandler = '0x880c6eb80583795625935B08AA28EB37F16732C7';
-        const SocialRecoveryModule = "0x31378c4241626ced59cd770dbdf3747f6c8ee7ba";
+        const SocialRecoveryModule = "0x3Cc36538cf53A13AF5C28BB693091e23CF5BB567";
 
         const Web3RPC = new ethers.JsonRpcProvider(RPC);
+
 
         const soulWallet = new SoulWallet(
             Web3RPC,
@@ -57,6 +60,16 @@ describe('ActivateWallet', () => {
             DefaultCallbackHandler,
             SocialRecoveryModule
         );
+
+        const guardian1 = new ethers.Wallet('0x1000000000000000000000000000000000000000000000000000000000000001');
+        const guardian2 = new ethers.Wallet('0x1000000000000000000000000000000000000000000000000000000000000002');
+        const threshold = 2;
+        const initialGuardianSafePeriod = 2;
+        const initialGuardianHash = SocialRecovery.calcGuardianHash([
+            guardian1.address,
+            guardian2.address
+        ], threshold);
+        // ethers.solidityPacked(["uint256", "uint256"], [recover[0].x, recover[0].y])
 
         // new EOASigner  
         //const signer = ethers.Wallet.createRandom();
@@ -76,191 +89,257 @@ describe('ActivateWallet', () => {
         } else {
             initialKeys.push(p256KeyHash);
         }
-        const initialGuardianHash: string = "0x0000000000000000000000000000000000000000000000000000000000000001";
 
         const _walletAddress = await soulWallet.calcWalletAddress(
             index,
             initialKeys,
-            initialGuardianHash
+            initialGuardianHash,
+            initialGuardianSafePeriod
         );
         expect(_walletAddress.isOk()).toBe(true);
         const walletAddress = _walletAddress.OK;
         console.log('walletAddress', walletAddress);
+        const code = await Web3RPC.getCode(walletAddress);
+        if (code === '0x') {
+            const calldata = "0x";
+            const _userOp = await soulWallet.createUnsignedDeployWalletUserOp(
+                index,
+                initialKeys,
+                initialGuardianHash,
+                calldata,
+                initialGuardianSafePeriod
+            );
 
-        const calldata = "0x";
-        const _userOp = await soulWallet.createUnsignedDeployWalletUserOp(
-            index,
-            initialKeys,
-            initialGuardianHash,
-            calldata
-        );
+            expect(_userOp.isOk()).toBe(true);
+            const userOp = _userOp.OK;
 
-        expect(_userOp.isOk()).toBe(true);
-        const userOp = _userOp.OK;
+            {
 
-        {
-
-            // get gas price
-            const gasPrice = await Web3RPC.getFeeData();
-            expect(gasPrice).not.toBeNull();
-            expect(gasPrice.maxFeePerGas).not.toBeNull();
-            expect(gasPrice.maxPriorityFeePerGas).not.toBeNull();
-            userOp.maxFeePerGas = gasPrice.maxFeePerGas!;
-            userOp.maxPriorityFeePerGas = gasPrice.maxPriorityFeePerGas!;
-        }
-
-        {
-            const re = await soulWallet.estimateUserOperationGas(SoulWalletDefaultValidator, userOp, signkeyType);
-            if (userOp.callData === '0x') {
-                userOp.callGasLimit = 1;
+                // get gas price
+                const gasPrice = await Web3RPC.getFeeData();
+                expect(gasPrice).not.toBeNull();
+                expect(gasPrice.maxFeePerGas).not.toBeNull();
+                expect(gasPrice.maxPriorityFeePerGas).not.toBeNull();
+                userOp.maxFeePerGas = gasPrice.maxFeePerGas!;
+                userOp.maxPriorityFeePerGas = gasPrice.maxPriorityFeePerGas!;
             }
-            expect(re.isOk()).toBe(true);
-        }
 
-        let usePaymaster = false;
-        if (usePaymaster) {
-            const entryPoint = (await soulWallet.entryPoint()).OK;
-            const chainId = '0x' + ((await Web3RPC.getNetwork()).chainId).toString(16);
-            userOp.paymaster = "";
-            userOp.paymasterVerificationGasLimit = 0;
-            userOp.paymasterPostOpGasLimit = 0;
-            userOp.paymasterData = "0x";
-            userOp.signature = (await soulWallet.getSemiValidSignature(SoulWalletDefaultValidator, userOp, signkeyType)).OK;
-            const usePimlico = true;
-            if (usePimlico) {
-                const SponsorRPC = new ethers.JsonRpcProvider(
-                    pimlicoSponsorRPC, undefined, { batchMaxCount: 1 }
-                );
+            {
+                const re = await soulWallet.estimateUserOperationGas(SoulWalletDefaultValidator, userOp, signkeyType);
+                if (userOp.callData === '0x') {
+                    userOp.callGasLimit = 1;
+                }
+                expect(re.isOk()).toBe(true);
+            }
 
-                const json = await SponsorRPC.send(
-                    "pm_sponsorUserOperation", [
-                    JSON.parse(UserOpUtils.userOperationToJSON(userOp)),
-                    entryPoint,
-                    {
-                        sponsorshipPolicyId: "sp_slow_vivisector"
+            let usePaymaster = false;
+            if (usePaymaster) {
+                const entryPoint = (await soulWallet.entryPoint()).OK;
+                const chainId = '0x' + ((await Web3RPC.getNetwork()).chainId).toString(16);
+                userOp.paymaster = "";
+                userOp.paymasterVerificationGasLimit = 0;
+                userOp.paymasterPostOpGasLimit = 0;
+                userOp.paymasterData = "0x";
+                userOp.signature = (await soulWallet.getSemiValidSignature(SoulWalletDefaultValidator, userOp, signkeyType)).OK;
+                const usePimlico = true;
+                if (usePimlico) {
+                    const SponsorRPC = new ethers.JsonRpcProvider(
+                        pimlicoSponsorRPC, undefined, { batchMaxCount: 1 }
+                    );
+
+                    const json = await SponsorRPC.send(
+                        "pm_sponsorUserOperation", [
+                        JSON.parse(UserOpUtils.userOperationToJSON(userOp)),
+                        entryPoint,
+                        {
+                            sponsorshipPolicyId: "sp_slow_vivisector"
+                        }
+                    ]);
+                    if (
+                        typeof json === 'object' &&
+                        typeof json.callGasLimit === 'string' &&
+                        typeof json.paymaster === 'string' &&
+                        typeof json.paymasterData === 'string' &&
+                        typeof json.paymasterPostOpGasLimit === 'string' &&
+                        typeof json.paymasterVerificationGasLimit === 'string' &&
+                        typeof json.verificationGasLimit === 'string'
+                    ) {
+                        userOp.callGasLimit = BigInt(json.callGasLimit);
+                        userOp.paymaster = json.paymaster;
+                        userOp.paymasterData = json.paymasterData;
+                        userOp.paymasterPostOpGasLimit = BigInt(json.paymasterPostOpGasLimit);
+                        userOp.paymasterVerificationGasLimit = BigInt(json.paymasterVerificationGasLimit);
+                        userOp.preVerificationGas = BigInt(json.preVerificationGas);
+                        userOp.verificationGasLimit = BigInt(json.verificationGasLimit);
+                    } else {
+                        throw new Error('sponsor failed');
                     }
-                ]);
-                if (
-                    typeof json === 'object' &&
-                    typeof json.callGasLimit === 'string' &&
-                    typeof json.paymaster === 'string' &&
-                    typeof json.paymasterData === 'string' &&
-                    typeof json.paymasterPostOpGasLimit === 'string' &&
-                    typeof json.paymasterVerificationGasLimit === 'string' &&
-                    typeof json.verificationGasLimit === 'string'
-                ) {
-                    userOp.callGasLimit = BigInt(json.callGasLimit);
-                    userOp.paymaster = json.paymaster;
-                    userOp.paymasterData = json.paymasterData;
-                    userOp.paymasterPostOpGasLimit = BigInt(json.paymasterPostOpGasLimit);
-                    userOp.paymasterVerificationGasLimit = BigInt(json.paymasterVerificationGasLimit);
-                    userOp.preVerificationGas = BigInt(json.preVerificationGas);
-                    userOp.verificationGasLimit = BigInt(json.verificationGasLimit);
+                    console.log('json', json);
                 } else {
-                    throw new Error('sponsor failed');
+                    const sponsorUrl = "https://api.stable.cash/alpha1/appapi/sponsor/sponsor-op";
+                    const sponsorData = {
+                        chainId: chainId,
+                        entryPoint: entryPoint,
+                        op: JSON.parse(UserOpUtils.userOperationToJSON(userOp))
+                    };
+                    const re = await fetch(sponsorUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(sponsorData),
+                    });
+                    const json = await re.json();
+                    if (
+                        typeof json === 'object' &&
+                        typeof json.msg === 'string' &&
+                        json.msg === "success" &&
+                        typeof json.data === 'object' &&
+                        typeof json.data.callGasLimit === 'string' &&
+                        typeof json.data.paymaster === 'string' &&
+                        typeof json.data.paymasterData === 'string' &&
+                        typeof json.data.paymasterPostOpGasLimit === 'string' &&
+                        typeof json.data.paymasterVerificationGasLimit === 'string' &&
+                        typeof json.data.verificationGasLimit === 'string'
+                    ) {
+                        userOp.callGasLimit = BigInt(json.data.callGasLimit);
+                        userOp.paymaster = json.data.paymaster;
+                        userOp.paymasterData = json.data.paymasterData;
+                        userOp.paymasterPostOpGasLimit = BigInt(json.data.paymasterPostOpGasLimit);
+                        userOp.paymasterVerificationGasLimit = BigInt(json.data.paymasterVerificationGasLimit);
+                        userOp.preVerificationGas = BigInt(json.data.preVerificationGas);
+                        userOp.verificationGasLimit = BigInt(json.data.verificationGasLimit);
+                    } else {
+                        throw new Error('sponsor failed');
+                    }
+                    console.log('json', json);
                 }
-                console.log('json', json);
+
+
+
             } else {
-                const sponsorUrl = "https://api.stable.cash/alpha1/appapi/sponsor/sponsor-op";
-                const sponsorData = {
-                    chainId: chainId,
-                    entryPoint: entryPoint,
-                    op: JSON.parse(UserOpUtils.userOperationToJSON(userOp))
-                };
-                const re = await fetch(sponsorUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(sponsorData),
-                });
-                const json = await re.json();
-                if (
-                    typeof json === 'object' &&
-                    typeof json.msg === 'string' &&
-                    json.msg === "success" &&
-                    typeof json.data === 'object' &&
-                    typeof json.data.callGasLimit === 'string' &&
-                    typeof json.data.paymaster === 'string' &&
-                    typeof json.data.paymasterData === 'string' &&
-                    typeof json.data.paymasterPostOpGasLimit === 'string' &&
-                    typeof json.data.paymasterVerificationGasLimit === 'string' &&
-                    typeof json.data.verificationGasLimit === 'string'
-                ) {
-                    userOp.callGasLimit = BigInt(json.data.callGasLimit);
-                    userOp.paymaster = json.data.paymaster;
-                    userOp.paymasterData = json.data.paymasterData;
-                    userOp.paymasterPostOpGasLimit = BigInt(json.data.paymasterPostOpGasLimit);
-                    userOp.paymasterVerificationGasLimit = BigInt(json.data.paymasterVerificationGasLimit);
-                    userOp.preVerificationGas = BigInt(json.data.preVerificationGas);
-                    userOp.verificationGasLimit = BigInt(json.data.verificationGasLimit);
-                } else {
-                    throw new Error('sponsor failed');
+                const preFund = await soulWallet.preFund(userOp);
+                expect(preFund.isOk()).toBe(true);
+                // get balance
+                const _balance = await Web3RPC.getBalance(walletAddress);
+                const missfund = BigInt(preFund.OK.missfund);
+                if (missfund > _balance) {
+                    const errStr = `balance:${ethers.formatEther(_balance)} missfund:${ethers.formatEther(missfund)}`;
+                    console.error(errStr);
+                    throw new Error(errStr);
+                    debugger;
                 }
-                console.log('json', json);
+                expect(_balance >= missfund).toBe(true);
             }
 
+            {
+                const _userOpHash = await soulWallet.userOpHash(userOp);
+                expect(_userOpHash.isOk()).toBe(true);
+                const userOpHash = _userOpHash.OK;
+                const dateNow = Math.floor(new Date().getTime() / 1000);
+                const _re = await soulWallet.packRawHash(userOpHash, dateNow - 1000 * 60 * 60, dateNow + 1000 * 60 * 60);
+                expect(_re.isOk()).toBe(true);
+                const packedHash: string = _re.OK.packedHash;
+                const validationData: string = _re.OK.validationData;
 
+                if (signkeyType.valueOf() === SignkeyType.EOA.valueOf()) {
+                    const _signature = signer.signMessageSync(ethers.getBytes(packedHash));
+                    const signature = await soulWallet.packUserOpEOASignature(SoulWalletDefaultValidator, _signature, validationData);
+                    expect(signature.isOk()).toBe(true);
+                    userOp.signature = signature.OK;
+                } else {
+                    const { r, s, authenticatorData, clientDataSuffix, _message } = await WebAuthNMock.signPassKey(privateKeyBase64, publicKeyBase64, packedHash);
 
-        } else {
-            const preFund = await soulWallet.preFund(userOp);
-            expect(preFund.isOk()).toBe(true);
-            // get balance
-            const _balance = await Web3RPC.getBalance(walletAddress);
-            const missfund = BigInt(preFund.OK.missfund);
-            if (missfund > _balance) {
-                const errStr = `balance:${ethers.formatEther(_balance)} missfund:${ethers.formatEther(missfund)}`;
-                console.error(errStr);
-                throw new Error(errStr);
-                debugger;
+                    const signature = await soulWallet.packUserOpP256Signature(SoulWalletDefaultValidator, {
+                        messageHash: packedHash,
+                        publicKey: {
+                            x: WebAuthNMock.paddingZero(X, 32),
+                            y: WebAuthNMock.paddingZero(Y, 32)
+                        },
+                        r: WebAuthNMock.paddingZero(r, 32),
+                        s: WebAuthNMock.paddingZero(s, 32),
+                        authenticatorData: authenticatorData,
+                        clientDataSuffix: clientDataSuffix
+                    }, validationData);
+                    expect(signature.isOk()).toBe(true);
+                    userOp.signature = signature.OK;
+                }
             }
-            expect(_balance >= missfund).toBe(true);
-        }
-
-        {
-            const _userOpHash = await soulWallet.userOpHash(userOp);
-            expect(_userOpHash.isOk()).toBe(true);
-            const userOpHash = _userOpHash.OK;
-            const dateNow = Math.floor(new Date().getTime() / 1000);
-            const _re = await soulWallet.packRawHash(userOpHash, dateNow - 1000 * 60 * 60, dateNow + 1000 * 60 * 60);
-            expect(_re.isOk()).toBe(true);
-            const packedHash: string = _re.OK.packedHash;
-            const validationData: string = _re.OK.validationData;
-
-            if (signkeyType.valueOf() === SignkeyType.EOA.valueOf()) {
-                const _signature = signer.signMessageSync(ethers.getBytes(packedHash));
-                const signature = await soulWallet.packUserOpEOASignature(SoulWalletDefaultValidator, _signature, validationData);
-                expect(signature.isOk()).toBe(true);
-                userOp.signature = signature.OK;
-            } else {
-                const { r, s, authenticatorData, clientDataSuffix, _message } = await WebAuthNMock.signPassKey(privateKeyBase64, publicKeyBase64, packedHash);
-
-                const signature = await soulWallet.packUserOpP256Signature(SoulWalletDefaultValidator, {
-                    messageHash: packedHash,
-                    publicKey: {
-                        x: WebAuthNMock.paddingZero(X, 32),
-                        y: WebAuthNMock.paddingZero(Y, 32)
-                    },
-                    r: WebAuthNMock.paddingZero(r, 32),
-                    s: WebAuthNMock.paddingZero(s, 32),
-                    authenticatorData: authenticatorData,
-                    clientDataSuffix: clientDataSuffix
-                }, validationData);
-                expect(signature.isOk()).toBe(true);
-                userOp.signature = signature.OK;
+            {
+                const packedUserOp = UserOpUtils.packUserOp(userOp);
+                const packedUserOpJson = UserOpUtils.packedUserOperationToJSON(packedUserOp);
+                const tupleStr = UserOpUtils.packedUserOperationToTuple(packedUserOp);
+                console.log('packedUserOp', packedUserOp);
+                const re = await soulWallet.sendUserOperation(userOp);
+                if (re.isErr()) {
+                    debugger;
+                    console.log('error', re.ERR.toString());
+                }
+                expect(re.isOk()).toBe(true);
             }
         }
         {
-            const packedUserOp = UserOpUtils.packUserOp(userOp);
-            const packedUserOpJson = UserOpUtils.packedUserOperationToJSON(packedUserOp);
-            const tupleStr = UserOpUtils.packedUserOperationToTuple(packedUserOp);
-            console.log('packedUserOp', packedUserOp);
-            const re = await soulWallet.sendUserOperation(userOp);
-            if (re.isErr()) {
-                debugger;
-                console.log('error', re.ERR.toString());
+            // wait for the wallet to be deployed
+            while (true) {
+                console.log('waiting for the wallet to be deployed');
+                const code = await Web3RPC.getCode(walletAddress);
+                if (code !== '0x') {
+                    break;
+                }
+                await new Promise((resolve) => setTimeout(resolve, 1000));
             }
-            expect(re.isOk()).toBe(true);
+            console.log('wallet deployed');
+        }
+        {
+            // get nonce
+            const _SocialRecoveryModule = new ethers.Contract(SocialRecoveryModule, ABI_SocialRecoveryModule, Web3RPC);
+            const SocialRecoveryNonce: bigint = await _SocialRecoveryModule.getFunction("walletNonce").staticCall(walletAddress);
+            const newOwner = new ethers.Wallet('0x2000000000000000000000000000000000000000000000000000000000000001');
+            const bytes32NewOwners: string[] = [SocialRecovery.addressToBytes32(newOwner.address)];
+            // social recovery
+            const typedData = SocialRecovery.getSocialRecoveryTypedData(
+                Number((await Web3RPC.getNetwork()).chainId),
+                SocialRecoveryModule,
+                walletAddress,
+                Number(SocialRecoveryNonce),
+                bytes32NewOwners
+            );
+            const signature1 = await guardian1.signTypedData(typedData.domain, typedData.types, typedData.message);
+            const signature2 = await guardian2.signTypedData(typedData.domain, typedData.types, typedData.message);
+
+            const guardianSignature: GuardianSignature[] = [
+                {
+                    signatureType: 2,
+                    address: guardian1.address,
+                    signature: signature1
+                },
+                {
+                    signatureType: 2,
+                    address: guardian2.address,
+                    signature: signature2
+                }
+            ];
+
+            const rawGuardian: string = SocialRecovery.getGuardianBytes([
+                guardian1.address,
+                guardian2.address
+            ], threshold)
+
+            const packedGuardianSignature = await SocialRecovery.packGuardianSignature(guardianSignature);
+            const re_scheduleRecovery = await _SocialRecoveryModule.getFunction("scheduleRecovery").call(
+                walletAddress,
+                bytes32NewOwners,
+                rawGuardian,
+                packedGuardianSignature
+            );
+            console.log('re_scheduleRecovery', re_scheduleRecovery);
+            await new Promise((resolve) => setTimeout(resolve, initialGuardianSafePeriod * 1000));
+            const re_executeRecovery = await _SocialRecoveryModule.getFunction("executeRecovery").call(
+                walletAddress,
+                bytes32NewOwners
+            );
+            console.log('re_executeRecovery', re_executeRecovery);
+
         }
 
 
