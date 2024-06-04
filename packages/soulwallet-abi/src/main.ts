@@ -38,6 +38,8 @@ import ABI_TimeLockEmailGuardian from "./ABI/ABI_TimeLockEmailGuardian.js";
 import ABI_TokenERC20 from "./ABI/ABI_TokenERC20.js";
 import ABI_UpgradeModule from "./ABI/ABI_UpgradeModule.js";
 import ABI_EntryPoint from "./ABI/ABI_EntryPoint.js";
+import ABI_EmailApprover from "./ABI/ABI_EmailApprover.js";
+import ABI_EmailApproverFactory from "./ABI/ABI_EmailApproverFactory.js";
 
 
 export { 
@@ -81,6 +83,8 @@ export {
     ABI_TokenERC20,
     ABI_UpgradeModule,
     ABI_EntryPoint,
+    ABI_EmailApprover,
+    ABI_EmailApproverFactory,
  };
 //Please do not modify manually,use `git submodule update --init --recursive && pnpm run generateABI`
 
