@@ -63,7 +63,7 @@ async function builder(code, options) {
 		wasmModule = await WebAssembly.compile(code);
 	} catch (err) {
 		console.log(err);
-		console.log("\nTry to run circom --c in order to generate c++ code instead\n");
+		console.log("\\nTry to run circom --c in order to generate c++ code instead\\n");
 		throw new Error(err);
 	}
 
@@ -77,29 +77,29 @@ async function builder(code, options) {
 			exceptionHandler: function (code) {
 				let err;
 				if (code == 1) {
-					err = "Signal not found.\n";
+					err = "Signal not found.\\n";
 				} else if (code == 2) {
-					err = "Too many signals set.\n";
+					err = "Too many signals set.\\n";
 				} else if (code == 3) {
-					err = "Signal already set.\n";
+					err = "Signal already set.\\n";
 				} else if (code == 4) {
-					err = "Assert Failed.\n";
+					err = "Assert Failed.\\n";
 				} else if (code == 5) {
-					err = "Not enough memory.\n";
+					err = "Not enough memory.\\n";
 				} else if (code == 6) {
-					err = "Input signal array access exceeds the size.\n";
+					err = "Input signal array access exceeds the size.\\n";
 				} else {
-					err = "Unknown error.\n";
+					err = "Unknown error.\\n";
 				}
 				throw new Error(err + errStr);
 			},
 			printErrorMessage: function () {
-				errStr += getMessage() + "\n";
+				errStr += getMessage() + "\\n";
 				// console.error(getMessage());
 			},
 			writeBufferMessage: function () {
 				const msg = getMessage();
-				if (msg === "\n") {
+				if (msg === "\\n") {
 					console.log(msgStr);
 					msgStr = "";
 				} else {
@@ -195,13 +195,13 @@ class WitnessCalculator {
 			const fArr = flatArray(input[k]);
 			let signalSize = this.instance.exports.getInputSignalSize(hMSB, hLSB);
 			if (signalSize < 0) {
-				throw new Error("Signal " + k + " not found\n");
+				throw new Error("Signal " + k + " not found\\n");
 			}
 			if (fArr.length < signalSize) {
-				throw new Error("Not enough values for input signal " + k + "\n");
+				throw new Error("Not enough values for input signal " + k + "\\n");
 			}
 			if (fArr.length > signalSize) {
-				throw new Error("Too many values for input signal " + k + "\n");
+				throw new Error("Too many values for input signal " + k + "\\n");
 			}
 			for (let i = 0; i < fArr.length; i++) {
 				const arrFr = toArray32(normalize(fArr[i], this.prime), this.n32)
