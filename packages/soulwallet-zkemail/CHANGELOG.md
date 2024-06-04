@@ -1,5 +1,11 @@
 # @soulwallet/zkemail
 
+## 1.0.1
+
+### Patch Changes
+
+- ecfc10e: export interfaces
+
 ## 1.0.0
 
 ### Major Changes
