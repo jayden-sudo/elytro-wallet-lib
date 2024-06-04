@@ -1,3 +1,3 @@
-import { EmailProof } from "./emailProof.js";
+import { EmailProof, IEmailApproverCircuitInputs, IEmailProof } from "./emailProof.js";
 
-export { EmailProof }
+export { EmailProof, IEmailApproverCircuitInputs, IEmailProof }

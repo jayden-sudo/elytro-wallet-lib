@@ -44,6 +44,7 @@ export class EmailProof {
      * @memberof EmailProof
      */
     constructor(
+        tmpDir: string,
         file_wasm: string,
         file_zkey: string,
         file_vkey: string,
@@ -72,12 +73,12 @@ export class EmailProof {
         this._file_zkey = file_zkey;
 
 
-        this._tmpDir = join(__dirname, '..', ".tmp");
+        this._tmpDir = tmpDir;
         if (!existsSync(this._tmpDir)) {
             mkdirSync(this._tmpDir);
         }
 
-        this._GenerateWitness = new GenerateWitness();
+        this._GenerateWitness = new GenerateWitness(this._tmpDir);
     }
 
 

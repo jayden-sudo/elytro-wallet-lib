@@ -6,8 +6,10 @@ export class GenerateWitness {
 
     private generate_witness_file: string;
 
-    constructor() {
-        this.generate_witness_file = join(__dirname, '.generate_witness.js');
+    constructor(
+        tmpDir: string
+    ) {
+        this.generate_witness_file = join(tmpDir, '.generate_witness.js');
 
         // check if file exists or content matches
         let hasFile = true;
