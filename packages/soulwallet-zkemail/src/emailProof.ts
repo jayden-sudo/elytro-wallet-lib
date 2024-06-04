@@ -44,11 +44,11 @@ export class EmailProof {
      * @memberof EmailProof
      */
     constructor(
-        tmpDir: string,
         file_wasm: string,
         file_zkey: string,
         file_vkey: string,
-        rapidsnarkProverBin?: string
+        rapidsnarkProverBin?: string,
+        tmpDir?: string,
     ) {
         this.vKey = JSON.parse(readFileSync(file_vkey).toString('utf-8'));
         // check if file_wasm and file_zkey exist
@@ -73,7 +73,11 @@ export class EmailProof {
         this._file_zkey = file_zkey;
 
 
-        this._tmpDir = tmpDir;
+        if (tmpDir === undefined) {
+            this._tmpDir = join(__dirname, '.tmp');
+        } else {
+            this._tmpDir = tmpDir;
+        }
         if (!existsSync(this._tmpDir)) {
             mkdirSync(this._tmpDir);
         }
