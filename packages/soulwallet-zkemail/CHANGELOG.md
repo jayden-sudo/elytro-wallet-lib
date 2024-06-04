@@ -1,5 +1,11 @@
 # @soulwallet/zkemail
 
+## 1.0.2
+
+### Patch Changes
+
+- 4332f27: Fixed js file errors
+
 ## 1.0.1
 
 ### Patch Changes
