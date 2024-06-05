@@ -1,5 +1,11 @@
 # @soulwallet/zkemail
 
+## 1.0.3
+
+### Patch Changes
+
+- b428240: Modified the interface.
+
 ## 1.0.2
 
 ### Patch Changes
