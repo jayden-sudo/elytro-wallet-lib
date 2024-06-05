@@ -19,10 +19,10 @@ export type IEmailApproverCircuitInputs = {
 };
 
 export interface IEmailProof {
-    proof: bigint[],
-    pubkeyHash: bigint,
-    senderDomainHash: bigint,
-    senderCommitment: bigint,
+    proof: string[],
+    pubkeyHash: string,
+    senderDomainHash: string,
+    senderCommitment: string,
     controlAddress: string,
     approvedHash: string
 }
@@ -206,18 +206,18 @@ export class EmailProof {
                 const _approvedHash = ((BigInt(publicSignals[4]) << BigInt(128)) + BigInt(publicSignals[5])).toString(16);
                 return {
                     proof: [
-                        BigInt(proof.pi_a[0]),
-                        BigInt(proof.pi_a[1]),
-                        BigInt(proof.pi_b[0][0]),
-                        BigInt(proof.pi_b[0][1]),
-                        BigInt(proof.pi_b[1][0]),
-                        BigInt(proof.pi_b[1][1]),
-                        BigInt(proof.pi_c[0]),
-                        BigInt(proof.pi_c[1])
+                        '0x' + BigInt(proof.pi_a[0]).toString(16),
+                        '0x' + BigInt(proof.pi_a[1]).toString(16),
+                        '0x' + BigInt(proof.pi_b[0][1]).toString(16),
+                        '0x' + BigInt(proof.pi_b[0][0]).toString(16),
+                        '0x' + BigInt(proof.pi_b[1][1]).toString(16),
+                        '0x' + BigInt(proof.pi_b[1][0]).toString(16),
+                        '0x' + BigInt(proof.pi_c[0]).toString(16),
+                        '0x' + BigInt(proof.pi_c[1]).toString(16)
                     ],
-                    pubkeyHash: BigInt(publicSignals[0]),
-                    senderDomainHash: BigInt(publicSignals[1]),
-                    senderCommitment: BigInt(publicSignals[2]),
+                    pubkeyHash: '0x' + BigInt(publicSignals[0]).toString(16),
+                    senderDomainHash: '0x' + BigInt(publicSignals[1]).toString(16),
+                    senderCommitment: '0x' + BigInt(publicSignals[2]).toString(16),
                     controlAddress: '0x' + '0'.repeat(40 - _controlAddress.length) + _controlAddress,
                     approvedHash: '0x' + '0'.repeat(64 - _approvedHash.length) + _approvedHash
                 };
