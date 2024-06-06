@@ -2,8 +2,6 @@ import { readFileSync, existsSync, mkdirSync, rm, writeFileSync } from 'fs';
 import { join } from 'path';
 import { generateEmailVerifierInputs } from "@zk-email/helpers";
 import { Groth16Proof, PublicSignals, groth16 } from 'snarkjs';
-import { packBytesIntoNBytes } from "@zk-email/helpers";
-import { poseidon } from "@iden3/js-crypto";
 import { execPromise } from './exec.js';
 import { GenerateWitness } from "./generateWitness.js";
 
@@ -83,56 +81,6 @@ export class EmailProof {
         }
 
         this._GenerateWitness = new GenerateWitness(this._tmpDir);
-    }
-
-
-    /**
-     * generate email address commitment
-     *
-     * @static
-     * @param {string} emailAddr email address ( Case sensitive )
-     * @param {bigint} sender_email_commitment_rand random number
-     * @return {*}  {bigint}
-     * @memberof EmailProof
-     */
-    public static emailAddrCommit(emailAddr: string, sender_email_commitment_rand: bigint): bigint {
-        /*
-           template EmailAddrCommit(num_ints) {
-               signal input rand;
-               signal input email_addr_ints[num_ints];
-               signal output commit;
-
-               component poseidon = Poseidon(1+num_ints);
-               poseidon.inputs[0] <== rand;
-               for(var i=0; i<num_ints; i++) {
-                   poseidon.inputs[1+i] <== email_addr_ints[i];
-               }
-               commit <== poseidon.out;
-           }
-       */
-
-        // @zk-email/circuits/utils/constants.circom
-        const EMAIL_ADDR_MAX_BYTES = 256;
-        const MAX_BYTES_IN_FIELD = 31;
-        if (emailAddr.length > EMAIL_ADDR_MAX_BYTES) {
-            throw new Error("Email address is too long");
-        }
-        const _sender_email_addr_ints = packBytesIntoNBytes(emailAddr, MAX_BYTES_IN_FIELD);
-        const sender_email_addr_ints: bigint[] = [];
-        for (
-            let index = 0;
-            index < (Math.ceil(EMAIL_ADDR_MAX_BYTES / MAX_BYTES_IN_FIELD) /*computeIntChunkLength()*/);
-            index++
-        ) {
-            if (index < _sender_email_addr_ints.length) {
-                sender_email_addr_ints[index] = BigInt(_sender_email_addr_ints[index]);
-            } else {
-                sender_email_addr_ints[index] = BigInt(0);
-            }
-        }
-        const poseidonInputs = [sender_email_commitment_rand, ...sender_email_addr_ints];
-        const out = poseidon.hash(poseidonInputs);
-        return out;
     }
 
 
