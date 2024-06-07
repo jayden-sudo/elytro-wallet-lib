@@ -1,5 +1,11 @@
 # @soulwallet/zkemail
 
+## 1.0.6
+
+### Patch Changes
+
+- 3c8efba: Remove `@iden3/js-crypto` (causes errors in ESM)
+
 ## 1.0.5
 
 ### Patch Changes
