@@ -1,5 +1,11 @@
 # @soulwallet/zkemail
 
+## 1.0.5
+
+### Patch Changes
+
+- d8487cb: Fixed file import errors
+
 ## 1.0.4
 
 ### Patch Changes
