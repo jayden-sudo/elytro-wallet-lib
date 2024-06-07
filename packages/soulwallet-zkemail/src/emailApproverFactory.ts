@@ -1,7 +1,9 @@
 import { ethers } from "ethers";
 import { TypeGuard } from "./typeGuard.js";
 import { packBytesIntoNBytes } from "@zk-email/helpers";
-import { poseidon } from "@iden3/js-crypto";
+// import { poseidon } from "@iden3/js-crypto";
+// import * as iden3_js_crypto from "@iden3/js-crypto";
+import { buildPoseidon } from "circomlibjs";
 import { Hex } from "./hex.js";
 // import { ABI_EmailApproverFactory } from "@soulwallet/abi";
 import { ABI_EmailApprover } from "@soulwallet/abi";
@@ -74,7 +76,7 @@ export class EmailApproverFactory {
      * @return {*}  {bigint}
      * @memberof EmailProof
      */
-    public static emailAddrCommit(emailAddr: string, email_commitment_rand: bigint): bigint {
+    public static async emailAddrCommit(emailAddr: string, email_commitment_rand: bigint): Promise<bigint> {
         /*
            template EmailAddrCommit(num_ints) {
                signal input rand;
@@ -110,7 +112,9 @@ export class EmailApproverFactory {
             }
         }
         const poseidonInputs = [email_commitment_rand, ...sender_email_addr_ints];
-        const out = poseidon.hash(poseidonInputs);
+        // const out = iden3_js_crypto.poseidon.hash(poseidonInputs);
+        const poseidon = await buildPoseidon();
+        const out = poseidon.F.toObject(poseidon(poseidonInputs));
         return out;
     }
 
@@ -157,8 +161,8 @@ export class EmailApproverFactory {
      * @return {*}  {ICreateEmailApproverArgs}
      * @memberof EmailApproverFactory
      */
-    public createEmailApprover(emailAddr: string, email_commitment_rand: bigint = BigInt(0), salt: bigint = BigInt(0)): ICreateEmailApproverArgs {
-        const _emailAddrCommit = EmailApproverFactory.emailAddrCommit(emailAddr, email_commitment_rand);
+    public async createEmailApprover(emailAddr: string, email_commitment_rand: bigint = BigInt(0), salt: bigint = BigInt(0)): Promise<ICreateEmailApproverArgs> {
+        const _emailAddrCommit = await EmailApproverFactory.emailAddrCommit(emailAddr, email_commitment_rand);
         return this.createEmailApprover2(_emailAddrCommit, salt);
     }
 
