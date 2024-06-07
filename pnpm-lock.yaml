@@ -212,9 +212,6 @@ importers:
 
   packages/soulwallet-zkemail:
     dependencies:
-      '@iden3/js-crypto':
-        specifier: ^1.1.0
-        version: 1.1.0
       '@soulwallet/abi':
         specifier: workspace:*
         version: link:../soulwallet-abi
@@ -224,6 +221,9 @@ importers:
       '@zk-email/helpers':
         specifier: ^6.1.1
         version: 6.1.1
+      circomlibjs:
+        specifier: ^0.1.7
+        version: 0.1.7
       ethers:
         specifier: ^6.9.2
         version: 6.10.0
@@ -1772,10 +1772,6 @@ packages:
     dependencies:
       fastfile: 0.0.20
       ffjavascript: 0.3.0
-    dev: false
-
-  /@iden3/js-crypto@1.1.0:
-    resolution: {integrity: sha512-MbL7OpOxBoCybAPoorxrp+fwjDVESyDe6giIWxErjEIJy0Q2n1DU4VmKh4vDoCyhJx/RdVgT8Dkb59lKwISqsw==}
     dev: false
 
   /@istanbuljs/load-nyc-config@1.1.0:
@@ -6019,6 +6015,7 @@ packages:
   /source-map@0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
 
   /spawndamnit@2.0.0:
     resolution: {integrity: sha512-j4JKEcncSjFlqIwU5L/rp2N5SIPsdxaRsIv678+TZxZ0SRDJTm8JrxJMjE/XuiEZNEir3S8l0Fa3Ke339WI4qA==}
