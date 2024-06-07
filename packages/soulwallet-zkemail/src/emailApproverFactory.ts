@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { TypeGuard } from "./typeGuard";
+import { TypeGuard } from "./typeGuard.js";
 import { packBytesIntoNBytes } from "@zk-email/helpers";
 import { poseidon } from "@iden3/js-crypto";
 import { Hex } from "./hex.js";
