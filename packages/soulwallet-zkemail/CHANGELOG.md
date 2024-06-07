@@ -1,5 +1,11 @@
 # @soulwallet/zkemail
 
+## 1.0.4
+
+### Patch Changes
+
+- 3e17fc6: Added `offchain calculate the zkemail guardian address function`
+
 ## 1.0.3
 
 ### Patch Changes
