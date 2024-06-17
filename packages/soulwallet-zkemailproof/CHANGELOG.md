@@ -1,5 +1,11 @@
 # @soulwallet/zkemail
 
+## 0.0.3
+
+### Patch Changes
+
+- 4bb2015: Update emailProof.ts
+
 ## 0.0.2
 
 ### Patch Changes
