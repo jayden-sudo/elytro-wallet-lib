@@ -155,18 +155,18 @@ export class EmailProof {
                 const _approvedHash = ((BigInt(publicSignals[4]) << BigInt(128)) + BigInt(publicSignals[5])).toString(16);
                 return {
                     proof: [
-                        Hex.paddingZero(proof.pi_a[0], 32),
-                        Hex.paddingZero(proof.pi_a[1], 32),
-                        Hex.paddingZero(proof.pi_b[0][1], 32),
-                        Hex.paddingZero(proof.pi_b[0][0], 32),
-                        Hex.paddingZero(proof.pi_b[1][1], 32),
-                        Hex.paddingZero(proof.pi_b[1][0], 32),
-                        Hex.paddingZero(proof.pi_c[0], 32),
-                        Hex.paddingZero(proof.pi_c[1], 32)
+                        Hex.paddingZero(BigInt(proof.pi_a[0]), 32),
+                        Hex.paddingZero(BigInt(proof.pi_a[1]), 32),
+                        Hex.paddingZero(BigInt(proof.pi_b[0][1]), 32),
+                        Hex.paddingZero(BigInt(proof.pi_b[0][0]), 32),
+                        Hex.paddingZero(BigInt(proof.pi_b[1][1]), 32),
+                        Hex.paddingZero(BigInt(proof.pi_b[1][0]), 32),
+                        Hex.paddingZero(BigInt(proof.pi_c[0]), 32),
+                        Hex.paddingZero(BigInt(proof.pi_c[1]), 32)
                     ],
-                    pubkeyHash: Hex.paddingZero(publicSignals[0], 32),
-                    senderDomainHash: Hex.paddingZero(publicSignals[1], 32),
-                    senderCommitment: Hex.paddingZero(publicSignals[2], 32),
+                    pubkeyHash: Hex.paddingZero(BigInt(publicSignals[0]), 32),
+                    senderDomainHash: Hex.paddingZero(BigInt(publicSignals[1]), 32),
+                    senderCommitment: Hex.paddingZero(BigInt(publicSignals[2]), 32),
                     controlAddress: '0x' + '0'.repeat(40 - _controlAddress.length) + _controlAddress,
                     approvedHash: '0x' + '0'.repeat(64 - _approvedHash.length) + _approvedHash
                 };
