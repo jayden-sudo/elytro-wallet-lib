@@ -4,6 +4,7 @@ import { generateEmailVerifierInputs } from "@zk-email/helpers";
 import { Groth16Proof, PublicSignals, groth16 } from 'snarkjs';
 import { execPromise } from './exec.js';
 import { GenerateWitness } from "./generateWitness.js";
+import { Hex } from "./hex.js";
 
 export type IEmailApproverCircuitInputs = {
     email_header: string[];
@@ -154,18 +155,18 @@ export class EmailProof {
                 const _approvedHash = ((BigInt(publicSignals[4]) << BigInt(128)) + BigInt(publicSignals[5])).toString(16);
                 return {
                     proof: [
-                        '0x' + BigInt(proof.pi_a[0]).toString(16),
-                        '0x' + BigInt(proof.pi_a[1]).toString(16),
-                        '0x' + BigInt(proof.pi_b[0][1]).toString(16),
-                        '0x' + BigInt(proof.pi_b[0][0]).toString(16),
-                        '0x' + BigInt(proof.pi_b[1][1]).toString(16),
-                        '0x' + BigInt(proof.pi_b[1][0]).toString(16),
-                        '0x' + BigInt(proof.pi_c[0]).toString(16),
-                        '0x' + BigInt(proof.pi_c[1]).toString(16)
+                        Hex.paddingZero(proof.pi_a[0], 32),
+                        Hex.paddingZero(proof.pi_a[1], 32),
+                        Hex.paddingZero(proof.pi_b[0][1], 32),
+                        Hex.paddingZero(proof.pi_b[0][0], 32),
+                        Hex.paddingZero(proof.pi_b[1][1], 32),
+                        Hex.paddingZero(proof.pi_b[1][0], 32),
+                        Hex.paddingZero(proof.pi_c[0], 32),
+                        Hex.paddingZero(proof.pi_c[1], 32)
                     ],
-                    pubkeyHash: '0x' + BigInt(publicSignals[0]).toString(16),
-                    senderDomainHash: '0x' + BigInt(publicSignals[1]).toString(16),
-                    senderCommitment: '0x' + BigInt(publicSignals[2]).toString(16),
+                    pubkeyHash: Hex.paddingZero(publicSignals[0], 32),
+                    senderDomainHash: Hex.paddingZero(publicSignals[1], 32),
+                    senderCommitment: Hex.paddingZero(publicSignals[2], 32),
                     controlAddress: '0x' + '0'.repeat(40 - _controlAddress.length) + _controlAddress,
                     approvedHash: '0x' + '0'.repeat(64 - _approvedHash.length) + _approvedHash
                 };
