@@ -210,7 +210,7 @@ importers:
         specifier: ^0.8.5
         version: 0.8.5
 
-  packages/soulwallet-zkemail:
+  packages/soulwallet-zkemailproof:
     dependencies:
       '@soulwallet/abi':
         specifier: workspace:*
