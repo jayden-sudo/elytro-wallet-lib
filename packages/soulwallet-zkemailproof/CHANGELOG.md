@@ -1,5 +1,11 @@
 # @soulwallet/zkemail
 
+## 0.0.2
+
+### Patch Changes
+
+- 5cbe963: Rename zkemail -> zkmail-proof
+
 ## 1.0.6
 
 ### Patch Changes
