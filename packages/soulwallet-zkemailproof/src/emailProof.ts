@@ -95,13 +95,13 @@ export class EmailProof {
     public async proveFromEml(emlFilePathOrEmlContent: string, senderCommitmentRand: bigint): Promise<IEmailProof | null> {
         // check if the input is a file path or the content of the eml file
         let rawEmail: string;
-        if (emlFilePathOrEmlContent.endsWith('.eml')) {
+        if (emlFilePathOrEmlContent.length < 1000 && emlFilePathOrEmlContent.endsWith('.eml')) {
             rawEmail = readFileSync(emlFilePathOrEmlContent, 'utf8');
         } else {
             rawEmail = emlFilePathOrEmlContent;
         }
         if (!rawEmail.includes("subject:")) {
-            throw new Error("The email content is not valid");
+            throw new Error("The email content is not valid:" + rawEmail);
         }
 
         const inputs = await generateEmailVerifierInputs(rawEmail);
