@@ -101,7 +101,8 @@ export class EmailProof {
         } else {
             rawEmail = emlFilePathOrEmlContent;
         }
-        if (!rawEmail.includes("subject:")) {
+        const _rawEml = rawEmail.toLowerCase();
+        if (!_rawEml.includes("dkim-signature:") || !_rawEml.includes("subject:")) {
             throw new Error("The email content is not valid:" + rawEmail);
         }
 
