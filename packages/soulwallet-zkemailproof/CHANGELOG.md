@@ -1,5 +1,11 @@
 # @soulwallet/zkemail
 
+## 0.0.5
+
+### Patch Changes
+
+- 25b3d90: Bug fixes.
+
 ## 0.0.4
 
 ### Patch Changes
