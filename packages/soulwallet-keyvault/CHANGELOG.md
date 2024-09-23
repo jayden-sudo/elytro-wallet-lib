@@ -1,5 +1,11 @@
 # @soulwallet/keyvault
 
+## 0.3.0
+
+### Minor Changes
+
+- 5003874: support bip39
+
 ## 0.2.0
 
 ### Minor Changes
