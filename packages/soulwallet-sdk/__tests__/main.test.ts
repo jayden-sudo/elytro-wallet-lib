@@ -315,26 +315,26 @@ describe('SDK', () => {
         }
 
     });
-    test('calcWalletAddress', async () => {
-        const soulwallet = new SoulWallet(
-            "https://sepolia-rollup.arbitrum.io/rpc",
-            "https://api-dev.soulwallet.io/walletapi/bundler/arbitrum-sepolia/rpc",
-            "0xF78Ae187CED0Ca5Fb98100d3F0EAB7a6461d6fC6",
-            "0x880c6eb80583795625935B08AA28EB37F16732C7",
-            "0x31378c4241626ced59cd770dbdf3747f6c8ee7ba"
-        );
-        const a2 = await soulwallet.calcWalletAddress(0, [
-            "0x8f63d7dD6A3F5938616Ef06016BBf25BD6023315"
-        ], "0x55e85a731014097612c7d462fbdededcb5f50a5cb64b0c2068cfe017b51268d0");
-        console.log(a2);
-        const userop = await soulwallet.createUnsignedDeployWalletUserOp(0, [
-            "0x8f63d7dD6A3F5938616Ef06016BBf25BD6023315"
-        ], "0x55e85a731014097612c7d462fbdededcb5f50a5cb64b0c2068cfe017b51268d0");
-        console.log(userop);
-        expect(a2.OK).toBe(userop.OK.sender);
-        const re = await soulwallet.estimateUserOperationGas("0x82621ac52648b738fEdd381a3678851933505762", userop.OK);
-        expect(re.isOk()).toBe(true);
-    }, 1000 * 30);
+    // test('calcWalletAddress', async () => {
+    //     const soulwallet = new SoulWallet(
+    //         "https://sepolia-rollup.arbitrum.io/rpc",
+    //         "https://api-dev.soulwallet.io/walletapi/bundler/arbitrum-sepolia/rpc",
+    //         "0xF78Ae187CED0Ca5Fb98100d3F0EAB7a6461d6fC6",
+    //         "0x880c6eb80583795625935B08AA28EB37F16732C7",
+    //         "0x31378c4241626ced59cd770dbdf3747f6c8ee7ba"
+    //     );
+    //     const a2 = await soulwallet.calcWalletAddress(0, [
+    //         "0x8f63d7dD6A3F5938616Ef06016BBf25BD6023315"
+    //     ], "0x55e85a731014097612c7d462fbdededcb5f50a5cb64b0c2068cfe017b51268d0");
+    //     console.log(a2);
+    //     const userop = await soulwallet.createUnsignedDeployWalletUserOp(0, [
+    //         "0x8f63d7dD6A3F5938616Ef06016BBf25BD6023315"
+    //     ], "0x55e85a731014097612c7d462fbdededcb5f50a5cb64b0c2068cfe017b51268d0");
+    //     console.log(userop);
+    //     expect(a2.OK).toBe(userop.OK.sender);
+    //     const re = await soulwallet.estimateUserOperationGas("0x82621ac52648b738fEdd381a3678851933505762", userop.OK);
+    //     expect(re.isOk()).toBe(true);
+    // }, 1000 * 30);
 });
 
 

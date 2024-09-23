@@ -110,9 +110,11 @@ export class AES_256_GCM {
 export class ECDSA {
     private _encryptedPrivateKey: string | undefined;
     private _AES_256_GCM: AES_256_GCM | undefined;
+    private _address: string | undefined;
+    private _path: string | undefined;
     constructor() { }
 
-    async init(privateKey: string) {
+    async init(privateKey: string, address: string, path: string) {
         if (this._AES_256_GCM === undefined) {
             this._AES_256_GCM = await AES_256_GCM.randomAesVault();
             const ret = await this._AES_256_GCM.encrypt(privateKey);
@@ -123,6 +125,9 @@ export class ECDSA {
         } else {
             throw new Error('already init');
         }
+
+        this._address = address;
+        this._path = path;
     }
 
     public destroy() {
@@ -133,6 +138,22 @@ export class ECDSA {
         if (this._encryptedPrivateKey !== undefined) {
             this._encryptedPrivateKey = undefined;
         }
+        this._address = undefined;
+        this._path = undefined;
+    }
+
+    public get address(): string {
+        if (this._address === undefined) {
+            throw new Error('not init');
+        }
+        return this._address;
+    }
+
+    public get path(): string {
+        if (this._path === undefined) {
+            throw new Error('not init');
+        }
+        return this._path;
     }
 
     private static onlyBytes32(bytes32: string) {
@@ -141,6 +162,14 @@ export class ECDSA {
             return new Err('sign message must be bytes32');
         }
     }
+
+    // async getAddress(): Promise<string> {
+    //     const _privateKey = await this._decryptPrivateKey();
+    //     let _signKey: ethers.SigningKey | undefined = new ethers.SigningKey(_privateKey);
+    //     const address = ethers.getAddress(_signKey!.publicKey);
+    //     _signKey = undefined;
+    //     return address;
+    // }
 
     private async _decryptPrivateKey(): Promise<string> {
         if (this._encryptedPrivateKey === undefined || this._AES_256_GCM === undefined) {
@@ -170,7 +199,8 @@ export class ECDSA {
         let _signKey: ethers.SigningKey | undefined = new ethers.SigningKey(_privateKey);
         _privateKey = '';
         // In ethers.js, the `message` has already been copied, so we don't need to worry about issues caused by data modification
-        const signature = _signKey!.sign(ethers.hashMessage(ethers.getBytes(message))).serialized;
+        const messageHash = ethers.hashMessage(message);
+        const signature = _signKey!.sign(messageHash).serialized;
         _signKey = undefined;
         return signature;
     }
@@ -232,5 +262,8 @@ export class Utils {
 
     static generatePrivateKey(): string {
         return '0x' + randomBytes(32).toString('hex');
+    }
+    static generateSeed(): string {
+        return '0x' + randomBytes(64).toString('hex');
     }
 }

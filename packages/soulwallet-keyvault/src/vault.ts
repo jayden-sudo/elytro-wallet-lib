@@ -1,19 +1,19 @@
 import { Result, Ok, Err } from '@soulwallet/result';
-import { IVault, VaultEvents } from './interface/IVault.js';
+import { IVault, SignData, VaultEvents } from './interface/IVault.js';
 import { Storage } from './storage.js';
 import { AES_256_GCM, ECDSA, ABFA, Utils } from './crypto.js';
-import { ethers } from 'ethers';
+import { ethers, Mnemonic } from 'ethers';
 import mitt, { Emitter } from 'mitt'
 
 
 class KeyVaultStorageStructure {
     AESKeyHash: string = '';
-    Signers: Map<string, string> = new Map();
+    EncryptedSeed: string = '';
 
     toString(): string {
         return JSON.stringify({
             AESKeyHash: this.AESKeyHash,
-            Signers: Array.from(this.Signers.entries())
+            EncryptedSeed: this.EncryptedSeed
         });
     }
 
@@ -23,7 +23,7 @@ class KeyVaultStorageStructure {
         } else {
             const obj = JSON.parse(data);
             this.AESKeyHash = obj.AESKeyHash;
-            this.Signers = new Map(obj.Signers);
+            this.EncryptedSeed = obj.EncryptedSeed;
             return this;
         }
     }
@@ -43,13 +43,15 @@ export class Vault implements IVault {
 
     private _KeyVaultDataCache: KeyVaultStorageStructure | undefined = undefined;
 
-    private _account: Map<string, ECDSA> = new Map();
+    private _accounts: Map<string, ECDSA> = new Map();
 
     private _EventEmitter: Emitter<VaultEvents>;
 
     private _timeout: NodeJS.Timeout | undefined;
     private readonly _timeoutDuration = 1000 * 60 * 60; // 60 minutes
     private _lockTime: number = 0;
+
+    public static readonly DEFAULT_PATH = "m/44'/60'/0'/0/0";
 
     /**
      * Creates an instance of Vault.
@@ -233,6 +235,33 @@ export class Vault implements IVault {
     }
 
     /**
+     * initialize vault with bip39 phrase
+     *
+     * @param {string} phrase 12 words bip39 phrase,split by space
+     * @param {string} password
+     * @param {boolean} [enforce] if true, delete all data and re-initialize
+     * @return {*}  {Promise<Result<void, Error>>}
+     * @memberof Vault
+     */
+    public async initBip39(phrase: string, password: string, enforce?: boolean): Promise<Result<void, Error>> {
+        phrase = phrase.slice();/* make a copy */
+        password = password.slice();/* make a copy */
+        let seed = "";
+        try {
+            const mnemonic = Mnemonic.fromPhrase(phrase);
+            seed = mnemonic.computeSeed();
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                return new Err(error);
+            } else {
+                console.error(error);
+                return new Err(new Error('unknown error'));
+            }
+        }
+        return await this._init(seed, password, enforce);
+    }
+
+    /**
      * initialize vault
      *
      * @param {string} password
@@ -241,6 +270,12 @@ export class Vault implements IVault {
      * @memberof Vault
      */
     public async init(password: string, enforce?: boolean): Promise<Result<void, Error>> {
+        password = password.slice();/* make a copy */
+        const seed = Utils.generateSeed();
+        return await this._init(seed, password, enforce);
+    }
+
+    private async _init(seed: string, password: string, enforce?: boolean): Promise<Result<void, Error>> {
         if (enforce === true) {
             // delete all data
             await this.destroy();
@@ -256,19 +291,26 @@ export class Vault implements IVault {
             if (_key.isErr() === true) {
                 return new Err(_key.ERR);
             }
-            const AESKeyHash = Vault._hash(_key.OK);
-            const _KeyVaultStorageStructure: KeyVaultStorageStructure = new KeyVaultStorageStructure();
-            _KeyVaultStorageStructure.AESKeyHash = AESKeyHash;
-            _KeyVaultStorageStructure.Signers = new Map();
-            const _ret = await this._saveData(_KeyVaultStorageStructure);
-            if (_ret.isErr() === true) {
-                return new Err(_ret.ERR);
-            }
             const _aes = await AES_256_GCM.init(_key.OK);
             if (_aes.isErr() === true) {
                 return new Err(_aes.ERR);
             }
             this._AES_256_GCM = _aes.OK;
+
+            const AESKeyHash = Vault._hash(_key.OK);
+
+            const _encryptRet = await this._AES_256_GCM!.encrypt(seed);
+            if (_encryptRet.isErr() === true) {
+                return new Err(_encryptRet.ERR);
+            }
+
+            const _KeyVaultStorageStructure: KeyVaultStorageStructure = new KeyVaultStorageStructure();
+            _KeyVaultStorageStructure.AESKeyHash = AESKeyHash;
+            _KeyVaultStorageStructure.EncryptedSeed = _encryptRet.OK;
+            const _ret = await this._saveData(_KeyVaultStorageStructure);
+            if (_ret.isErr() === true) {
+                return new Err(_ret.ERR);
+            }
 
             this.emit(enforce === true ? 'ReInitialized' : 'Initialized', void (0));
 
@@ -321,14 +363,14 @@ export class Vault implements IVault {
             this._AES_256_GCM = undefined;
         }
         this._KeyVaultDataCache = undefined;
-        for (const i of this._account.values()) {
+        for (const i of this._accounts.values()) {
             try {
                 i.destroy();
             } catch (error) {
                 console.error(error);
             }
         }
-        this._account.clear();
+        this._accounts.clear();
     }
 
     private async _isInitialized(): Promise<boolean> {
@@ -434,178 +476,104 @@ export class Vault implements IVault {
         throw new Error('Method not implemented.');
     }
 
-    /**
-     * not implemented
-     *
-     * @param {string} password
-     * @return {*}  {Promise<Result<string, Error>>}
-     * @memberof Vault
-     */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    public async export(password: string): Promise<Result<string, Error>> {
-        if ((await this.isLocked()).OK === true) {
-            return new Err(new Error('locked'));
+
+    public async getSigner(path: string | undefined): Promise<Result<string/* EOA address */, Error>> {
+        const _ECDSA = await this._loadSigner(path);
+        if (_ECDSA.isErr() === true) {
+            return new Err(_ECDSA.ERR);
         }
-        throw new Error('Method not implemented.');
+        const _address = await _ECDSA.OK.address;
+        return new Ok(_address);
     }
 
-    /**
-     * import signer from privateKey
-     *
-     * @param {string} privateKey
-     * @return {*}  {Promise<Result<string, Error>>}
-     * @memberof Vault
-     */
-    public async importSigner(privateKey: string): Promise<Result<string/* EOA address */, Error>> {
+
+    private async _loadSigner(path: string | undefined): Promise<Result<ECDSA, Error>> {
         if ((await this.isLocked()).OK === true) {
             return new Err(new Error('locked'));
         }
-        privateKey = privateKey.slice()/* make a copy */
-        const _signKey = new ethers.SigningKey(privateKey);
-        const address = ethers.getAddress(ethers.keccak256("0x" + _signKey.publicKey.substring(4)).substring(26));
-        const _encryptRet = await this._AES_256_GCM!.encrypt(privateKey);
-        privateKey = '';
-        if (_encryptRet.isErr() === true) {
-            return new Err(_encryptRet.ERR);
+        if (path === undefined || path.startsWith('m') === false) {
+            path = Vault.DEFAULT_PATH;
         }
-        const keyVaultStorageRet = await this._loadData();
-        if (keyVaultStorageRet.isErr() === true) {
-            return new Err(keyVaultStorageRet.ERR);
+        if (this._accounts.has(path)) {
+            return new Ok(this._accounts.get(path)!);
         }
-        const _KeyVaultStorageStructure = keyVaultStorageRet.OK;
-        _KeyVaultStorageStructure.Signers.set(address, _encryptRet.OK)
-        const ret = await this._saveData(_KeyVaultStorageStructure);
+
+        const ret = await this._loadData();
         if (ret.isErr() === true) {
             return new Err(ret.ERR);
         }
 
-        this.emit('AccountAdded', address);
-
-        return new Ok(address);
-    }
-
-    /**
-     * create a signer
-     *
-     * @return {*}  {Promise<Result<string, Error>>}
-     * @memberof Vault
-     */
-    public async createSigner(): Promise<Result<string, Error>> {
-        const privateKey = Utils.generatePrivateKey();
-        return await this.importSigner(privateKey);
-    }
-
-    /**
-     * delete a signer
-     *
-     * @param {string} address
-     * @return {*}  {Promise<Result<void, Error>>}
-     * @memberof Vault
-     */
-    public async removeSigner(address: string): Promise<Result<void, Error>> {
-        if ((await this.isLocked()).OK === true) {
-            return new Err(new Error('locked'));
-        }
-        address = ethers.getAddress(address);
-        if (this._account.has(address)) {
-            const _ECDSA = this._account.get(address)!;
-            _ECDSA.destroy();
-            this._account.delete(address);
-        }
-        const keyVaultStorageRet = await this._loadData();
-        if (keyVaultStorageRet.isErr() === true) {
-            return new Err(keyVaultStorageRet.ERR);
-        }
-        const _KeyVaultStorageStructure = keyVaultStorageRet.OK;
-        const succ = _KeyVaultStorageStructure.Signers.delete(address);
-        if (succ === false) {
-            return new Err(new Error('unknown address'));
-        }
-        const ret = await this._saveData(_KeyVaultStorageStructure);
-        if (ret.isErr() === true) {
-            return new Err(ret.ERR);
+        const _ECDSA = new ECDSA();
+        const _decryptRet = await this._AES_256_GCM!.decrypt(ret.OK.EncryptedSeed);
+        if (_decryptRet.isErr() === true) {
+            return new Err(_decryptRet.ERR);
         }
 
-        this.emit('AccountRemoved', address);
-
-        return new Ok(void (0));
-    }
-
-    /**
-     * list all signers
-     *
-     * @return {*}  {Promise<Result<string[], Error>>}
-     * @memberof Vault
-     */
-    public async listSigners(): Promise<Result<string[], Error>> {
-        const keyVaultStorageRet = await this._loadData();
-        if (keyVaultStorageRet.isErr() === true) {
-            return new Err(keyVaultStorageRet.ERR);
-        }
-        const _KeyVaultStorageStructure = keyVaultStorageRet.OK;
-        const _addressList: string[] = [];
-        for (const i of _KeyVaultStorageStructure.Signers.keys()) {
-            _addressList.push(i);
-        }
-        this.emit('Ping', void (0));
-        return new Ok(_addressList);
-    }
-
-    private async _loadSigner(address: string): Promise<Result<ECDSA, Error>> {
-        if ((await this.isLocked()).OK === true) {
-            return new Err(new Error('locked'));
-        }
-        address = ethers.getAddress(address);
-        if (!this._account.has(address)) {
-            const ret = await this._loadData();
-            if (ret.isErr() === true) {
-                return new Err(ret.ERR);
+        const HDWallet = ethers.HDNodeWallet.fromSeed(_decryptRet.OK);
+        let wallet: ethers.HDNodeWallet | undefined = undefined;
+        try {
+            wallet = HDWallet.derivePath(path);
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                return new Err(error);
+            } else {
+                console.error(error);
+                return new Err(new Error('unknown error'));
             }
-            if (ret.OK.Signers.has(address) === false) {
-                return new Err(new Error('unknown address'));
-            }
-            const _ECDSA = new ECDSA();
-            const _decryptRet = await this._AES_256_GCM!.decrypt(ret.OK.Signers.get(address)!);
-            if (_decryptRet.isErr() === true) {
-                return new Err(_decryptRet.ERR);
-            }
-            await _ECDSA.init(_decryptRet.OK);
-            this._account.set(address, _ECDSA);
         }
-        return new Ok(this._account.get(address)!);
+        await _ECDSA.init(wallet.privateKey, wallet.address, path);
+        this._accounts.set(path, _ECDSA);
+
+        return new Ok(_ECDSA);
     }
 
     /**
      * sign a message (personalSign)
      *
-     * @param {string} address
+     * @param {string} path
      * @param {string} message
      * @return {*}  {Promise<Result<string, Error>>}
      * @memberof Vault
      */
-    public async personalSign(address: string, message: string): Promise<Result<string, Error>> {
-        const _ECDSA = await this._loadSigner(address);
+    public async personalSign(path: string | undefined, byte32Message: string): Promise<Result<SignData, Error>> {
+        const _ECDSA = await this._loadSigner(path);
         if (_ECDSA.isErr() === true) {
             return new Err(_ECDSA.ERR);
         }
-        const _sign = await _ECDSA.OK.personalSign(message);
+        const _address = _ECDSA.OK.address;
+        const _path = _ECDSA.OK.path;
+        const _sign = await _ECDSA.OK.personalSign(byte32Message);
 
-        this.emit('PersonalSign', {
-            address: address,
-            message: message,
+        const _signData: SignData = {
+            address: _address,
+            path: _path,
+            message: byte32Message,
             signature: _sign
-        });
+        };
 
-        return new Ok(_sign);
+        this.emit('PersonalSign', _signData);
+
+        return new Ok(_signData);
     }
 
-    private async _rawSign(address: string, message: string): Promise<Result<string, Error>> {
-        const _ECDSA = await this._loadSigner(address);
+    private async _rawSign(path: string | undefined, byte32Message: string): Promise<Result<SignData, Error>> {
+        const _ECDSA = await this._loadSigner(path);
         if (_ECDSA.isErr() === true) {
             return new Err(_ECDSA.ERR);
         }
-        const _sign = await _ECDSA.OK.sign(message);
-        return new Ok(_sign);
+        const _address = _ECDSA.OK.address;
+        const _path = _ECDSA.OK.path;
+        const _sign = await _ECDSA.OK.sign(byte32Message);
+
+        const _signData: SignData = {
+            address: _address,
+            path: _path,
+            message: byte32Message,
+            signature: _sign
+        };
+
+        // this.emit('Sign', _signData);
+        return new Ok(_signData);
     }
 
     /**
@@ -616,14 +584,10 @@ export class Vault implements IVault {
      * @return {*}  {Promise<Result<string, Error>>}
      * @memberof Vault
      */
-    public async rawSign(address: string, message: string): Promise<Result<string, Error>> {
-        const ret = await this._rawSign(address, message);
+    public async rawSign(path: string | undefined, byte32Message: string): Promise<Result<SignData, Error>> {
+        const ret = await this._rawSign(path, byte32Message);
         if (ret.isOk() === true) {
-            this.emit('Sign', {
-                address: address,
-                message: message,
-                signature: ret.OK
-            });
+            this.emit('Sign', ret.OK);
         }
         return ret;
     }
@@ -640,7 +604,7 @@ export class Vault implements IVault {
      * @memberof Vault
      */
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public async typedDataSign(address: string, domain: ethers.TypedDataDomain, types: Record<string, Array<ethers.TypedDataField>>, value: Record<string, any>, provider?: string | ethers.JsonRpcProvider): Promise<Result<string, Error>> {
+    public async typedDataSign(path: string | undefined, domain: ethers.TypedDataDomain, types: Record<string, Array<ethers.TypedDataField>>, value: Record<string, any>, provider?: string | ethers.JsonRpcProvider): Promise<Result<SignData, Error>> {
         // refer: ethers.js
 
         let _provider: ethers.JsonRpcProvider | null = null;
@@ -671,13 +635,9 @@ export class Vault implements IVault {
         });
 
         const message = ethers.TypedDataEncoder.hash(populated.domain, types, populated.value);
-        const ret = await this._rawSign(address, message);
+        const ret = await this._rawSign(path, message);
         if (ret.isOk() === true) {
-            this.emit('TypedDataSign', {
-                address: address,
-                message: message,
-                signature: ret.OK
-            });
+            this.emit('TypedDataSign', ret.OK);
         }
         return ret;
     }
