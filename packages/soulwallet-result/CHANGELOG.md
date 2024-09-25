@@ -1,5 +1,11 @@
 # @soulwallet/result
 
+## 0.2.1
+
+### Patch Changes
+
+- 5946781: Updated ethers to v6.13.2
+
 ## 0.2.0
 
 ### Minor Changes

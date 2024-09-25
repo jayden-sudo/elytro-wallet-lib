@@ -1,5 +1,14 @@
 # @soulwallet/zkemail
 
+## 0.0.6
+
+### Patch Changes
+
+- 5946781: Updated ethers to v6.13.2
+- Updated dependencies [5946781]
+  - @soulwallet/result@0.2.1
+  - @soulwallet/abi@0.3.4
+
 ## 0.0.5
 
 ### Patch Changes

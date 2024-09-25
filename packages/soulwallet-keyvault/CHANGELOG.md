@@ -1,5 +1,13 @@
 # @soulwallet/keyvault
 
+## 0.3.1
+
+### Patch Changes
+
+- 5946781: Updated ethers to v6.13.2
+- Updated dependencies [5946781]
+  - @soulwallet/result@0.2.1
+
 ## 0.3.0
 
 ### Minor Changes
