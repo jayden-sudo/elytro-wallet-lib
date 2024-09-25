@@ -90,8 +90,8 @@ describe('KeyVault', () => {
         {
             // bytes32 message (userOpHash)
             const message = "0x11223344556677889900aabbccddeeff11223344556677889900aabbccddeeff";
-            const expected = await wallet.signMessage(message);
-            const ret = await vault.personalSign(Vault.DEFAULT_PATH, message);
+            const expected = await wallet.signMessage(ethers.getBytes(message));
+            const ret = await vault.personalSign(ethers.getBytes(message), Vault.DEFAULT_PATH);
             expect(ret.isOk()).toBe(true);
             expect(ret.OK.signature).toBe(expected);
 
