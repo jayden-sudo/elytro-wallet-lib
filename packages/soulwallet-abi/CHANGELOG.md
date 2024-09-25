@@ -1,5 +1,11 @@
 # @soulwallet/abi
 
+## 0.3.4
+
+### Patch Changes
+
+- 5946781: Updated ethers to v6.13.2
+
 ## 0.3.3
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @soulwallet/assets
 
+## 0.3.3
+
+### Patch Changes
+
+- 5946781: Updated ethers to v6.13.2
+- Updated dependencies [5946781]
+  - @soulwallet/result@0.2.1
+
 ## 0.3.2
 
 ### Patch Changes
