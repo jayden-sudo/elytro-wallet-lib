@@ -27,7 +27,7 @@
         "typedoc": "typedoc",
         "docs": "npx typedoc --tsconfig ./tsconfig.esm.json --plugin typedoc-plugin-markdown typedoc-plugin-missing-exports src/main.ts",
         "tsc": "tsc",
-        "build": "tsc --project ./tsconfig.esm.json;tsc --project ./tsconfig.cjs.json;ts-node ./create-package-json.ts",
+        "build": "tsc --project ./tsconfig.esm.json;tsc --project ./tsconfig.cjs.json;node ./create-package-json.js",
         "javascript-obfuscator": "javascript-obfuscator",
         "generateBytes4": "ts-node --project ./tsconfig.dev.json ./src/dev/generateBytes4.ts",
         "test": "jest"
@@ -37,9 +37,9 @@
     },
     "dependencies": {
         "@soulwallet/abi": "workspace:*",
-        "@soulwallet/result": "workspace:*",
         "@soulwallet/assets": "workspace:*",
-        "ethers": "^6.9.2"
+        "@soulwallet/result": "workspace:*",
+        "ethers": "^6.13.2"
     },
     "devDependencies": {
         "@types/node": "^20.10.7",
