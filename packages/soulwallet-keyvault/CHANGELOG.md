@@ -1,5 +1,11 @@
 # @soulwallet/keyvault
 
+## 0.3.2
+
+### Patch Changes
+
+- 1239e18: Fixed a few bugs
+
 ## 0.3.1
 
 ### Patch Changes
