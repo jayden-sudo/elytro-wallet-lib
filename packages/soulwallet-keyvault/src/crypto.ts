@@ -182,8 +182,7 @@ export class ECDSA {
         return ret.OK;
     }
 
-    async sign(message: string): Promise<string> {
-        ECDSA.onlyBytes32(message);
+    async sign(message: string | Uint8Array): Promise<string> {
         let _privateKey = await this._decryptPrivateKey();
         let _signKey: ethers.SigningKey | undefined = new ethers.SigningKey(_privateKey);
         _privateKey = '';
@@ -193,8 +192,7 @@ export class ECDSA {
         return signature;
     }
 
-    async personalSign(message: string): Promise<string> {
-        ECDSA.onlyBytes32(message);
+    async personalSign(message: string | Uint8Array): Promise<string> {
         let _privateKey = await this._decryptPrivateKey();
         let _signKey: ethers.SigningKey | undefined = new ethers.SigningKey(_privateKey);
         _privateKey = '';

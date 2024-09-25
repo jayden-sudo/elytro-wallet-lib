@@ -1,10 +1,9 @@
 import { Result } from '@soulwallet/result';
-import { ethers } from 'ethers';
 
 export interface SignData {
     address: string;
     path: string;
-    message: string;
+    message: string | Uint8Array;
     signature: string;
 }
 
@@ -44,10 +43,10 @@ export abstract class IVault /*extends EventEmitter*/ {
     // #endregion end signer management
 
     // #region sign transaction
-    public abstract personalSign(path: string | undefined, byte32Message: string): Promise<Result<SignData, Error>>;
-    public abstract rawSign(path: string | undefined, byte32Message: string): Promise<Result<SignData, Error>>;
+    public abstract personalSign(byte32Message: string | Uint8Array, path: string | undefined): Promise<Result<SignData, Error>>;
+    public abstract rawSign(byte32Message: string | Uint8Array, path: string | undefined): Promise<Result<SignData, Error>>;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public abstract typedDataSign(path: string | undefined, domain: ethers.TypedDataDomain, types: Record<string, Array<ethers.TypedDataField>>, value: Record<string, any>, provider?: string | ethers.JsonRpcProvider): Promise<Result<SignData, Error>>;
+    //public abstract typedDataSign(path: string | undefined, domain: ethers.TypedDataDomain, types: Record<string, Array<ethers.TypedDataField>>, value: Record<string, any>, provider?: string | ethers.JsonRpcProvider): Promise<Result<SignData, Error>>;
     // #endregion end sign transaction
 
 }
