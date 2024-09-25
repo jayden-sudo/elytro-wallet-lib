@@ -31,7 +31,7 @@
         "typedoc": "typedoc",
         "docs": "npx typedoc --tsconfig ./tsconfig.esm.json --plugin typedoc-plugin-markdown typedoc-plugin-missing-exports src/main.ts",
         "tsc": "tsc",
-        "build": "tsc --project ./tsconfig.esm.json;tsc --project ./tsconfig.cjs.json;ts-node ./create-package-json.ts",
+        "build": "tsc --project ./tsconfig.esm.json;tsc --project ./tsconfig.cjs.json;node ./create-package-json.js",
         "javascript-obfuscator": "javascript-obfuscator",
         "test": "jest"
     },
@@ -40,7 +40,7 @@
     },
     "dependencies": {
         "@soulwallet/result": "workspace:*",
-        "ethers": "^0.8.5",
+        "ethers": "^6.13.2",
         "mitt": "3.0.1",
         "scrypt-js": "3.0.1"
     },
