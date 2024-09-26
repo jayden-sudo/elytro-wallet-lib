@@ -15,7 +15,7 @@ import { getUserOpHash } from "./tools/userOpHash.js";
 import { SocialRecovery } from "./socialRecovery.js";
 import { ECCPoint, RSAPublicKey } from "./tools/webauthn.js";
 import { WalletFactory } from "./tools/walletFactory.js";
-import { UserOpGas } from "./interface/IBundler.js";
+import { StateOverride, UserOpGas } from "./interface/IBundler.js";
 
 export class onChainConfig {
     chainId: number = 0;
@@ -618,7 +618,7 @@ export class SoulWallet implements ISoulWallet {
         return new Ok(signatureRet.OK);
     }
 
-    async estimateUserOperationGas(validatorAddress: string, userOp: UserOperation, signkeyType?: SignkeyType, semiValidGuardHookInputData?: GuardHookInputData): Promise<Result<UserOpGas, UserOpErrors>> {
+    async estimateUserOperationGas(validatorAddress: string, userOp: UserOperation, stateOverride?: StateOverride, signkeyType?: SignkeyType, semiValidGuardHookInputData?: GuardHookInputData): Promise<Result<UserOpGas, UserOpErrors>> {
         const semiValidSignature = userOp.signature === "0x";
         const _onChainConfig = await this.getOnChainConfig();
         if (_onChainConfig.isErr() === true) {
@@ -632,7 +632,7 @@ export class SoulWallet implements ISoulWallet {
                 }
                 userOp.signature = re.OK;
             }
-            const userOpGasRet = await this.Bundler.eth_estimateUserOperationGas(_onChainConfig.OK.entryPoint, userOp);
+            const userOpGasRet = await this.Bundler.eth_estimateUserOperationGas(_onChainConfig.OK.entryPoint, userOp, stateOverride);
             if (userOpGasRet.isErr() === true) {
                 return new Err(userOpGasRet.ERR);
             }
