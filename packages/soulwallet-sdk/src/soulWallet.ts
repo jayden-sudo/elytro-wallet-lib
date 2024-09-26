@@ -291,8 +291,16 @@ export class SoulWallet implements ISoulWallet {
 
         try {
             const maxFeePerGas = BigInt(userOp.maxFeePerGas);
+            let paymasterVerificationGasLimit = BigInt(0);
+            if (userOp.paymasterVerificationGasLimit !== null) {
+                paymasterVerificationGasLimit = BigInt(userOp.paymasterVerificationGasLimit);
+            }
+            let paymasterPostOpGasLimit = BigInt(0);
+            if (userOp.paymasterPostOpGasLimit !== null) {
+                paymasterPostOpGasLimit = BigInt(userOp.paymasterPostOpGasLimit);
+            }
             const requiredGas = BigInt(userOp.verificationGasLimit) + BigInt(userOp.callGasLimit) + BigInt(userOp.preVerificationGas) +
-                BigInt(userOp.paymasterVerificationGasLimit) + BigInt(userOp.paymasterPostOpGasLimit);
+                paymasterVerificationGasLimit + paymasterPostOpGasLimit;
             const requiredPrefund = requiredGas * maxFeePerGas;
 
             //return '0x' + requiredPrefund.toString(16);
@@ -375,8 +383,8 @@ export class SoulWallet implements ISoulWallet {
             maxFeePerGas: 2,
             maxPriorityFeePerGas: 1,
             paymaster: null,
-            paymasterVerificationGasLimit: 0,
-            paymasterPostOpGasLimit: 0,
+            paymasterVerificationGasLimit: null,
+            paymasterPostOpGasLimit: null,
             paymasterData: null,
             signature: "0x"
         };
@@ -844,8 +852,8 @@ export class SoulWallet implements ISoulWallet {
             maxFeePerGas: '0x' + BigInt(maxFeePerGas).toString(16),
             maxPriorityFeePerGas: '0x' + BigInt(maxPriorityFeePerGas).toString(16),
             paymaster: null,
-            paymasterVerificationGasLimit: 0,
-            paymasterPostOpGasLimit: 0,
+            paymasterVerificationGasLimit: null,
+            paymasterPostOpGasLimit: null,
             paymasterData: null,
             signature: "0x"
         };

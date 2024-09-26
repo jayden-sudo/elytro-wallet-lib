@@ -64,6 +64,15 @@ function userOperationToJSON(userOp: UserOperation): string {
     if (userOp.paymaster !== null && userOp.paymaster.length === 42 && userOp.paymaster !== ethers.ZeroAddress) {
         paymaster = ethers.getAddress(userOp.paymaster);
     }
+    if (paymaster !== null) {
+        if (userOp.paymasterVerificationGasLimit === null || userOp.paymasterPostOpGasLimit === null || userOp.paymasterData === null) {
+            throw new Error('paymasterVerificationGasLimit, paymasterPostOpGasLimit, paymasterData must be set');
+        }
+    } else {
+        if (userOp.paymasterVerificationGasLimit !== null || userOp.paymasterPostOpGasLimit !== null || userOp.paymasterData !== null) {
+            throw new Error('paymasterVerificationGasLimit, paymasterPostOpGasLimit, paymasterData must be null');
+        }
+    }
     const obj = {
         sender: ethers.getAddress(userOp.sender),
         nonce: _BigNumberishToHexString(userOp.nonce),
@@ -76,9 +85,9 @@ function userOperationToJSON(userOp: UserOperation): string {
         maxFeePerGas: _BigNumberishToHexString(userOp.maxFeePerGas),
         maxPriorityFeePerGas: _BigNumberishToHexString(userOp.maxPriorityFeePerGas),
         paymaster: paymaster,
-        paymasterVerificationGasLimit: _BigNumberishToHexString(userOp.paymasterVerificationGasLimit),
-        paymasterPostOpGasLimit: _BigNumberishToHexString(userOp.paymasterPostOpGasLimit),
-        paymasterData: (paymaster === null ? null : _HexstringToBytes(userOp.paymasterData === null ? '0x' : userOp.paymasterData)),
+        paymasterVerificationGasLimit: (userOp.paymasterVerificationGasLimit === null ? null : _BigNumberishToHexString(userOp.paymasterVerificationGasLimit)),
+        paymasterPostOpGasLimit: (userOp.paymasterPostOpGasLimit === null ? null : _BigNumberishToHexString(userOp.paymasterPostOpGasLimit)),
+        paymasterData: (userOp.paymasterData === null ? null : userOp.paymasterData),
         signature: _HexstringToBytes(userOp.signature)
     };
     return JSON.stringify(obj);
@@ -91,24 +100,26 @@ function userOperationFromJSON(json: string): UserOperation {
     }
     let factoryData: string | null = null;
     if (factory !== null) {
-        if (typeof (obj.factoryData) === 'string') {
-            factoryData = obj.factoryData;
-        } else {
-            factoryData = '0x';
+        if (typeof (obj.factoryData) !== 'string') {
+            throw new Error('factoryData must be a string');
         }
+        factoryData = obj.factoryData;
     }
     let paymaster: string | null = null;
     if (typeof (obj.paymaster) === 'string' && obj.paymaster.length === 42) {
         paymaster = ethers.getAddress(obj.paymaster);
     }
-    let paymasterData: string | null = null;
+
     if (paymaster !== null) {
-        if (typeof (obj.paymasterData) === 'string') {
-            paymasterData = obj.paymasterData;
-        } else {
-            paymasterData = '0x';
+        if (obj.paymasterVerificationGasLimit === null || obj.paymasterPostOpGasLimit === null || obj.paymasterData === null) {
+            throw new Error('paymasterVerificationGasLimit, paymasterPostOpGasLimit, paymasterData must be set');
+        }
+    } else {
+        if (obj.paymasterVerificationGasLimit !== null || obj.paymasterPostOpGasLimit !== null || obj.paymasterData !== null) {
+            throw new Error('paymasterVerificationGasLimit, paymasterPostOpGasLimit, paymasterData must be null');
         }
     }
+
     const userOp: UserOperation = {
         sender: ethers.getAddress(obj.sender),
         nonce: '0x' + BigInt(obj.nonce).toString(16),
@@ -121,9 +132,9 @@ function userOperationFromJSON(json: string): UserOperation {
         maxFeePerGas: '0x' + BigInt(obj.maxFeePerGas).toString(16),
         maxPriorityFeePerGas: '0x' + BigInt(obj.maxPriorityFeePerGas).toString(16),
         paymaster: paymaster,
-        paymasterVerificationGasLimit: '0x' + BigInt(obj.paymasterVerificationGasLimit).toString(16),
-        paymasterPostOpGasLimit: '0x' + BigInt(obj.paymasterPostOpGasLimit).toString(16),
-        paymasterData: paymasterData,
+        paymasterVerificationGasLimit: obj.paymasterVerificationGasLimit === null ? null : '0x' + BigInt(obj.paymasterVerificationGasLimit).toString(16),
+        paymasterPostOpGasLimit: obj.paymasterPostOpGasLimit === null ? null : '0x' + BigInt(obj.paymasterPostOpGasLimit).toString(16),
+        paymasterData: obj.paymasterData,
         signature: obj.signature,
     };
     return userOp;
@@ -167,7 +178,7 @@ function unpackPaymasterStaticFields(
     paymasterAndData: HexString
 ): {
     paymaster: Address | null,
-    validationGasLimit: BigNumberish,
+    verificationGasLimit: BigNumberish,
     postOpGasLimit: BigNumberish,
     paymasterData: HexString | null
 } {
@@ -177,20 +188,20 @@ function unpackPaymasterStaticFields(
     if (paymasterAndData.length < (2 + 52 * 2)) {
         return {
             paymaster: null,
-            validationGasLimit: 0,
+            verificationGasLimit: 0,
             postOpGasLimit: 0,
             paymasterData: null
         };
     }
 
     const paymaster = paymasterAndData.slice(0, 42);
-    const validationGasLimit = Hex.paddingZero(BigInt('0x' + paymasterAndData.slice(42, 74)));
+    const verificationGasLimit = Hex.paddingZero(BigInt('0x' + paymasterAndData.slice(42, 74)));
     const postOpGasLimit = Hex.paddingZero(BigInt('0x' + paymasterAndData.slice(74, 106)));
     const paymasterData = '0x' + paymasterAndData.slice(106);
 
     return {
         paymaster: paymaster,
-        validationGasLimit: validationGasLimit,
+        verificationGasLimit: verificationGasLimit,
         postOpGasLimit: postOpGasLimit,
         paymasterData: paymasterData
     };
@@ -198,8 +209,8 @@ function unpackPaymasterStaticFields(
 
 function packPaymasterStaticFields(
     paymaster: Address | null,
-    validationGasLimit: BigNumberish,
-    postOpGasLimit: BigNumberish,
+    verificationGasLimit: BigNumberish | null,
+    postOpGasLimit: BigNumberish | null,
     paymasterData: HexString | null
 ): HexString {
     if (paymaster === null || paymaster.length !== 42 || paymaster === ethers.ZeroAddress) {
@@ -207,8 +218,8 @@ function packPaymasterStaticFields(
     }
 
     let paymasterAndData = paymaster;
-    paymasterAndData += Hex.paddingZero(validationGasLimit, 16).slice(2);
-    paymasterAndData += Hex.paddingZero(postOpGasLimit, 16).slice(2);
+    paymasterAndData += Hex.paddingZero((verificationGasLimit === null ? BigInt(0) : verificationGasLimit), 16).slice(2);
+    paymasterAndData += Hex.paddingZero((postOpGasLimit === null ? BigInt(0) : postOpGasLimit), 16).slice(2);
     if (paymasterData !== null && paymasterData.startsWith('0x') && paymasterData.length > 2) {
         paymasterAndData += paymasterData.slice(2);
     }
@@ -261,7 +272,7 @@ function unpackUserOp(packedUserOp: PackedUserOperation): UserOperation {
         maxFeePerGas: _gasFees.low128,
         maxPriorityFeePerGas: _gasFees.high128,
         paymaster: _paymasterStaticFields.paymaster,
-        paymasterVerificationGasLimit: _paymasterStaticFields.validationGasLimit,
+        paymasterVerificationGasLimit: _paymasterStaticFields.verificationGasLimit,
         paymasterPostOpGasLimit: _paymasterStaticFields.postOpGasLimit,
         paymasterData: _paymasterStaticFields.paymasterData,
         signature: packedUserOp.signature

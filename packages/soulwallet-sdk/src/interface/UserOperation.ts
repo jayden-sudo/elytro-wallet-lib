@@ -17,8 +17,8 @@ export type UserOperation = {
     maxFeePerGas: BigNumberish;
     maxPriorityFeePerGas: BigNumberish;
     paymaster: Address|null;
-    paymasterVerificationGasLimit: BigNumberish;
-    paymasterPostOpGasLimit: BigNumberish;
+    paymasterVerificationGasLimit: BigNumberish|null;
+    paymasterPostOpGasLimit: BigNumberish|null;
     paymasterData: HexString|null;
     signature: HexString;
 };
