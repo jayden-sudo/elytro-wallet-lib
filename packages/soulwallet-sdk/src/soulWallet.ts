@@ -15,6 +15,7 @@ import { getUserOpHash } from "./tools/userOpHash.js";
 import { SocialRecovery } from "./socialRecovery.js";
 import { ECCPoint, RSAPublicKey } from "./tools/webauthn.js";
 import { WalletFactory } from "./tools/walletFactory.js";
+import { UserOpGas } from "./interface/IBundler.js";
 
 export class onChainConfig {
     chainId: number = 0;
@@ -617,7 +618,7 @@ export class SoulWallet implements ISoulWallet {
         return new Ok(signatureRet.OK);
     }
 
-    async estimateUserOperationGas(validatorAddress: string, userOp: UserOperation, signkeyType?: SignkeyType, semiValidGuardHookInputData?: GuardHookInputData): Promise<Result<true, UserOpErrors>> {
+    async estimateUserOperationGas(validatorAddress: string, userOp: UserOperation, signkeyType?: SignkeyType, semiValidGuardHookInputData?: GuardHookInputData): Promise<Result<UserOpGas, UserOpErrors>> {
         const semiValidSignature = userOp.signature === "0x";
         const _onChainConfig = await this.getOnChainConfig();
         if (_onChainConfig.isErr() === true) {
@@ -636,15 +637,29 @@ export class SoulWallet implements ISoulWallet {
                 return new Err(userOpGasRet.ERR);
             }
 
-            userOp.callGasLimit = `0x${BigInt(userOpGasRet.OK.callGasLimit).toString(16)}`;
-            userOp.paymasterPostOpGasLimit = `0x${BigInt(userOpGasRet.OK.paymasterPostOpGasLimit).toString(16)}`;
-            userOp.paymasterVerificationGasLimit = `0x${BigInt(userOpGasRet.OK.paymasterVerificationGasLimit).toString(16)}`;
-            userOp.preVerificationGas = `0x${BigInt(userOpGasRet.OK.preVerificationGas).toString(16)}`;
-            userOp.verificationGasLimit = `0x${BigInt(userOpGasRet.OK.verificationGasLimit).toString(16)}`;
+            // userOp.callGasLimit = `0x${BigInt(userOpGasRet.OK.callGasLimit).toString(16)}`;
+            // userOp.paymasterPostOpGasLimit = `0x${BigInt(userOpGasRet.OK.paymasterPostOpGasLimit).toString(16)}`;
+            // userOp.paymasterVerificationGasLimit = `0x${BigInt(userOpGasRet.OK.paymasterVerificationGasLimit).toString(16)}`;
+            // userOp.preVerificationGas = `0x${BigInt(userOpGasRet.OK.preVerificationGas).toString(16)}`;
+            // userOp.verificationGasLimit = `0x${BigInt(userOpGasRet.OK.verificationGasLimit).toString(16)}`;
 
             //GasOverhead.calcGasOverhead(userOp, signkeyType);
-            return new Ok(true);
-        } finally {
+
+            return new Ok(userOpGasRet.OK);
+
+        }
+        catch (error: unknown) {
+            if (error instanceof Error) {
+                return new Err(
+                    new UserOpErrors(UserOpErrorCodes.UnknownError, error.message)
+                );
+            } else {
+                return new Err(
+                    new UserOpErrors(UserOpErrorCodes.UnknownError, "unknown error")
+                );
+            }
+        }
+        finally {
             if (semiValidSignature) {
                 userOp.signature = "0x";
             }

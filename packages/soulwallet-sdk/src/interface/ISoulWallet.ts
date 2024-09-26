@@ -3,6 +3,7 @@ import { UserOpErrors } from "./IUserOpErrors.js";
 import { Result } from '@soulwallet/result';
 import { ECCPoint, RSAPublicKey } from "../tools/webauthn.js";
 import { TypedDataDomain, TypedDataField } from "ethers";
+import { UserOpGas } from "./IBundler.js";
 
 /**
  * Transaction is the interface for the transaction.
@@ -115,10 +116,10 @@ export abstract class ISoulWallet {
      * @param {UserOperation} userOp UserOperation
      * @param {SignkeyType} [signkeyType] default: SignkeyType.EOA
      * @param {GuardHookInputData} [semiValidGuardHookInputData]  sender: wallet address, inputData: key: guardHookPlugin address, value: input data
-     * @return {*}  {Promise<Result<true, UserOpErrors>>}
+     * @return {*}  {Promise<Result<UserOpGas, UserOpErrors>>}
      * @memberof ISoulWallet
      */
-    abstract estimateUserOperationGas(validatorAddress: string, userOp: UserOperation, signkeyType?: SignkeyType, semiValidGuardHookInputData?: GuardHookInputData): Promise<Result<true, UserOpErrors>>;
+    abstract estimateUserOperationGas(validatorAddress: string, userOp: UserOperation, signkeyType?: SignkeyType, semiValidGuardHookInputData?: GuardHookInputData): Promise<Result<UserOpGas, UserOpErrors>>;
 
     /**
      * broadcast the userOp.
