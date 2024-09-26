@@ -1,5 +1,11 @@
 # @soulwallet/sdk
 
+## 0.3.11
+
+### Patch Changes
+
+- 03f6c19: Fixed some bugs
+
 ## 0.3.10
 
 ### Patch Changes
