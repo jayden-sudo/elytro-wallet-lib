@@ -43,7 +43,7 @@ export class Bundler implements IBundler {
         }
     }
 
-    async eth_estimateUserOperationGas(entryPoint: string, userOp: UserOperation, stateOverride?: StateOverride): Promise<Result<UserOpGas, UserOpErrors>> {
+    async eth_estimateUserOperationGas(entryPoint: string, userOp: UserOperation, stateOverride?: Record<string, StateOverride>): Promise<Result<UserOpGas, UserOpErrors>> {
         try {
             const params = [
                 JSON.parse(userOperationToJSON(userOp)),

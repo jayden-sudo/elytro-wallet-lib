@@ -123,7 +123,7 @@ export abstract class IBundler {
      * @return {*}  {Promise<Result<UserOpGas, UserOpErrors>>}
      * @memberof IBundler
      */
-    abstract eth_estimateUserOperationGas(entryPoint: string, userOp: UserOperation, stateOverride?: StateOverride): Promise<Result<UserOpGas, UserOpErrors>>;
+    abstract eth_estimateUserOperationGas(entryPoint: string, userOp: UserOperation, stateOverride?: Record<string, StateOverride>): Promise<Result<UserOpGas, UserOpErrors>>;
 
     /**
      *
