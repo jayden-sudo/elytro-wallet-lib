@@ -1,5 +1,11 @@
 # @soulwallet/sdk
 
+## 0.3.9
+
+### Patch Changes
+
+- 444ba80: The original struct is not modified by the function estimateUserOperationGas()
+
 ## 0.3.8
 
 ### Patch Changes
