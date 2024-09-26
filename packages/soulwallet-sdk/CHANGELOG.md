@@ -1,5 +1,11 @@
 # @soulwallet/sdk
 
+## 0.3.10
+
+### Patch Changes
+
+- 5e7a3ff: Allowed stateOverride parameter in estimateUserOperationGas function.
+
 ## 0.3.9
 
 ### Patch Changes
