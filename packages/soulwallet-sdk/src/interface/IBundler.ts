@@ -4,6 +4,31 @@ import { UserOpErrors } from "./IUserOpErrors.js";
 import { Result } from '@soulwallet/result';
 
 
+export interface StateOverride {
+    /**
+     * Fake balance to set for the account before executing the call.
+     */
+    balance?: string
+    /**
+     * Fake nonce to set for the account before executing the call.
+     */
+    nonce?: string
+    /**
+     * Fake EVM bytecode to inject into the account before executing the call.
+     */
+    code?: string
+    /**
+     * Fake key-value mapping to override all slots in the account storage before executing the call.
+     */
+    // eslint-disable-next-line
+    state?: Object
+    /**
+     * Fake key-value mapping to override individual slots in the account storage before executing the call.
+     */
+    // eslint-disable-next-line
+    stateDiff?: Object
+}
+
 /**
  *
  *
@@ -94,10 +119,11 @@ export abstract class IBundler {
      * @abstract 
      * @param {string} entryPoint
      * @param {UserOperation} userOp
+     * @param {StateOverride} [stateOverride]
      * @return {*}  {Promise<Result<UserOpGas, UserOpErrors>>}
      * @memberof IBundler
      */
-    abstract eth_estimateUserOperationGas(entryPoint: string, userOp: UserOperation): Promise<Result<UserOpGas, UserOpErrors>>;
+    abstract eth_estimateUserOperationGas(entryPoint: string, userOp: UserOperation, stateOverride?: StateOverride): Promise<Result<UserOpGas, UserOpErrors>>;
 
     /**
      *

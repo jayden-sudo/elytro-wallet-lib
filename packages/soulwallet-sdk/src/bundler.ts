@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 import { UserOperation } from "./interface/UserOperation.js";
-import { IBundler, UserOpDetail, UserOpGas, UserOpReceipt } from "./interface/IBundler.js";
+import { IBundler, StateOverride, UserOpDetail, UserOpGas, UserOpReceipt } from "./interface/IBundler.js";
 import { UserOpErrorCodes, UserOpErrors } from "./interface/IUserOpErrors.js";
 import { Ok, Err, Result } from '@soulwallet/result';
 import { userOperationToJSON } from './tools/convert.js';
@@ -43,14 +43,18 @@ export class Bundler implements IBundler {
         }
     }
 
-    async eth_estimateUserOperationGas(entryPoint: string, userOp: UserOperation): Promise<Result<UserOpGas, UserOpErrors>> {
+    async eth_estimateUserOperationGas(entryPoint: string, userOp: UserOperation, stateOverride?: StateOverride): Promise<Result<UserOpGas, UserOpErrors>> {
         try {
+            const params = [
+                JSON.parse(userOperationToJSON(userOp)),
+                entryPoint
+            ];
+            if (stateOverride !== undefined) {
+                params.push(stateOverride);
+            }
             const userOpGas = await this.bundler.send(
                 'eth_estimateUserOperationGas',
-                [
-                    JSON.parse(userOperationToJSON(userOp)),
-                    entryPoint
-                ]
+                params
             ) as UserOpGas;
             if (userOpGas === null) {
                 return new Err(new UserOpErrors(UserOpErrorCodes.UnknownError, 'unknown error'));

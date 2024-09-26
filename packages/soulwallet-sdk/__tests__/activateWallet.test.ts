@@ -125,7 +125,7 @@ describe('ActivateWallet', () => {
             }
 
             {
-                const re = await soulWallet.estimateUserOperationGas(SoulWalletDefaultValidator, userOp, signkeyType);
+                const re = await soulWallet.estimateUserOperationGas(SoulWalletDefaultValidator, userOp, undefined, signkeyType);
                 if (userOp.callData === '0x') {
                     userOp.callGasLimit = 1;
                 }
