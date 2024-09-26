@@ -114,13 +114,13 @@ export abstract class ISoulWallet {
      * @abstract
      * @param {string} validatorAddress validator contract address
      * @param {UserOperation} userOp UserOperation
-     * @param {StateOverride} [stateOverride] 
+     * @param {Record<string, StateOverride>} [stateOverride] stateOverride
      * @param {SignkeyType} [signkeyType] default: SignkeyType.EOA
      * @param {GuardHookInputData} [semiValidGuardHookInputData]  sender: wallet address, inputData: key: guardHookPlugin address, value: input data
      * @return {*}  {Promise<Result<UserOpGas, UserOpErrors>>}
      * @memberof ISoulWallet
      */
-    abstract estimateUserOperationGas(validatorAddress: string, userOp: UserOperation, stateOverride?: StateOverride, signkeyType?: SignkeyType, semiValidGuardHookInputData?: GuardHookInputData): Promise<Result<UserOpGas, UserOpErrors>>;
+    abstract estimateUserOperationGas(validatorAddress: string, userOp: UserOperation, stateOverride?: Record<string, StateOverride>, signkeyType?: SignkeyType, semiValidGuardHookInputData?: GuardHookInputData): Promise<Result<UserOpGas, UserOpErrors>>;
 
     /**
      * broadcast the userOp.
