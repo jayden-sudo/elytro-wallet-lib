@@ -85,16 +85,25 @@ async function generatEthereumListBytes4() {
     const signaturesDir = resolve(ethereumList4bytesDir, 'signatures');
     // read hotbytes4.txt
     const hotbytes4 = fs.readFileSync(resolve(__dirname, 'src', 'templates', 'hotbytes4.txt'), { encoding: 'utf-8' });
-    const hotbytes4Arr = hotbytes4.split('\n');
+    const hotbytes4Json = JSON.parse(hotbytes4);
+    const hotbytes4Arr = hotbytes4Json.map((item: { bytes4: string }) => item.bytes4);
     let eachBytes4Arr: string = '';
     for (let index = 0; index < hotbytes4Arr.length; index++) {
-        const bytes4 = hotbytes4Arr[index].trim();
-        const file = resolve(signaturesDir, bytes4.slice(2));
+        let bytes4 = hotbytes4Arr[index].trim();
+        // remove '0x' prefix
+        if (bytes4.startsWith('0x') === true) {
+            bytes4 = bytes4.slice(2);
+        }
+        // padding to 4 bytes
+        if (bytes4.length < 8) {
+            bytes4 = bytes4.padStart(8, '0');
+        }
+        const file = resolve(signaturesDir, bytes4);
         if (fs.existsSync(file)) {
             // read
             const text = fs.readFileSync(file, { encoding: 'utf-8' });
             const _data = new function4bytes(text);
-            eachBytes4Arr += `b.set('${_data.bytes4}',{text:'${_data.text}',bytes4:'${_data.bytes4}'});\n`;
+            eachBytes4Arr += `b.set('0x${_data.bytes4}',{text:'${_data.text}',bytes4:'0x${_data.bytes4}'});\n`;
         }
     }
 

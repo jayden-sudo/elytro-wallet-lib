@@ -13,6 +13,7 @@ import { ECCPoint, RSAPublicKey, WebAuthN } from "./tools/webauthn.js";
 import { P256Lib } from "./tools/p256lib.js";
 import { Base64Url } from "./tools/base64Url.js";
 import { WalletFactory } from "./tools/walletFactory.js";
+import { BigNumberish, Address, HexString, Bytes32 } from "./interface/types.js";
 
 export {
     SoulWallet,
@@ -38,5 +39,9 @@ export {
     Base64Url,
     WebAuthN,
     P256Lib,/* dev export */
-    WalletFactory
+    WalletFactory,
+    BigNumberish,
+    Address,
+    HexString,
+    Bytes32
 }
