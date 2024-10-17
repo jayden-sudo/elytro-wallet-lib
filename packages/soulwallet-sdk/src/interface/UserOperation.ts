@@ -1,25 +1,21 @@
-export type Numeric = number | bigint;
-export type BigNumberish = string | Numeric;
-export type Address = string;
-export type HexString = string;
-export type Bytes32 = HexString;
+import { Address, BigNumberish, HexString, Bytes32 } from "./types.js";
 
 
 export type UserOperation = {
     sender: Address;
     nonce: BigNumberish;
-    factory: Address|null;
-    factoryData: HexString|null;
+    factory: Address | null;
+    factoryData: HexString | null;
     callData: HexString;
     callGasLimit: BigNumberish;
     verificationGasLimit: BigNumberish;
     preVerificationGas: BigNumberish;
     maxFeePerGas: BigNumberish;
     maxPriorityFeePerGas: BigNumberish;
-    paymaster: Address|null;
-    paymasterVerificationGasLimit: BigNumberish|null;
-    paymasterPostOpGasLimit: BigNumberish|null;
-    paymasterData: HexString|null;
+    paymaster: Address | null;
+    paymasterVerificationGasLimit: BigNumberish | null;
+    paymasterPostOpGasLimit: BigNumberish | null;
+    paymasterData: HexString | null;
     signature: HexString;
 };
 
