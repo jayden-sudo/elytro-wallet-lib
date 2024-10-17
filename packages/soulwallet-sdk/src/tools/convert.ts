@@ -182,7 +182,7 @@ function unpackPaymasterStaticFields(
     postOpGasLimit: BigNumberish,
     paymasterData: HexString | null
 } {
-    if (!paymasterAndData.startsWith('0x')) {
+    if (paymasterAndData.startsWith('0x') === false) {
         throw new Error(`paymasterAndData ${paymasterAndData} is not a valid HexString`);
     }
     if (paymasterAndData.length < (2 + 52 * 2)) {
@@ -220,7 +220,7 @@ function packPaymasterStaticFields(
     let paymasterAndData = paymaster;
     paymasterAndData += Hex.paddingZero((verificationGasLimit === null ? BigInt(0) : verificationGasLimit), 16).slice(2);
     paymasterAndData += Hex.paddingZero((postOpGasLimit === null ? BigInt(0) : postOpGasLimit), 16).slice(2);
-    if (paymasterData !== null && paymasterData.startsWith('0x') && paymasterData.length > 2) {
+    if (paymasterData !== null && paymasterData.startsWith('0x') === true && paymasterData.length > 2) {
         paymasterAndData += paymasterData.slice(2);
     }
     return paymasterAndData.toLowerCase();
