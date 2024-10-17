@@ -1,5 +1,13 @@
 # @soulwallet/decoder
 
+## 0.3.5
+
+### Patch Changes
+
+- 08a29c6: 1. Fixed an issue with **UserOpReceipt** in `/sdk` 2. Updated `/assets` 3. Updated `/decoder`
+- Updated dependencies [08a29c6]
+  - @soulwallet/assets@0.3.4
+
 ## 0.3.4
 
 ### Patch Changes
