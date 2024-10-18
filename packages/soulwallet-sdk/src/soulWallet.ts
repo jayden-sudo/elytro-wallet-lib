@@ -2,7 +2,7 @@ import { TypedDataDomain, TypedDataField, ethers } from "ethers";
 import { GuardHookInputData, ISoulWallet, InitialKey, SignkeyType, Transaction } from "./interface/ISoulWallet.js";
 import { UserOperation } from "./interface/UserOperation.js";
 import { TypeGuard } from "./tools/typeGuard.js";
-import { StorageCache } from "./tools/storageCache.js";
+import { MemCache } from "./tools/memCache.js";
 import { ABI_SoulWalletFactory, ABI_SoulWallet, ABI_EntryPoint } from "@soulwallet/abi";
 import { HookInputData, Signature } from "./tools/signature.js";
 // import { Hex } from "./tools/hex.js";
@@ -16,13 +16,13 @@ import { SocialRecovery } from "./socialRecovery.js";
 import { ECCPoint, RSAPublicKey } from "./tools/webauthn.js";
 import { WalletFactory } from "./tools/walletFactory.js";
 import { StateOverride, UserOpGas } from "./interface/IBundler.js";
+import { Address } from "./interface/types.js";
 
-export class onChainConfig {
-    chainId: number = 0;
-    entryPoint: string = "";
-    soulWalletLogic: string = "";
+export interface onChainConfig {
+    chainId: number;
+    entryPoint: Address;
+    soulWalletLogic: Address;
 }
-
 
 /**
  * main class of the SDK.
@@ -37,20 +37,27 @@ export class SoulWallet implements ISoulWallet {
     readonly soulWalletFactoryAddress: string;
     readonly defalutCallbackHandlerAddress?: string;
     readonly socialRecoveryModuleAddress?: string;
-
     readonly preVerificationGasDeploy: number = 10000000;
-
     readonly Bundler: Bundler;
-
     private _onChainConfig: onChainConfig | undefined = undefined;
 
-
+    /**
+     * Creates an instance of SoulWallet.
+     * @param {(string | ethers.JsonRpcProvider)} _provider ethreum client rpc url
+     * @param {(string | ethers.JsonRpcProvider)} _bundler eip-4337 bundler rpc url
+     * @param {Address} _soulWalletFactoryAddress soulWalletFactory contract address
+     * @param {Address} [_defalutCallbackHandlerAddress] default callback handler contract address
+     * @param {Address} [_socialRecoveryModuleAddress] social recovery module contract address
+     * @param {onChainConfig} [_config] if provided, skip onchain config check
+     * @memberof SoulWallet
+     */
     constructor(
         _provider: string | ethers.JsonRpcProvider,
         _bundler: string | ethers.JsonRpcProvider,
-        _soulWalletFactoryAddress: string,
-        _defalutCallbackHandlerAddress?: string,
-        _socialRecoveryModuleAddress?: string
+        _soulWalletFactoryAddress: Address,
+        _defalutCallbackHandlerAddress?: Address,
+        _socialRecoveryModuleAddress?: Address,
+        _config?: onChainConfig
     ) {
         if (typeof _provider === 'string') {
             if (TypeGuard.httpOrHttps(_provider).isErr() === true) throw new Error("invalid provider");
@@ -77,6 +84,9 @@ export class SoulWallet implements ISoulWallet {
         this.socialRecoveryModuleAddress = _socialRecoveryModuleAddress;
         // this.defaultValidator = _defaultValidator;
         this.Bundler = new Bundler(this.bundler);
+        if (_config !== undefined) {
+            this._onChainConfig = _config;
+        }
     }
 
 
@@ -103,14 +113,12 @@ export class SoulWallet implements ISoulWallet {
 
         const key = `onChainConfig_${this.soulWalletFactoryAddress}_${_chainId}`;
         // read from cache
-        let _onChainConfig = StorageCache.getInstance().get<onChainConfig | undefined>(key, undefined);
+        let _onChainConfig = MemCache.getInstance().get<onChainConfig | undefined>(key, undefined);
         if (!_onChainConfig) {
             const _soulWalletFactory = new ethers.Contract(this.soulWalletFactoryAddress, ABI_SoulWalletFactory, this.provider);
             const soulWalletLogic: string = await _soulWalletFactory.getFunction("_WALLETIMPL").staticCall();
             const _soulWallet = new ethers.Contract(soulWalletLogic, ABI_SoulWallet, this.provider);
             const entryPoint: string = await _soulWallet.getFunction("entryPoint").staticCall();
-
-            _onChainConfig = new onChainConfig();
 
             const _bundlerChainIdBigint = (await this.bundler.getNetwork()).chainId;
             const _bundlerChainId: number = Number(_bundlerChainIdBigint);
@@ -132,12 +140,14 @@ export class SoulWallet implements ISoulWallet {
                 );
             }
 
-            _onChainConfig.chainId = _chainId;
-            _onChainConfig.entryPoint = entryPoint;
-            _onChainConfig.soulWalletLogic = soulWalletLogic;
+            _onChainConfig = {
+                chainId: _chainId,
+                entryPoint: entryPoint,
+                soulWalletLogic: soulWalletLogic
+            } as onChainConfig;
 
             // save to cache
-            StorageCache.getInstance().set(key, _onChainConfig);
+            MemCache.getInstance().set(key, _onChainConfig);
 
             // check bundler RPC
             const ret = await this.Bundler.eth_supportedEntryPoints();
@@ -724,14 +734,14 @@ export class SoulWallet implements ISoulWallet {
         }
         const key = `${walletAddress}-${_onChainConfig.OK.chainId}`;
 
-        if (StorageCache.getInstance().get<boolean>(key, false)) {
+        if (MemCache.getInstance().get<boolean>(key, false)) {
             return new Ok(true);
         }
         try {
             const code = await this.provider.getCode(walletAddress);
             const deployed = code !== "0x";
             if (deployed) {
-                StorageCache.getInstance().set(key, true);
+                MemCache.getInstance().set(key, true);
             }
             return new Ok(deployed);
         } catch (error: unknown) {
