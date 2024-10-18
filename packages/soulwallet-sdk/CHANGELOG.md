@@ -1,5 +1,11 @@
 # @soulwallet/sdk
 
+## 0.3.13
+
+### Patch Changes
+
+- a3ae446: SoulWallet instances add parameter `_config` that can skip on-chain detection
+
 ## 0.3.12
 
 ### Patch Changes
