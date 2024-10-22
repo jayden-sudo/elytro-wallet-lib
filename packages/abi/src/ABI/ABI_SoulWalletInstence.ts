@@ -10,6 +10,11 @@ export default [
         "internalType": "address"
       },
       {
+        "name": "defaultValidator",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
         "name": "owners",
         "type": "bytes32[]",
         "internalType": "bytes32[]"
@@ -54,19 +59,6 @@ export default [
         "name": "",
         "type": "address",
         "internalType": "contract ISoulWallet"
-      }
-    ],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "soulWalletDefaultValidator",
-    "inputs": [],
-    "outputs": [
-      {
-        "name": "",
-        "type": "address",
-        "internalType": "contract SoulWalletDefaultValidator"
       }
     ],
     "stateMutability": "view"

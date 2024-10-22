@@ -1,4 +1,4 @@
-import { SignkeyType } from "../interface/ISoulWallet.js";
+import { SignkeyType } from "../interface/IElytroWallet.js";
 import { UserOperation } from "../interface/UserOperation.js";
 
 

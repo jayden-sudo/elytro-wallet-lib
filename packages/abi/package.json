@@ -1,7 +1,7 @@
 {
   "name": "@elytro/abi",
   "version": "0.0.0",
-  "description": "soulwallet-contract ABI",
+  "description": "Elytro-contract ABI",
   "author": "Jayden@elytro",
   "homepage": "https://github.com/SoulWallet/elytro-wallet-lib#readme",
   "license": "GPL-3.0",

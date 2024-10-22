@@ -1,6 +1,6 @@
 import { TypedDataDomain, TypedDataField, ethers } from 'ethers';
 import {
-    SoulWallet,
+    ElytroWallet,
     UserOperation,
     PackedUserOperation,
     UserOpUtils,
@@ -53,7 +53,7 @@ describe('ActivateWallet', () => {
         const Web3RPC = new ethers.JsonRpcProvider(RPC);
 
 
-        const soulWallet = new SoulWallet(
+        const soulWallet = new ElytroWallet(
             Web3RPC,
             BundlerRPC,
             SoulwalletFactory,

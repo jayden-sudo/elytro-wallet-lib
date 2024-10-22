@@ -1,7 +1,7 @@
-import { SoulWallet } from "./soulWallet.js";
+import { ElytroWallet } from "./elytroWallet.js";
 // import { L1KeyStore } from "./L1KeyStore.js";
 import { SocialRecovery } from "./socialRecovery.js";
-import { Transaction, InitialKey, SignkeyType } from "./interface/ISoulWallet.js";
+import { Transaction, InitialKey, SignkeyType } from "./interface/IElytroWallet.js";
 import { UserOperation, PackedUserOperation } from "./interface/UserOperation.js";
 import { UserOpErrors, UserOpErrorCodes } from "./interface/IUserOpErrors.js";
 import { UserOpReceipt, UserOpDetail, UserOpGas } from "./interface/IBundler.js";
@@ -16,7 +16,7 @@ import { WalletFactory } from "./tools/walletFactory.js";
 import { BigNumberish, Address, HexString, Bytes32 } from "./interface/types.js";
 
 export {
-    SoulWallet,
+    ElytroWallet,
     UserOperation,
     PackedUserOperation,
     UserOpUtils,

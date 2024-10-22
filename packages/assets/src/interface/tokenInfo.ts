@@ -1,6 +1,6 @@
 export enum AddressType {
     Unknown = 0,
-    SoulWallet = 1,
+    Elytro = 1,
     Erc20 = 2,
     Erc721 = 3,
     Erc1155 = 4,

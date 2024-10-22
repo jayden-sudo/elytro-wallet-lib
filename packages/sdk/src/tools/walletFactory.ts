@@ -65,14 +65,14 @@ export class WalletFactory {
      * get wallet address
      *
      * @static
-     * @param {string} soulWalletFactoryAddress
+     * @param {string} elytroWalletFactoryAddress
      * @param {string} implementation
      * @param {string} initializer
      * @param {string} salt
      * @return {*}  {string}
      * @memberof WalletFactory
      */
-    static getWalletAddress(soulWalletFactoryAddress: string, implementation: string, initializer: string, salt: string): string {
+    static getWalletAddress(elytroWalletFactoryAddress: string, implementation: string, initializer: string, salt: string): string {
         /* 
              function getWalletAddress(bytes memory _initializer, bytes32 _salt) external view returns (address proxy) {
                 bytes memory deploymentData = _proxyCode(_WALLETIMPL);
@@ -80,7 +80,7 @@ export class WalletFactory {
                 proxy = Create2.computeAddress(salt, keccak256(deploymentData));
             }
         */
-        return ethers.getCreate2Address(soulWalletFactoryAddress, WalletFactory.calcSalt(initializer, salt), ethers.keccak256(WalletFactory.proxyCode(implementation)));
+        return ethers.getCreate2Address(elytroWalletFactoryAddress, WalletFactory.calcSalt(initializer, salt), ethers.keccak256(WalletFactory.proxyCode(implementation)));
     }
 
 
@@ -88,7 +88,7 @@ export class WalletFactory {
      * get wallet address by readable index
      *
      * @static
-     * @param {string} soulWalletFactoryAddress 
+     * @param {string} elytroWalletFactoryAddress 
      * @param {string} implementation
      * @param {string} initializer
      * @param {number} index
@@ -96,9 +96,9 @@ export class WalletFactory {
      * @return {*}  {string}
      * @memberof WalletFactory
      */
-    static getWalletAddressByIndex(soulWalletFactoryAddress: string, implementation: string, initializer: string, index: number, chainId: number | string): string {
+    static getWalletAddressByIndex(elytroWalletFactoryAddress: string, implementation: string, initializer: string, index: number, chainId: number | string): string {
         return WalletFactory.getWalletAddress(
-            soulWalletFactoryAddress,
+            elytroWalletFactoryAddress,
             implementation,
             initializer,
             WalletFactory.calcWalletAddressSalt(index, chainId)

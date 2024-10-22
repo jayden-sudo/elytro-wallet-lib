@@ -1,5 +1,5 @@
 import { TypedDataDomain, TypedDataField, ethers } from "ethers";
-import { GuardHookInputData, ISoulWallet, InitialKey, SignkeyType, Transaction } from "./interface/ISoulWallet.js";
+import { GuardHookInputData, IElytroWallet, InitialKey, SignkeyType, Transaction } from "./interface/IElytroWallet.js";
 import { UserOperation } from "./interface/UserOperation.js";
 import { TypeGuard } from "./tools/typeGuard.js";
 import { MemCache } from "./tools/memCache.js";
@@ -21,20 +21,20 @@ import { Address } from "./interface/types.js";
 export interface onChainConfig {
     chainId: number;
     entryPoint: Address;
-    soulWalletLogic: Address;
+    elytroWalletLogic: Address;
 }
 
 /**
  * main class of the SDK.
  *
  * @export
- * @class SoulWallet
- * @implements {ISoulWallet}
+ * @class ElytroWallet
+ * @implements {IElytroWallet}
  */
-export class SoulWallet implements ISoulWallet {
+export class ElytroWallet implements IElytroWallet {
     readonly provider: ethers.JsonRpcProvider;
     readonly bundler: ethers.JsonRpcProvider;
-    readonly soulWalletFactoryAddress: string;
+    readonly elytroWalletFactoryAddress: string;
     readonly defalutCallbackHandlerAddress?: string;
     readonly socialRecoveryModuleAddress?: string;
     readonly preVerificationGasDeploy: number = 10000000;
@@ -42,19 +42,19 @@ export class SoulWallet implements ISoulWallet {
     private _onChainConfig: onChainConfig | undefined = undefined;
 
     /**
-     * Creates an instance of SoulWallet.
+     * Creates an instance of ElytroWallet.
      * @param {(string | ethers.JsonRpcProvider)} _provider ethreum client rpc url
      * @param {(string | ethers.JsonRpcProvider)} _bundler eip-4337 bundler rpc url
-     * @param {Address} _soulWalletFactoryAddress soulWalletFactory contract address
+     * @param {Address} _elytroWalletFactoryAddress elytroWalletFactory contract address
      * @param {Address} [_defalutCallbackHandlerAddress] default callback handler contract address
      * @param {Address} [_socialRecoveryModuleAddress] social recovery module contract address
      * @param {onChainConfig} [_config] if provided, skip onchain config check
-     * @memberof SoulWallet
+     * @memberof ElytroWallet
      */
     constructor(
         _provider: string | ethers.JsonRpcProvider,
         _bundler: string | ethers.JsonRpcProvider,
-        _soulWalletFactoryAddress: Address,
+        _elytroWalletFactoryAddress: Address,
         _defalutCallbackHandlerAddress?: Address,
         _socialRecoveryModuleAddress?: Address,
         _config?: onChainConfig
@@ -73,13 +73,13 @@ export class SoulWallet implements ISoulWallet {
         } else {
             this.bundler = _bundler;
         }
-        if (TypeGuard.onlyAddress(_soulWalletFactoryAddress).isErr() === true) throw new Error("invalid soulWalletFactoryAddress");
+        if (TypeGuard.onlyAddress(_elytroWalletFactoryAddress).isErr() === true) throw new Error("invalid elytroWalletFactoryAddress");
         // if (_defaultValidator !== undefined && TypeGuard.onlyAddress(_defaultValidator).isErr() === true) throw new Error("invalid defaultValidator");
         if (_defalutCallbackHandlerAddress !== undefined && TypeGuard.onlyAddress(_defalutCallbackHandlerAddress).isErr() === true) throw new Error("invalid defalutCallbackHandlerAddress");
         if (_socialRecoveryModuleAddress !== undefined && TypeGuard.onlyAddress(_socialRecoveryModuleAddress).isErr() === true) throw new Error("invalid keyStoreModuleAddress");
         // if (_securityControlModuleAddress !== undefined && TypeGuard.onlyAddress(_securityControlModuleAddress).isErr() === true) throw new Error("invalid securityControlModuleAddress");
 
-        this.soulWalletFactoryAddress = _soulWalletFactoryAddress;
+        this.elytroWalletFactoryAddress = _elytroWalletFactoryAddress;
         this.defalutCallbackHandlerAddress = _defalutCallbackHandlerAddress;
         this.socialRecoveryModuleAddress = _socialRecoveryModuleAddress;
         // this.defaultValidator = _defaultValidator;
@@ -111,14 +111,14 @@ export class SoulWallet implements ISoulWallet {
             }
         }
 
-        const key = `onChainConfig_${this.soulWalletFactoryAddress}_${_chainId}`;
+        const key = `onChainConfig_${this.elytroWalletFactoryAddress}_${_chainId}`;
         // read from cache
         let _onChainConfig = MemCache.getInstance().get<onChainConfig | undefined>(key, undefined);
         if (!_onChainConfig) {
-            const _soulWalletFactory = new ethers.Contract(this.soulWalletFactoryAddress, ABI_SoulWalletFactory, this.provider);
-            const soulWalletLogic: string = await _soulWalletFactory.getFunction("_WALLETIMPL").staticCall();
-            const _soulWallet = new ethers.Contract(soulWalletLogic, ABI_SoulWallet, this.provider);
-            const entryPoint: string = await _soulWallet.getFunction("entryPoint").staticCall();
+            const _elytroWalletFactory = new ethers.Contract(this.elytroWalletFactoryAddress, ABI_SoulWalletFactory, this.provider);
+            const elytroWalletLogic: string = await _elytroWalletFactory.getFunction("_WALLETIMPL").staticCall();
+            const _elytroWallet = new ethers.Contract(elytroWalletLogic, ABI_SoulWallet, this.provider);
+            const entryPoint: string = await _elytroWallet.getFunction("entryPoint").staticCall();
 
             const _bundlerChainIdBigint = (await this.bundler.getNetwork()).chainId;
             const _bundlerChainId: number = Number(_bundlerChainIdBigint);
@@ -143,7 +143,7 @@ export class SoulWallet implements ISoulWallet {
             _onChainConfig = {
                 chainId: _chainId,
                 entryPoint: entryPoint,
-                soulWalletLogic: soulWalletLogic
+                elytroWalletLogic: elytroWalletLogic
             } as onChainConfig;
 
             // save to cache
@@ -162,10 +162,10 @@ export class SoulWallet implements ISoulWallet {
 
             {
                 // check onchain::walletAddress == offchain::walletAddress
-                const onChainAddress = await _soulWalletFactory.getFunction("getWalletAddress").staticCall("0x01", WalletFactory.calcWalletAddressSalt(1, _chainId));
+                const onChainAddress = await _elytroWalletFactory.getFunction("getWalletAddress").staticCall("0x01", WalletFactory.calcWalletAddressSalt(1, _chainId));
                 const offChainAddress = WalletFactory.getWalletAddressByIndex(
-                    this.soulWalletFactoryAddress,
-                    soulWalletLogic,
+                    this.elytroWalletFactoryAddress,
+                    elytroWalletLogic,
                     "0x01",
                     1,
                     _chainId
@@ -233,8 +233,8 @@ export class SoulWallet implements ISoulWallet {
             modules.push(socialRecoveryModuleAndData);
         }
 
-        const interfaceSoulWallet = new ethers.Interface(ABI_SoulWallet);
-        const initializeData = interfaceSoulWallet.encodeFunctionData("initialize", [
+        const interfaceElytroWallet = new ethers.Interface(ABI_SoulWallet);
+        const initializeData = interfaceElytroWallet.encodeFunctionData("initialize", [
             SocialRecovery.initialKeysToAddress(initialKeys),
             defalutCallbackHandlerAddress === undefined ? ethers.ZeroAddress : defalutCallbackHandlerAddress,
             modules,
@@ -249,7 +249,7 @@ export class SoulWallet implements ISoulWallet {
         initialGuardianHash: string = ethers.ZeroHash,
         initialGuardianSafePeriod: number = SocialRecovery.defalutInitialGuardianSafePeriod
     ): Promise<Result<string, Error>> {
-        return SoulWallet.initializeData(
+        return ElytroWallet.initializeData(
             this.socialRecoveryModuleAddress,
             this.defalutCallbackHandlerAddress,
             initialKeys,
@@ -267,7 +267,7 @@ export class SoulWallet implements ISoulWallet {
      * @param {number} [initialGuardianSafePeriod] initial guardian safe period
      * @param {(number | string)} [chainId] number or hex string(must start with 0x)
      * @return {*}  {Promise<Result<string, Error>>}
-     * @memberof SoulWallet
+     * @memberof ElytroWallet
      */
     async calcWalletAddress(
         index: number,
@@ -285,8 +285,8 @@ export class SoulWallet implements ISoulWallet {
             throw new Err(_onChainConfig.ERR);
         }
         return new Ok(WalletFactory.getWalletAddressByIndex(
-            this.soulWalletFactoryAddress,
-            _onChainConfig.OK.soulWalletLogic,
+            this.elytroWalletFactoryAddress,
+            _onChainConfig.OK.elytroWalletLogic,
             _initializeDataRet.OK,
             index,
             (chainId === undefined ? _onChainConfig.OK.chainId : chainId)
@@ -371,7 +371,7 @@ export class SoulWallet implements ISoulWallet {
             throw new Err(_onChainConfig.ERR);
         }
 
-        const factory = this.soulWalletFactoryAddress;
+        const factory = this.elytroWalletFactoryAddress;
         const factoryData = `${new ethers.Interface(ABI_SoulWalletFactory)
             .encodeFunctionData("createWallet", [_initializeData.OK,
             WalletFactory.calcWalletAddressSalt(index, _onChainConfig.OK.chainId)
@@ -440,9 +440,9 @@ export class SoulWallet implements ISoulWallet {
 
     private async guardHookList(walletAddress: string): Promise<Result<string[], Error>> {
         try {
-            const _soulWallet = new ethers.Contract(walletAddress, ABI_SoulWallet, this.provider);
+            const _elytroWallet = new ethers.Contract(walletAddress, ABI_SoulWallet, this.provider);
             // function listPlugin(uint8 hookType) external view returns (address[] memory plugins);
-            const _guardHookList = await _soulWallet.listPlugin(1 /* uint8 private constant _GUARD_HOOK = 1 << 0; */);
+            const _guardHookList = await _elytroWallet.listPlugin(1 /* uint8 private constant _GUARD_HOOK = 1 << 0; */);
             return new Ok(_guardHookList);
         } catch (error: unknown) {
             if (error instanceof Error) {
@@ -481,7 +481,7 @@ export class SoulWallet implements ISoulWallet {
      * @param {string} validationData validation data
      * @param {GuardHookInputData} [guardHookInputData] 
      * @return {*}  {Promise<Result<string, Error>>}
-     * @memberof SoulWallet
+     * @memberof ElytroWallet
      */
     async packUserOpEOASignature(
         validatorAddress: string,
@@ -510,7 +510,7 @@ export class SoulWallet implements ISoulWallet {
      * @param {string} validationData validation data
      * @param {GuardHookInputData} [guardHookInputData]
      * @return {*}  {Promise<Result<string, Error>>}
-     * @memberof SoulWallet
+     * @memberof ElytroWallet
      */
     async packUserOpP256Signature(
         validatorAddress: string,
@@ -546,7 +546,7 @@ export class SoulWallet implements ISoulWallet {
      * @param {string} validationData
      * @param {HookInputData} [guardHookInputData]
      * @return {*}  {Promise<Result<string, Error>>}
-     * @memberof SoulWallet
+     * @memberof ElytroWallet
      */
     async packUserOpRS256Signature(
         validatorAddress: string,
@@ -900,7 +900,7 @@ export class SoulWallet implements ISoulWallet {
      *         value: Record<string, any>,
      *         typedMessage: string
      *     }, Error>>}
-     * @memberof ISoulWallet
+     * @memberof IElytroWallet
      */
     async getEIP1271TypedData(walletAddr: string, message: string): Promise<Result<{
         domain: TypedDataDomain,
@@ -928,7 +928,7 @@ export class SoulWallet implements ISoulWallet {
             verifyingContract: ethers.getAddress(walletAddr)
         };
         const types: Record<string, Array<TypedDataField>> = {
-            SoulWalletMessage: [
+            elytroWalletMessage: [
                 { name: "message", type: "bytes32" }
             ]
         };

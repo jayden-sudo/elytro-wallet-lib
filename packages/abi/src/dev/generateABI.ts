@@ -11,20 +11,20 @@ if (!shell.which('forge')) {
 
 const __dirname = resolve();
 
-const soulwalletcontractDir = resolve(__dirname, '..', '..', 'soul-wallet-contract');
-console.log('soulwalletcontractDir', soulwalletcontractDir);
-shell.cd(soulwalletcontractDir);
+const elytrocontractDir = resolve(__dirname, '..', '..', 'soul-wallet-contract');
+console.log('elytrocontractDir', elytrocontractDir);
+shell.cd(elytrocontractDir);
 shell.exec("forge build", { silent: false });
-const soulwalletcontractOutDir = resolve(soulwalletcontractDir, 'out');
-if (!existsSync(soulwalletcontractOutDir)) {
+const elytrowalletcontractOutDir = resolve(elytrocontractDir, 'out');
+if (!existsSync(elytrowalletcontractOutDir)) {
     throw new Error('soul-wallet-contract/out not found,please run `cd soul-wallet-contract && forge build`');
 }
 // delete old abi
 shell.rm('-rf', resolve(__dirname, 'src', 'ABI/*.ts'));
 
-// get all folders in soulwalletcontractOutDir
+// get all folders in elytrocontractOutDir
 
-const contractDir = readdirSync(soulwalletcontractOutDir, { withFileTypes: true });
+const contractDir = readdirSync(elytrowalletcontractOutDir, { withFileTypes: true });
 
 
 let mainTsImport = '';
@@ -37,7 +37,7 @@ for (let i = 0; i < contractDir.length; i++) {
     const subDir = contractDir[i];
     if (subDir.isDirectory()) {
         const contractPath = subDir.name;
-        if (contractPath.endsWith(".sol") && !contractPath.endsWith(".t.sol") && !contractPath.endsWith(".s.sol")) {
+        if (contractPath.endsWith(".sol") && !contractPath.endsWith(".t.sol") && !contractPath.endsWith(".s.sol") && !contractPath.startsWith("I")) {
             const className = contractPath.replace('.sol', '');
             const abiJson = resolve(subDir.path, contractPath, className + '.json');
             if (!existsSync(abiJson)) {

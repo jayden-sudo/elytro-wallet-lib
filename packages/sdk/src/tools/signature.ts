@@ -1,7 +1,7 @@
 import { TypeGuard } from './typeGuard.js';
 import { Hex } from "./hex.js";
 import { ethers } from 'ethers';
-import { SignkeyType } from '../interface/ISoulWallet.js';
+import { SignkeyType } from '../interface/IElytroWallet.js';
 import { ECCPoint, RSAPublicKey, WebAuthN } from './webauthn.js';
 
 export class HookInputData {

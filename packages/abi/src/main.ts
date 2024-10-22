@@ -9,18 +9,7 @@ import ABI_ERC1271Handler from "./ABI/ABI_ERC1271Handler.js";
 import ABI_ERC20Paymaster from "./ABI/ABI_ERC20Paymaster.js";
 import ABI_Errors from "./ABI/ABI_Errors.js";
 import ABI_HelloWorld from "./ABI/ABI_HelloWorld.js";
-import ABI_IOracle from "./ABI/ABI_IOracle.js";
-import ABI_ISocialRecovery from "./ABI/ABI_ISocialRecovery.js";
-import ABI_ISoulWallet from "./ABI/ABI_ISoulWallet.js";
-import ABI_ISoulWalletHookManager from "./ABI/ABI_ISoulWalletHookManager.js";
-import ABI_ISoulWalletModule from "./ABI/ABI_ISoulWalletModule.js";
-import ABI_ISoulWalletModuleManager from "./ABI/ABI_ISoulWalletModuleManager.js";
-import ABI_ISoulWalletOwnerManager from "./ABI/ABI_ISoulWalletOwnerManager.js";
-import ABI_ISoulWalletValidatorManager from "./ABI/ABI_ISoulWalletValidatorManager.js";
-import ABI_IUpgradable from "./ABI/ABI_IUpgradable.js";
-import ABI_IUpgrade from "./ABI/ABI_IUpgrade.js";
 import ABI_NewImplementation from "./ABI/ABI_NewImplementation.js";
-import ABI_RS256Verify from "./ABI/ABI_RS256Verify.js";
 import ABI_ReceivePayment from "./ABI/ABI_ReceivePayment.js";
 import ABI_SocialRecoveryModule from "./ABI/ABI_SocialRecoveryModule.js";
 import ABI_SoulWallet from "./ABI/ABI_SoulWallet.js";
@@ -34,7 +23,6 @@ import ABI_SoulWalletOwnerManager from "./ABI/ABI_SoulWalletOwnerManager.js";
 import ABI_SoulWalletUpgradeManager from "./ABI/ABI_SoulWalletUpgradeManager.js";
 import ABI_SoulWalletValidatorManager from "./ABI/ABI_SoulWalletValidatorManager.js";
 import ABI_TestOracle from "./ABI/ABI_TestOracle.js";
-import ABI_TimeLockEmailGuardian from "./ABI/ABI_TimeLockEmailGuardian.js";
 import ABI_TokenERC20 from "./ABI/ABI_TokenERC20.js";
 import ABI_UpgradeModule from "./ABI/ABI_UpgradeModule.js";
 import ABI_EntryPoint from "./ABI/ABI_EntryPoint.js";
@@ -54,18 +42,7 @@ export {
     ABI_ERC20Paymaster,
     ABI_Errors,
     ABI_HelloWorld,
-    ABI_IOracle,
-    ABI_ISocialRecovery,
-    ABI_ISoulWallet,
-    ABI_ISoulWalletHookManager,
-    ABI_ISoulWalletModule,
-    ABI_ISoulWalletModuleManager,
-    ABI_ISoulWalletOwnerManager,
-    ABI_ISoulWalletValidatorManager,
-    ABI_IUpgradable,
-    ABI_IUpgrade,
     ABI_NewImplementation,
-    ABI_RS256Verify,
     ABI_ReceivePayment,
     ABI_SocialRecoveryModule,
     ABI_SoulWallet,
@@ -79,7 +56,6 @@ export {
     ABI_SoulWalletUpgradeManager,
     ABI_SoulWalletValidatorManager,
     ABI_TestOracle,
-    ABI_TimeLockEmailGuardian,
     ABI_TokenERC20,
     ABI_UpgradeModule,
     ABI_EntryPoint,

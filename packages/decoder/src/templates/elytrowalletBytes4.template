@@ -2,5 +2,5 @@
 import { Bytes4 } from "./interface/bytes4.js";
 const b = new Map<string, Bytes4>();
 {{#each}}
-const soulWalletBytes4 = b;
-export default soulWalletBytes4;
+const elytroWalletBytes4 = b;
+export default elytroWalletBytes4;

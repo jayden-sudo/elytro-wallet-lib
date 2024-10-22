@@ -1,4 +1,4 @@
-import soulWalletBytes4 from './soulwalletBytes4.js';
+import elytroWalletBytes4 from './elytrowalletBytes4.js';
 import hotBytes4 from './hotBytes4.js';
 import { getAsset } from "@elytro/assets";
 import { Ok, Err, Result } from '@elytro/result';
@@ -46,7 +46,7 @@ class Decoder {
         let _data: string[] = [];
         if (bytes4 === '0x34fcd5be') {
             // b.set('0x34fcd5be',{text:'executeBatch((address,uint256,bytes)[])',bytes4:'0x34fcd5be'});
-            const fun = soulWalletBytes4.get('0x34fcd5be')!;
+            const fun = elytroWalletBytes4.get('0x34fcd5be')!;
             const iface = new ethers.Interface(['function ' + fun.text]);
             const decodedData = iface.decodeFunctionData(fun.text.substring(0, fun.text.indexOf('(')), calldata);
             _from = to;
@@ -57,7 +57,7 @@ class Decoder {
             }
         } else if (bytes4 === '0xb61d27f6') {
             // b.set('0xb61d27f6',{text:'execute(address,uint256,bytes)',bytes4:'0xb61d27f6'});
-            const fun = soulWalletBytes4.get('0xb61d27f6')!;
+            const fun = elytroWalletBytes4.get('0xb61d27f6')!;
             const iface = new ethers.Interface(['function ' + fun.text]);
             const decodedData = iface.decodeFunctionData(fun.text.substring(0, fun.text.indexOf('(')), calldata);
             _from = to;
@@ -91,7 +91,7 @@ class Decoder {
         if (calldata.length >= 10) {
             const bytes4 = calldata.substring(0, 10);
             let fun: Bytes4 | undefined = undefined;
-            let _fun = soulWalletBytes4.get(bytes4);
+            let _fun = elytroWalletBytes4.get(bytes4);
             if (_fun) {
                 fun = _fun;
             } else {
@@ -157,7 +157,7 @@ class Decoder {
 }
 
 /**
-    * Decode the transaction data (userOp.calldata, interaction from soulwallet contract only).
+    * Decode the transaction data (userOp.calldata, interaction from elytrowallet contract only).
     *
     * @static
     * @param {number} chainId

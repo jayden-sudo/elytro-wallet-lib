@@ -6,7 +6,7 @@ import shell from 'shelljs';
 
 
 const __dirname = resolve();
-const soulwalletabiDir = resolve(__dirname, '..', 'soulwallet-abi', 'src', 'ABI');
+const elytrowalletabiDir = resolve(__dirname, '..', 'abi', 'src', 'ABI');
 
 class function4bytes implements Bytes4 {
     text: string;
@@ -28,15 +28,15 @@ interface FieldInfo {
     type: string;
 }
 
-async function generateSoulwalletBytes4() {
+async function generateElytrowalletBytes4() {
 
-    // read all *.ts files in soulwalletabiDir
-    const files = fs.readdirSync(soulwalletabiDir);
+    // read all *.ts files in elytrowalletabiDir
+    const files = fs.readdirSync(elytrowalletabiDir);
     const bytes4Arr: function4bytes[] = [];
     const bytes4Set: Set<string> = new Set();
     for (const file of files) {
         if (file.endsWith('.ts')) {
-            const content = fs.readFileSync(resolve(soulwalletabiDir, file), { encoding: 'utf-8' });
+            const content = fs.readFileSync(resolve(elytrowalletabiDir, file), { encoding: 'utf-8' });
             const _bytes4Arr = findFunctionSign(content);
             for (const item of _bytes4Arr) {
                 if (!bytes4Set.has(item.bytes4)) {
@@ -51,8 +51,8 @@ async function generateSoulwalletBytes4() {
     });
     console.log('bytes4Arr.length', bytes4Arr.length);
 
-    // read from 'soulwalletBytes4.template'
-    const template = fs.readFileSync(resolve(__dirname, 'src', 'templates', 'soulwalletBytes4.template'), { encoding: 'utf-8' });
+    // read from 'elytrowalletBytes4.template'
+    const template = fs.readFileSync(resolve(__dirname, 'src', 'templates', 'elytrowalletBytes4.template'), { encoding: 'utf-8' });
     /* 
         b.set('0x00000000', { name: 'balanceOf', text: 'balanceOf(address)', bytes4: '0x70a08231' });
     */
@@ -62,9 +62,9 @@ async function generateSoulwalletBytes4() {
         eachBytes4Arr += `b.set('${item.bytes4}',{text:'${item.text}',bytes4:'${item.bytes4}'});\n`;
     }
     const content = template.replace('{{#each}}', eachBytes4Arr);
-    // write to 'soulwalletBytes4.ts' 
-    const soulwalletBytes4Path = resolve(__dirname, 'src', 'soulwalletBytes4.ts');
-    fs.writeFileSync(soulwalletBytes4Path, content, { encoding: 'utf-8' });
+    // write to 'elytrowalletBytes4.ts' 
+    const elytrowalletBytes4Path = resolve(__dirname, 'src', 'elytrowalletBytes4.ts');
+    fs.writeFileSync(elytrowalletBytes4Path, content, { encoding: 'utf-8' });
 }
 
 async function generatEthereumListBytes4() {
@@ -117,7 +117,7 @@ async function generatEthereumListBytes4() {
 
 }
 async function main() {
-    await generateSoulwalletBytes4();
+    await generateElytrowalletBytes4();
     await generatEthereumListBytes4();
 }
 

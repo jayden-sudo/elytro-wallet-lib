@@ -4,7 +4,7 @@ import { TypedDataDomain, TypedDataField, ethers } from "ethers";
 import { Hex } from "./tools/hex.js";
 import { Ok, Result } from '@elytro/result';
 // import { bigIntToNumber } from './tools/convert.js';
-import { InitialKey } from "./interface/ISoulWallet.js";
+import { InitialKey } from "./interface/IElytroWallet.js";
 import { ECCPoint, RSAPublicKey, WebAuthN } from "./tools/webauthn.js";
 import { Signature } from "./tools/signature.js";
 

@@ -1,6 +1,6 @@
 import { TypedDataDomain, TypedDataField, ethers } from 'ethers';
 import {
-    SoulWallet,
+    ElytroWallet,
     UserOperation,
     PackedUserOperation,
     UserOpUtils,

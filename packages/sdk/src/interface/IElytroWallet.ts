@@ -23,16 +23,16 @@ export interface Transaction {
  *
  * @export
  * @abstract
- * @class ISoulWallet
+ * @class IElytroWallet
  */
-export abstract class ISoulWallet {
+export abstract class IElytroWallet {
 
     /**
-     * get entryPoint address from the soulWallet contract.
+     * get entryPoint address from the elytrowallet contract.
      *
      * @abstract
      * @return {*}  {Promise<Result<string, Error>>}
-     * @memberof ISoulWallet
+     * @memberof IElytroWallet
      */
     abstract entryPoint(): Promise<Result<string, Error>>;
 
@@ -45,7 +45,7 @@ export abstract class ISoulWallet {
      * @param {string} initialGuardianHash
      * @param {number} [initialGuardianSafePeriod]
      * @return {*}  {Promise<Result<string, Error>>}
-     * @memberof ISoulWallet
+     * @memberof IElytroWallet
      */
     abstract calcWalletAddress(
         index: number,
@@ -65,7 +65,7 @@ export abstract class ISoulWallet {
      * @param {string} [callData]
      * @param {number} [initialGuardianSafePeriod]
      * @return {*}  {Promise<Result<UserOperation, Error>>}
-     * @memberof ISoulWallet
+     * @memberof IElytroWallet
      */
     abstract createUnsignedDeployWalletUserOp(
         index: number,
@@ -82,7 +82,7 @@ export abstract class ISoulWallet {
      * @abstract
      * @param {UserOperation} userOp
      * @return {*}  {Promise<Result<string, Error>>}
-     * @memberof ISoulWallet
+     * @memberof IElytroWallet
      */
     abstract userOpHash(userOp: UserOperation): Promise<Result<string, Error>>;
 
@@ -99,7 +99,7 @@ export abstract class ISoulWallet {
      *             validationData: string
      *         }, Error>
      *     >}
-     * @memberof ISoulWallet
+     * @memberof IElytroWallet
      */
     abstract packUserOpHash(userOp: UserOperation, validAfter?: number, validUntil?: number): Promise<
         Result<{
@@ -118,7 +118,7 @@ export abstract class ISoulWallet {
      * @param {SignkeyType} [signkeyType] default: SignkeyType.EOA
      * @param {GuardHookInputData} [semiValidGuardHookInputData]  sender: wallet address, inputData: key: guardHookPlugin address, value: input data
      * @return {*}  {Promise<Result<UserOpGas, UserOpErrors>>}
-     * @memberof ISoulWallet
+     * @memberof IElytroWallet
      */
     abstract estimateUserOperationGas(validatorAddress: string, userOp: UserOperation, stateOverride?: Record<string, StateOverride>, signkeyType?: SignkeyType, semiValidGuardHookInputData?: GuardHookInputData): Promise<Result<UserOpGas, UserOpErrors>>;
 
@@ -128,7 +128,7 @@ export abstract class ISoulWallet {
      * @abstract
      * @param {UserOperation} userOp
      * @return {*}  {Promise<Result<true, UserOpErrors>>}
-     * @memberof ISoulWallet
+     * @memberof IElytroWallet
      */
     abstract sendUserOperation(userOp: UserOperation): Promise<Result<true, UserOpErrors>>;
 
@@ -143,7 +143,7 @@ export abstract class ISoulWallet {
      *         prefund: string,
      *         missfund: string
      *     }, Error>>} hex string, unit: wei
-     * @memberof ISoulWallet
+     * @memberof IElytroWallet
      */
     abstract preFund(userOp: UserOperation): Promise<Result<{
         deposit: string,
@@ -161,7 +161,7 @@ export abstract class ISoulWallet {
      * @param {Transaction[]} txs transactions
      * @param {string} [nonce]
      * @return {*}  {Promise<Result<UserOperation, Error>>}
-     * @memberof ISoulWallet
+     * @memberof IElytroWallet
      */
     abstract fromTransaction(
         maxFeePerGas: string,
@@ -181,7 +181,7 @@ export abstract class ISoulWallet {
      * @param {string} walletAddr wallet address
      * @param {string} [key] default: "0x0"
      * @return {*}  {Promise<Result<string, Error>>} hex string
-     * @memberof ISoulWallet
+     * @memberof IElytroWallet
      */
     abstract getNonce(walletAddr: string, key?: string): Promise<Result<string, Error>>;
 
@@ -198,7 +198,7 @@ export abstract class ISoulWallet {
      *         value: Record<string, any>,
      *         typedMessage: string
      *     }, Error>>}
-     * @memberof ISoulWallet
+     * @memberof IElytroWallet
      */
     abstract getEIP1271TypedData(walletAddr: string, message: string): Promise<Result<{
         domain: TypedDataDomain,

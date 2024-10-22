@@ -18,7 +18,7 @@ export class StorageCache {
     }
 
     private storage: Record<string, CachedData> = {};
-    private storageKey: string = "soulwallet-sdk-cache";
+    private storageKey: string = "elytrowallet-sdk-cache";
     private useLocalStorage: boolean = false;
 
     private constructor() {

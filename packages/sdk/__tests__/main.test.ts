@@ -1,6 +1,6 @@
 import { TypedDataDomain, TypedDataField, ethers } from 'ethers';
 import {
-    SoulWallet,
+    ElytroWallet,
     UserOperation,
     PackedUserOperation,
     UserOpUtils,
@@ -59,8 +59,8 @@ describe('SDK', () => {
         expect(p[1].y).toBe('0x4fbfe4a2f9934783c3b1af712ee87abc08f576e79346efc3b8355d931bd7b976');
     });
     test('packUserOpP256Signature', async () => {
-        const soulwallet = new SoulWallet('https://localhost/', 'https://localhost/', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000');
-        const signature = await soulwallet.packUserOpP256Signature(
+        const elytrowallet = new ElytroWallet('https://localhost/', 'https://localhost/', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000');
+        const signature = await elytrowallet.packUserOpP256Signature(
             fakeValidatorAddress,
             {
                 messageHash: '0x83714056da6e6910b51595330c2c2cdfbf718f2deff5bdd84b95df7a7f36f6dd',
@@ -101,8 +101,8 @@ describe('SDK', () => {
     //     expect(signature.OK).toBe(expectSignature);
     // });
     test('packUserOpP256Signature-1', async () => {
-        const soulwallet = new SoulWallet('https://localhost/', 'https://localhost/', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000');
-        const signature = await soulwallet.packUserOpP256Signature(
+        const elytrowallet = new ElytroWallet('https://localhost/', 'https://localhost/', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000');
+        const signature = await elytrowallet.packUserOpP256Signature(
             fakeValidatorAddress,
             {
                 messageHash: '0xd45f9c36f42a0a149e3b77dec8597563235ff5463bf2c9af2f3e75cbd6eb6935',
@@ -118,8 +118,8 @@ describe('SDK', () => {
         expect(signature.isOk()).toBe(true);
     });
     test('packUserOpP256Signature-2', async () => {
-        const soulwallet = new SoulWallet('https://localhost/', 'https://localhost/', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000');
-        const signature = await soulwallet.packUserOpP256Signature(
+        const elytrowallet = new ElytroWallet('https://localhost/', 'https://localhost/', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000');
+        const signature = await elytrowallet.packUserOpP256Signature(
             fakeValidatorAddress,
             {
                 messageHash: '0xb494f6738df235dea972d9f88139ff6c1bec48a97cbf12a44e5f39562b20c34c',
@@ -135,8 +135,8 @@ describe('SDK', () => {
         expect(signature.isOk()).toBe(true);
     });
     test('packUserOpP256Signature-3', async () => {
-        const soulwallet = new SoulWallet('https://localhost/', 'https://localhost/', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000');
-        const signature = await soulwallet.packUserOpP256Signature(
+        const elytrowallet = new ElytroWallet('https://localhost/', 'https://localhost/', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000');
+        const signature = await elytrowallet.packUserOpP256Signature(
             fakeValidatorAddress,
             {
                 messageHash: '0x371406a3e3929737d36f8dfe36befd83f090d4975a520320a6c471dd61b9810b',
@@ -152,9 +152,9 @@ describe('SDK', () => {
         expect(signature.isOk()).toBe(true);
     });
     test('packUserOpRS256Signature', async () => {
-        const soulwallet = new SoulWallet('https://localhost/', 'https://localhost/', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000');
+        const elytrowallet = new ElytroWallet('https://localhost/', 'https://localhost/', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000');
 
-        const signature = await soulwallet.packUserOpRS256Signature(
+        const signature = await elytrowallet.packUserOpRS256Signature(
             fakeValidatorAddress,
             {
                 messageHash: "0x83714056da6e6910b51595330c2c2cdfbf718f2deff5bdd84b95df7a7f36f6dd",
@@ -177,11 +177,11 @@ describe('SDK', () => {
         expect(signature.OK).toBe(expectSignature);
     });
     test('packEOASignature', async () => {
-        const soulwallet = new SoulWallet('https://localhost/', 'https://localhost/', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000');
+        const elytrowallet = new ElytroWallet('https://localhost/', 'https://localhost/', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000');
         const messageHash = '0x83714056da6e6910b51595330c2c2cdfbf718f2deff5bdd84b95df7a7f36f6dd';
         let _signKey: ethers.SigningKey = new ethers.SigningKey("0xa9b93cd9760363db3cb5ef267ad802973bbd0902adca497cd8eb75a6efc0995c");
         const rawSignature = _signKey!.sign(ethers.hashMessage(ethers.getBytes(messageHash))).serialized;
-        const signature = await soulwallet.packUserOpEOASignature(
+        const signature = await elytrowallet.packUserOpEOASignature(
             fakeValidatorAddress,
             rawSignature, '0x00', undefined);
         expect(signature.isOk()).toBe(true);
@@ -235,7 +235,7 @@ describe('SDK', () => {
         expect(Hex.paddingZero(baseSalt + BigInt(1), 32)).toBe("0x5fe7f977e71dba2ea1a68e21057beebb9be2ac30c6410aa38d4f3fbe41dcffd3");
     });
     test('offChainWalletAddressCreate', async () => {
-        const SoulWalletFactory = "0x6Ae6e1eE974947D3b782c926Ae01BC1Fd5fF4478";
+        const ElytroWalletFactory = "0x6Ae6e1eE974947D3b782c926Ae01BC1Fd5fF4478";
         const implementation = "0x80f47019e292b011A519217315f57d75dDf2b7B8";
         /* 
          static getWalletAddress(soulWalletFactoryAddress: string, implementation: string, initializer: string, salt: string): string
@@ -244,7 +244,7 @@ describe('SDK', () => {
         const salt = "0xd5b2fc4bd23051ab997be2530e2c3be20a993e6da0c830314a71c8629a890350";
         const expectAddress = "0x83b7a24f4fE8A03b8a59DB97C3038d22D817F412";
 
-        const offchainAddress = WalletFactory.getWalletAddress(SoulWalletFactory, implementation, initializer, salt);
+        const offchainAddress = WalletFactory.getWalletAddress(ElytroWalletFactory, implementation, initializer, salt);
         expect(offchainAddress.toLowerCase()).toBe(expectAddress.toLowerCase());
     });
     test('userOp pack unpack', async () => {
@@ -316,7 +316,7 @@ describe('SDK', () => {
 
     });
     // test('calcWalletAddress', async () => {
-    //     const soulwallet = new SoulWallet(
+    //     const soulwallet = new ElytroWallet(
     //         "https://sepolia-rollup.arbitrum.io/rpc",
     //         "https://api-dev.soulwallet.io/walletapi/bundler/arbitrum-sepolia/rpc",
     //         "0xF78Ae187CED0Ca5Fb98100d3F0EAB7a6461d6fC6",

@@ -14,7 +14,7 @@ export class Storage implements IStorage {
             throw new Error("only available in NodeJS");
         }
 
-        const _storagedir = join(homedir(), '.soulwallet');
+        const _storagedir = join(homedir(), '.elytroWallet');
         if (!existsSync(_storagedir)) {
             mkdirSync(_storagedir);
         }
