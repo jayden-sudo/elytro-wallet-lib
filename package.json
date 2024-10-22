@@ -1,7 +1,7 @@
 {
-  "name": "@soulwallet/soulwallet",
+  "name": "@elytro/elytro",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0",
   "workspaces": [
     "packages/*"
   ],
@@ -14,15 +14,12 @@
     "preinstall": "npx only-allow pnpm",
     "build": "pnpm -r run build",
     "rebuild": "rm -rf ./packages/*/lib.*;pnpm run build",
-    "preTest": "cd soul-wallet-contract/ && chmod +x .env && npm install && npm run build && cd ../bundler/ && yarn && yarn preprocess",
     "internalTest": "pnpm -r run internalTest --filter 'internal-test'",
     "test": "pnpm -r run test",
-    "generateABI": "pnpm --filter '@soulwallet/abi' -r run generateABI",
-    "generateBytes4": "pnpm --filter '@soulwallet/decoder' -r run generateBytes4",
-    "generateTokens": "pnpm --filter '@soulwallet/assets' -r run generateTokens",
+    "generateABI": "pnpm --filter '@elytro/abi' -r run generateABI",
+    "generateBytes4": "pnpm --filter '@elytro/decoder' -r run generateBytes4",
+    "generateTokens": "pnpm --filter '@elytro/assets' -r run generateTokens",
     "clean": "lerna run clean && rm -rf ./packages/*/lib/*",
-    "bundlerInit": "cd bundler/ && yarn && yarn preprocess",
-    "bundler": "cd bundler/ && yarn run bundler",
     "changeset": "changeset",
     "lint": "eslint . --ext .ts",
     "release": "pnpm run lint && pnpm run rebuild && pnpm run test && changeset publish"

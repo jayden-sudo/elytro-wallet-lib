@@ -2,7 +2,7 @@
    <b>
         SoulWallet Lib
     </b>
-  <img alt="CI" src="https://github.com/SoulWallet/soulwalletlib/actions/workflows/UnitTest.yml/badge.svg?branch=develop"/>
+  <img alt="CI" src="https://github.com/SoulWallet/elytro-wallet-lib/actions/workflows/UnitTest.yml/badge.svg?branch=develop"/>
 </h1>
 
 <p align="center">
@@ -10,24 +10,24 @@ Library of the soulwallet contract
 </p>
 
 <p align="center">
-    <a href="https://github.com/SoulWallet/soulwalletlib/"><b>Code</b></a>
+    <a href="https://github.com/SoulWallet/elytro-wallet-lib/"><b>Code</b></a>
 </p>
 
 ## Table of Contents
 
-- [@soulwallet/sdk](#@soulwallet/sdk)
-- [@soulwallet/keyvault](#@soulwallet/keyvault)
-- [@soulwallet/decoder](#@soulwallet/decoder)
-- [@soulwallet/assets](#@soulwallet/assets)
-- [@soulwallet/abi](#@soulwallet/abi)
-- [@soulwallet/result](#@soulwallet/result)
+- [@elytro/sdk](#@elytro/sdk)
+- [@elytro/keyvault](#@elytro/keyvault)
+- [@elytro/decoder](#@elytro/decoder)
+- [@elytro/assets](#@elytro/assets)
+- [@elytro/abi](#@elytro/abi)
+- [@elytro/result](#@elytro/result)
 
 
 
 
 
 
-## @soulwallet/sdk [![npm version](https://badge.fury.io/js/@soulwallet%2Fsdk.svg)](https://badge.fury.io/js/@soulwallet%2Fsdk)
+## @elytro/sdk [![npm version](https://badge.fury.io/js/@elytro%2Fsdk.svg)](https://badge.fury.io/js/@elytro%2Fsdk)
 SoulWalletSDK = {  Basic Functions,  Bundler, KeyStore,  SignatureTools }
 <p align="left">
 <a href="./packages/soulwallet-sdk/README.md">
@@ -41,7 +41,7 @@ SoulWalletSDK = {  Basic Functions,  Bundler, KeyStore,  SignatureTools }
 
 
 
-## @soulwallet/keyvault [![npm version](https://badge.fury.io/js/@soulwallet%2Fkeyvault.svg)](https://badge.fury.io/js/@soulwallet%2Fkeyvault)
+## @elytro/keyvault [![npm version](https://badge.fury.io/js/@elytro%2Fkeyvault.svg)](https://badge.fury.io/js/@elytro%2Fkeyvault)
 
 A lightweight private key management library
 <p align="left">
@@ -56,7 +56,7 @@ A lightweight private key management library
 
 
 
-## @soulwallet/decoder [![npm version](https://badge.fury.io/js/@soulwallet%2Fdecoder.svg)](https://badge.fury.io/js/@soulwallet%2Fdecoder)
+## @elytro/decoder [![npm version](https://badge.fury.io/js/@elytro%2Fdecoder.svg)](https://badge.fury.io/js/@elytro%2Fdecoder)
 
 A lib for decode userOp.calldata
 <p align="left">
@@ -71,7 +71,7 @@ A lib for decode userOp.calldata
 
 
 
-## @soulwallet/assets [![npm version](https://badge.fury.io/js/@soulwallet%2Fassets.svg)](https://badge.fury.io/js/@soulwallet%2Fassets)
+## @elytro/assets [![npm version](https://badge.fury.io/js/@elytro%2Fassets.svg)](https://badge.fury.io/js/@elytro%2Fassets)
 
 A database of token
 <p align="left">
@@ -86,7 +86,7 @@ A database of token
 
 
 
-## @soulwallet/abi [![npm version](https://badge.fury.io/js/@soulwallet%2Fabi.svg)](https://badge.fury.io/js/@soulwallet%2Fabi)
+## @elytro/abi [![npm version](https://badge.fury.io/js/@elytro%2Fabi.svg)](https://badge.fury.io/js/@elytro%2Fabi)
 
 soulwallet-contract ABI
 <p align="left">
@@ -101,7 +101,7 @@ soulwallet-contract ABI
 
 
 
-## @soulwallet/result [![npm version](https://badge.fury.io/js/@soulwallet%2Fresult.svg)](https://badge.fury.io/js/@soulwallet%2Fresult)
+## @elytro/result [![npm version](https://badge.fury.io/js/@elytro%2Fresult.svg)](https://badge.fury.io/js/@elytro%2Fresult)
 
 A lib designed based on the philosophy of 'Errors are values'
 <p align="left">
