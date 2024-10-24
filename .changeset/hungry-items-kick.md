@@ -8,4 +8,4 @@
 "@elytro/sdk": major
 ---
 
-Rebrand soulwallet to Elytro
+Rebrand soulwallet to Elytro.
