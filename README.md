@@ -1,12 +1,12 @@
 <h1 align="center">
    <b>
-        SoulWallet Lib
+        Elytro Lib
     </b>
   <img alt="CI" src="https://github.com/SoulWallet/elytro-wallet-lib/actions/workflows/UnitTest.yml/badge.svg?branch=develop"/>
 </h1>
 
 <p align="center">
-Library of the soulwallet contract
+Library of the Elytro contract
 </p>
 
 <p align="center">
@@ -28,15 +28,15 @@ Library of the soulwallet contract
 
 
 ## @elytro/sdk [![npm version](https://badge.fury.io/js/@elytro%2Fsdk.svg)](https://badge.fury.io/js/@elytro%2Fsdk)
-SoulWalletSDK = {  Basic Functions,  Bundler, KeyStore,  SignatureTools }
+ElytroSDK = {  Basic Functions,  Bundler, KeyStore,  SignatureTools }
 <p align="left">
-<a href="./packages/soulwallet-sdk/README.md">
+<a href="./packages/sdk/README.md">
 <b>Readme</b>
 </a>
  • 
-<a href="./packages/soulwallet-sdk"><b>Code</b></a>
+<a href="./packages/sdk"><b>Code</b></a>
  • 
-<a href="./packages/soulwallet-sdk/docs/modules.md"><b>Documentation</b></a>
+<a href="./packages/sdk/docs/modules.md"><b>Documentation</b></a>
 </p>
 
 
@@ -45,13 +45,13 @@ SoulWalletSDK = {  Basic Functions,  Bundler, KeyStore,  SignatureTools }
 
 A lightweight private key management library
 <p align="left">
-<a href="./packages/soulwallet-keyvault/README.md">
+<a href="./packages/keyvault/README.md">
 <b>Readme</b>
 </a>
  • 
-<a href="./packages/soulwallet-keyvault"><b>Code</b></a>
+<a href="./packages/keyvault"><b>Code</b></a>
  • 
-<a href="./packages/soulwallet-keyvault/docs/modules.md"><b>Documentation</b></a>
+<a href="./packages/keyvault/docs/modules.md"><b>Documentation</b></a>
 </p>
 
 
@@ -60,13 +60,13 @@ A lightweight private key management library
 
 A lib for decode userOp.calldata
 <p align="left">
-<a href="./packages/soulwallet-decoder/README.md">
+<a href="./packages/decoder/README.md">
 <b>Readme</b>
 </a>
  • 
-<a href="./packages/soulwallet-decoder"><b>Code</b></a>
+<a href="./packages/decoder"><b>Code</b></a>
  • 
-<a href="./packages/soulwallet-decoder/docs/modules.md"><b>Documentation</b></a>
+<a href="./packages/decoder/docs/modules.md"><b>Documentation</b></a>
 </p>
 
 
@@ -75,28 +75,28 @@ A lib for decode userOp.calldata
 
 A database of token
 <p align="left">
-<a href="./packages/soulwallet-assets/README.md">
+<a href="./packages/assets/README.md">
 <b>Readme</b>
 </a>
  • 
-<a href="./packages/soulwallet-assets"><b>Code</b></a>
+<a href="./packages/assets"><b>Code</b></a>
  • 
-<a href="./packages/soulwallet-assets/docs/modules.md"><b>Documentation</b></a>
+<a href="./packages/assets/docs/modules.md"><b>Documentation</b></a>
 </p>
 
 
 
 ## @elytro/abi [![npm version](https://badge.fury.io/js/@elytro%2Fabi.svg)](https://badge.fury.io/js/@elytro%2Fabi)
 
-soulwallet-contract ABI
+Elytro-contract ABI
 <p align="left">
-<a href="./packages/soulwallet-abi/README.md">
+<a href="./packages/abi/README.md">
 <b>Readme</b>
 </a>
  • 
-<a href="./packages/soulwallet-abi"><b>Code</b></a>
+<a href="./packages/abi"><b>Code</b></a>
  • 
-<a href="./packages/soulwallet-abi/docs/modules.md"><b>Documentation</b></a>
+<a href="./packages/abi/docs/modules.md"><b>Documentation</b></a>
 </p>
 
 
@@ -105,13 +105,13 @@ soulwallet-contract ABI
 
 A lib designed based on the philosophy of 'Errors are values'
 <p align="left">
-<a href="./packages/soulwallet-result/README.md">
+<a href="./packages/result/README.md">
 <b>Readme</b>
 </a>
  • 
-<a href="./packages/soulwallet-result"><b>Code</b></a>
+<a href="./packages/result"><b>Code</b></a>
  • 
-<a href="./packages/soulwallet-result/docs/modules.md"><b>Documentation</b></a>
+<a href="./packages/result/docs/modules.md"><b>Documentation</b></a>
 </p>
 
 

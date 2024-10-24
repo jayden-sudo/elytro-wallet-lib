@@ -22,7 +22,7 @@ Key type
 
 #### Defined in
 
-[packages/sdk/src/interface/IElytroWallet.ts:251](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IElytroWallet.ts#L251)
+[packages/sdk/src/interface/IElytroWallet.ts:251](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/interface/IElytroWallet.ts#L251)
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/interface/IElytroWallet.ts:252](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IElytroWallet.ts#L252)
+[packages/sdk/src/interface/IElytroWallet.ts:252](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/interface/IElytroWallet.ts#L252)
 
 ___
 
@@ -42,4 +42,4 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/interface/IElytroWallet.ts:253](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IElytroWallet.ts#L253)
+[packages/sdk/src/interface/IElytroWallet.ts:253](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/interface/IElytroWallet.ts#L253)

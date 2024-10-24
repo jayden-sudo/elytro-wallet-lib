@@ -9,8 +9,8 @@ A database of token
 </p>
 
 <p align="center">
-    <a href="https://github.com/SoulWallet/elytro-wallet-lib/tree/develop/packages/soulwallet-assets"><b>Code</b></a> •
-    <a href="https://github.com/SoulWallet/elytro-wallet-lib/blob/develop/packages/soulwallet-assets/docs/modules.md"><b>Documentation</b></a>
+    <a href="https://github.com/SoulWallet/elytro-wallet-lib/tree/develop/packages/assets"><b>Code</b></a> •
+    <a href="https://github.com/SoulWallet/elytro-wallet-lib/blob/develop/packages/assets/docs/modules.md"><b>Documentation</b></a>
 </p>
 
 

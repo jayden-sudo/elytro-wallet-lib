@@ -23,7 +23,7 @@ ECCPoint
 
 #### Defined in
 
-[packages/sdk/src/tools/webauthn.ts:14](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/tools/webauthn.ts#L14)
+[packages/sdk/src/tools/webauthn.ts:14](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/tools/webauthn.ts#L14)
 
 ___
 
@@ -39,4 +39,4 @@ ECCPoint
 
 #### Defined in
 
-[packages/sdk/src/tools/webauthn.ts:21](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/tools/webauthn.ts#L21)
+[packages/sdk/src/tools/webauthn.ts:21](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/tools/webauthn.ts#L21)

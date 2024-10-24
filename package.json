@@ -14,7 +14,6 @@
     "preinstall": "npx only-allow pnpm",
     "build": "pnpm -r run build",
     "rebuild": "rm -rf ./packages/*/lib.*;pnpm run build",
-    "internalTest": "pnpm -r run internalTest --filter 'internal-test'",
     "test": "pnpm -r run test",
     "generateABI": "pnpm --filter '@elytro/abi' -r run generateABI",
     "generateBytes4": "pnpm --filter '@elytro/decoder' -r run generateBytes4",

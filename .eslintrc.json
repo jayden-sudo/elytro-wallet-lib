@@ -15,9 +15,7 @@
     ]
   },
   "ignorePatterns": [
-    "bundler",
-    "soul-wallet-contract",
-    "packages/internal-test/**/*",
+    "Elytro-wallet-contract",
     "packages/*/__tests__/*",
     "packages/*/lib.*/*"
   ]

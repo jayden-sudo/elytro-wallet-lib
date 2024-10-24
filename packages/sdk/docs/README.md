@@ -7,12 +7,12 @@
 </h1>
 
 <p align="center">
-SoulWalletSDK = {  Basic Functions,  Bundler, KeyStore,  SignatureTools }
+ElytroSDK = {  Basic Functions,  Bundler, KeyStore,  SignatureTools }
 </p>
 
 <p align="center">
-    <a href="https://github.com/SoulWallet/elytro-wallet-lib/tree/develop/packages/soulwallet-sdk"><b>Code</b></a> •
-    <a href="https://github.com/SoulWallet/elytro-wallet-lib/blob/develop/packages/soulwallet-sdk/docs/modules.md"><b>Documentation</b></a>
+    <a href="https://github.com/SoulWallet/elytro-wallet-lib/tree/develop/packages/sdk"><b>Code</b></a> •
+    <a href="https://github.com/SoulWallet/elytro-wallet-lib/blob/develop/packages/sdk/docs/modules.md"><b>Documentation</b></a>
 </p>
 
 ## Table of Contents
@@ -46,7 +46,7 @@ $ pnpm add @elytro/sdk
 Once the package is installed, you can import the library using `import` approach:
 
 ```bash
-import { SoulWallet, Transaction, Bundler } from "@elytro/sdk";
+import { Elytro, Transaction, Bundler } from "@elytro/sdk";
 ```
 
 ## Example
@@ -54,7 +54,7 @@ import { SoulWallet, Transaction, Bundler } from "@elytro/sdk";
 ```typescript
 / #TODO
 ```
-- Soulwallet SDK usage instructions are still being compiled. In the meantime, you can refer to the examples below:
+- Elytro SDK usage instructions are still being compiled. In the meantime, you can refer to the examples below:
 [deploy.ts](https://github.com/SoulWallet/elytro-wallet-lib/blob/develop/packages/internal-test/src/deploy.ts)
 
 ## License

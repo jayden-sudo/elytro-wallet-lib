@@ -4,6 +4,5 @@ lerna-debug.log
 npm-debug.log
 packages/*/lib.*
 tsconfig.tsbuildinfo
-soulwallet-soulwallet-*.tgz
 coverage/
 compiler_config.json

@@ -31,7 +31,7 @@ Method
 
 #### Defined in
 
-[decoder/src/interface/decodeData.ts:17](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/decoder/src/interface/decodeData.ts#L17)
+[decoder/src/interface/decodeData.ts:17](https://github.com/jayden-sudo/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/decoder/src/interface/decodeData.ts#L17)
 
 ___
 
@@ -47,7 +47,7 @@ Method
 
 #### Defined in
 
-[decoder/src/interface/decodeData.ts:25](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/decoder/src/interface/decodeData.ts#L25)
+[decoder/src/interface/decodeData.ts:25](https://github.com/jayden-sudo/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/decoder/src/interface/decodeData.ts#L25)
 
 ___
 
@@ -63,7 +63,7 @@ Method
 
 #### Defined in
 
-[decoder/src/interface/decodeData.ts:41](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/decoder/src/interface/decodeData.ts#L41)
+[decoder/src/interface/decodeData.ts:41](https://github.com/jayden-sudo/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/decoder/src/interface/decodeData.ts#L41)
 
 ___
 
@@ -79,4 +79,4 @@ Method
 
 #### Defined in
 
-[decoder/src/interface/decodeData.ts:33](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/decoder/src/interface/decodeData.ts#L33)
+[decoder/src/interface/decodeData.ts:33](https://github.com/jayden-sudo/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/decoder/src/interface/decodeData.ts#L33)

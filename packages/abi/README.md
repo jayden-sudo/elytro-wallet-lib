@@ -9,8 +9,8 @@ soulwallet-contract ABI
 </p>
 
 <p align="center">
-    <a href="https://github.com/SoulWallet/elytro-wallet-lib/tree/develop/packages/soulwallet-abi"><b>Code</b></a> •
-    <a href="https://github.com/SoulWallet/elytro-wallet-lib/blob/develop/packages/soulwallet-abi/docs/modules.md"><b>Documentation</b></a>
+    <a href="https://github.com/SoulWallet/elytro-wallet-lib/tree/develop/packages/abi"><b>Code</b></a> •
+    <a href="https://github.com/SoulWallet/elytro-wallet-lib/blob/develop/packages/abi/docs/modules.md"><b>Documentation</b></a>
 </p>
 
 
@@ -47,7 +47,7 @@ $ pnpm add @elytro/abi
 Once the package is installed, you can import the library using `import` approach:
 
 ```bash
-import { ABI_SoulWallet } from '@elytro/abi'
+import { ABI_Elytro } from '@elytro/abi'
 ```
 
 
@@ -57,9 +57,9 @@ import { ABI_SoulWallet } from '@elytro/abi'
 ```typescript
 import { 
     ABI_KeyStore,
-    ABI_SoulWallet,
-    ABI_SoulWalletFactory,
-    ABI_SoulWalletProxy,
+    ABI_Elytro,
+    ABI_ElytroFactory,
+    ABI_ElytroProxy,
     ABI_Simple2FA,
     ABI_Dailylimit,
     ABI_SecurityControlModule,

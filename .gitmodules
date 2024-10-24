@@ -1,4 +1,3 @@
-
-[submodule "soul-wallet-contract"]
-	path = soul-wallet-contract
-	url = https://github.com/SoulWallet/soul-wallet-contract
+[submodule "Elytro-wallet-contract"]
+	path = Elytro-wallet-contract
+	url = https://github.com/SoulWallet/Elytro-wallet-contract

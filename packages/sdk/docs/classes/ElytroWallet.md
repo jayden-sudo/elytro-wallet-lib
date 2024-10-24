@@ -87,7 +87,7 @@ ElytroWallet
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:54](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L54)
+[packages/sdk/src/elytroWallet.ts:54](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L54)
 
 ## Properties
 
@@ -97,7 +97,7 @@ ElytroWallet
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:41](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L41)
+[packages/sdk/src/elytroWallet.ts:41](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L41)
 
 ___
 
@@ -107,7 +107,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:184](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L184)
+[packages/sdk/src/elytroWallet.ts:184](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L184)
 
 ___
 
@@ -117,7 +117,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:42](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L42)
+[packages/sdk/src/elytroWallet.ts:42](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L42)
 
 ___
 
@@ -127,7 +127,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:36](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L36)
+[packages/sdk/src/elytroWallet.ts:36](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L36)
 
 ___
 
@@ -137,7 +137,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:38](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L38)
+[packages/sdk/src/elytroWallet.ts:38](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L38)
 
 ___
 
@@ -147,7 +147,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:37](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L37)
+[packages/sdk/src/elytroWallet.ts:37](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L37)
 
 ___
 
@@ -157,7 +157,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:40](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L40)
+[packages/sdk/src/elytroWallet.ts:40](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L40)
 
 ___
 
@@ -167,7 +167,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:35](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L35)
+[packages/sdk/src/elytroWallet.ts:35](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L35)
 
 ___
 
@@ -177,7 +177,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:39](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L39)
+[packages/sdk/src/elytroWallet.ts:39](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L39)
 
 ## Methods
 
@@ -213,7 +213,7 @@ IElytroWallet.calcWalletAddress
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:272](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L272)
+[packages/sdk/src/elytroWallet.ts:272](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L272)
 
 ___
 
@@ -241,7 +241,7 @@ IElytroWallet.createUnsignedDeployWalletUserOp
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:352](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L352)
+[packages/sdk/src/elytroWallet.ts:352](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L352)
 
 ___
 
@@ -259,7 +259,7 @@ IElytroWallet.entryPoint
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:197](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L197)
+[packages/sdk/src/elytroWallet.ts:197](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L197)
 
 ___
 
@@ -287,7 +287,7 @@ IElytroWallet.estimateUserOperationGas
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:631](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L631)
+[packages/sdk/src/elytroWallet.ts:631](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L631)
 
 ___
 
@@ -317,7 +317,7 @@ IElytroWallet.fromTransaction
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:758](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L758)
+[packages/sdk/src/elytroWallet.ts:758](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L758)
 
 ___
 
@@ -358,7 +358,7 @@ IElytroWallet.getEIP1271TypedData
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:905](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L905)
+[packages/sdk/src/elytroWallet.ts:905](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L905)
 
 ___
 
@@ -372,7 +372,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:186](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L186)
+[packages/sdk/src/elytroWallet.ts:186](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L186)
 
 ___
 
@@ -397,7 +397,7 @@ IElytroWallet.getNonce
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:701](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L701)
+[packages/sdk/src/elytroWallet.ts:701](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L701)
 
 ___
 
@@ -411,7 +411,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:93](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L93)
+[packages/sdk/src/elytroWallet.ts:93](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L93)
 
 ___
 
@@ -434,7 +434,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:570](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L570)
+[packages/sdk/src/elytroWallet.ts:570](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L570)
 
 ___
 
@@ -454,7 +454,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:441](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L441)
+[packages/sdk/src/elytroWallet.ts:441](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L441)
 
 ___
 
@@ -476,7 +476,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:247](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L247)
+[packages/sdk/src/elytroWallet.ts:247](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L247)
 
 ___
 
@@ -498,7 +498,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:427](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L427)
+[packages/sdk/src/elytroWallet.ts:427](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L427)
 
 ___
 
@@ -529,7 +529,7 @@ ElytroWallet
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:486](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L486)
+[packages/sdk/src/elytroWallet.ts:486](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L486)
 
 ___
 
@@ -555,7 +555,7 @@ IElytroWallet.packUserOpHash
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:415](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L415)
+[packages/sdk/src/elytroWallet.ts:415](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L415)
 
 ___
 
@@ -592,7 +592,7 @@ ElytroWallet
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:515](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L515)
+[packages/sdk/src/elytroWallet.ts:515](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L515)
 
 ___
 
@@ -628,7 +628,7 @@ ElytroWallet
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:551](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L551)
+[packages/sdk/src/elytroWallet.ts:551](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L551)
 
 ___
 
@@ -652,7 +652,7 @@ IElytroWallet.preFund
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:296](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L296)
+[packages/sdk/src/elytroWallet.ts:296](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L296)
 
 ___
 
@@ -672,7 +672,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:458](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L458)
+[packages/sdk/src/elytroWallet.ts:458](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L458)
 
 ___
 
@@ -696,7 +696,7 @@ IElytroWallet.sendUserOperation
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:679](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L679)
+[packages/sdk/src/elytroWallet.ts:679](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L679)
 
 ___
 
@@ -720,7 +720,7 @@ IElytroWallet.userOpHash
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:406](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L406)
+[packages/sdk/src/elytroWallet.ts:406](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L406)
 
 ___
 
@@ -740,7 +740,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:730](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L730)
+[packages/sdk/src/elytroWallet.ts:730](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L730)
 
 ___
 
@@ -764,4 +764,4 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:205](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/elytroWallet.ts#L205)
+[packages/sdk/src/elytroWallet.ts:205](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/elytroWallet.ts#L205)

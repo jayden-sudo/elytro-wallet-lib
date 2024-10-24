@@ -52,7 +52,7 @@
 
 #### Defined in
 
-[packages/sdk/src/interface/types.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/types.ts#L3)
+[packages/sdk/src/interface/types.ts:3](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/interface/types.ts#L3)
 
 ___
 
@@ -62,7 +62,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/interface/types.ts:2](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/types.ts#L2)
+[packages/sdk/src/interface/types.ts:2](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/interface/types.ts#L2)
 
 ___
 
@@ -72,7 +72,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/interface/types.ts:5](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/types.ts#L5)
+[packages/sdk/src/interface/types.ts:5](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/interface/types.ts#L5)
 
 ___
 
@@ -82,7 +82,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/interface/types.ts:4](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/types.ts#L4)
+[packages/sdk/src/interface/types.ts:4](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/interface/types.ts#L4)
 
 ___
 
@@ -95,7 +95,7 @@ ECCPoint, RSAPublicKey, EOA or packed bytes32
 
 #### Defined in
 
-[packages/sdk/src/interface/IElytroWallet.ts:242](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IElytroWallet.ts#L242)
+[packages/sdk/src/interface/IElytroWallet.ts:242](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/interface/IElytroWallet.ts#L242)
 
 ___
 
@@ -119,7 +119,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/interface/UserOperation.ts:22](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/UserOperation.ts#L22)
+[packages/sdk/src/interface/UserOperation.ts:22](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/interface/UserOperation.ts#L22)
 
 ___
 
@@ -168,4 +168,4 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/interface/UserOperation.ts:4](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/UserOperation.ts#L4)
+[packages/sdk/src/interface/UserOperation.ts:4](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/interface/UserOperation.ts#L4)

@@ -9,8 +9,8 @@ A lib for decode userOp.calldata. If it contains known token information, it wil
 </p>
 
 <p align="center">
-    <a href="https://github.com/SoulWallet/elytro-wallet-lib/tree/develop/packages/soulwallet-decoder"><b>Code</b></a> •
-    <a href="https://github.com/SoulWallet/elytro-wallet-lib/blob/develop/packages/soulwallet-decoder/docs/modules.md"><b>Documentation</b></a>
+    <a href="https://github.com/SoulWallet/elytro-wallet-lib/tree/develop/packages/decoder"><b>Code</b></a> •
+    <a href="https://github.com/SoulWallet/elytro-wallet-lib/blob/develop/packages/decoder/docs/modules.md"><b>Documentation</b></a>
 </p>
 
 
@@ -57,13 +57,13 @@ import { Decoder } from "@elytro/decoder";
 
 ```typescript
 import { ethers } from "ethers";
-import { ABI_SoulWallet } from "@elytro/abi";
+import { ABI_Elytro } from "@elytro/abi";
 import { Decoder } from "@elytro/decoder";
 
 
 async function main(): Promise<void> {
     let callData = '0x';
-    const abi = new ethers.Interface(ABI_SoulWallet);
+    const abi = new ethers.Interface(ABI_Elytro);
     let to: string[] = [
         '0xccaE58775FcBc01E0bB965Cc153363CD93e2d0f4',
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'

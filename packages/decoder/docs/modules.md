@@ -76,4 +76,4 @@ Decoder
 
 #### Defined in
 
-[decoder/src/decoder.ts:169](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/decoder/src/decoder.ts#L169)
+[decoder/src/decoder.ts:169](https://github.com/jayden-sudo/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/decoder/src/decoder.ts#L169)

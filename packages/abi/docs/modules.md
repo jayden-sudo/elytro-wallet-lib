@@ -15,6 +15,16 @@
 - [ABI\_EIP1271Wallet](modules.md#abi_eip1271wallet)
 - [ABI\_ERC1271Handler](modules.md#abi_erc1271handler)
 - [ABI\_ERC20Paymaster](modules.md#abi_erc20paymaster)
+- [ABI\_Elytro](modules.md#abi_elytro)
+- [ABI\_ElytroDefaultValidator](modules.md#abi_elytrodefaultvalidator)
+- [ABI\_ElytroFactory](modules.md#abi_elytrofactory)
+- [ABI\_ElytroHookManager](modules.md#abi_elytrohookmanager)
+- [ABI\_ElytroInstence](modules.md#abi_elytroinstence)
+- [ABI\_ElytroLogicInstence](modules.md#abi_elytrologicinstence)
+- [ABI\_ElytroModuleManager](modules.md#abi_elytromodulemanager)
+- [ABI\_ElytroOwnerManager](modules.md#abi_elytroownermanager)
+- [ABI\_ElytroUpgradeManager](modules.md#abi_elytroupgrademanager)
+- [ABI\_ElytroValidatorManager](modules.md#abi_elytrovalidatormanager)
 - [ABI\_EmailApprover](modules.md#abi_emailapprover)
 - [ABI\_EmailApproverFactory](modules.md#abi_emailapproverfactory)
 - [ABI\_EntryPoint](modules.md#abi_entrypoint)
@@ -23,16 +33,6 @@
 - [ABI\_NewImplementation](modules.md#abi_newimplementation)
 - [ABI\_ReceivePayment](modules.md#abi_receivepayment)
 - [ABI\_SocialRecoveryModule](modules.md#abi_socialrecoverymodule)
-- [ABI\_SoulWallet](modules.md#abi_soulwallet)
-- [ABI\_SoulWalletDefaultValidator](modules.md#abi_soulwalletdefaultvalidator)
-- [ABI\_SoulWalletFactory](modules.md#abi_soulwalletfactory)
-- [ABI\_SoulWalletHookManager](modules.md#abi_soulwallethookmanager)
-- [ABI\_SoulWalletInstence](modules.md#abi_soulwalletinstence)
-- [ABI\_SoulWalletLogicInstence](modules.md#abi_soulwalletlogicinstence)
-- [ABI\_SoulWalletModuleManager](modules.md#abi_soulwalletmodulemanager)
-- [ABI\_SoulWalletOwnerManager](modules.md#abi_soulwalletownermanager)
-- [ABI\_SoulWalletUpgradeManager](modules.md#abi_soulwalletupgrademanager)
-- [ABI\_SoulWalletValidatorManager](modules.md#abi_soulwalletvalidatormanager)
 - [ABI\_TestOracle](modules.md#abi_testoracle)
 - [ABI\_TokenERC20](modules.md#abi_tokenerc20)
 - [ABI\_UpgradeModule](modules.md#abi_upgrademodule)
@@ -45,7 +45,7 @@
 
 #### Defined in
 
-[ABI/ABI_AaveUsdcSaveAutomation.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_AaveUsdcSaveAutomation.ts#L3)
+[ABI/ABI_AaveUsdcSaveAutomation.ts:3](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/abi/src/ABI/ABI_AaveUsdcSaveAutomation.ts#L3)
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 #### Defined in
 
-[ABI/ABI_BaseModule.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_BaseModule.ts#L3)
+[ABI/ABI_BaseModule.ts:3](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/abi/src/ABI/ABI_BaseModule.ts#L3)
 
 ___
 
@@ -65,7 +65,7 @@ ___
 
 #### Defined in
 
-[ABI/ABI_BaseSocialRecovery.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_BaseSocialRecovery.ts#L3)
+[ABI/ABI_BaseSocialRecovery.ts:3](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/abi/src/ABI/ABI_BaseSocialRecovery.ts#L3)
 
 ___
 
@@ -75,7 +75,7 @@ ___
 
 #### Defined in
 
-[ABI/ABI_ClaimInterest.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_ClaimInterest.ts#L3)
+[ABI/ABI_ClaimInterest.ts:3](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/abi/src/ABI/ABI_ClaimInterest.ts#L3)
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[ABI/ABI_Crypto2FAHook.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_Crypto2FAHook.ts#L3)
+[ABI/ABI_Crypto2FAHook.ts:3](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/abi/src/ABI/ABI_Crypto2FAHook.ts#L3)
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 #### Defined in
 
-[ABI/ABI_DefaultCallbackHandler.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_DefaultCallbackHandler.ts#L3)
+[ABI/ABI_DefaultCallbackHandler.ts:3](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/abi/src/ABI/ABI_DefaultCallbackHandler.ts#L3)
 
 ___
 
@@ -105,7 +105,7 @@ ___
 
 #### Defined in
 
-[ABI/ABI_EIP1271Wallet.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_EIP1271Wallet.ts#L3)
+[ABI/ABI_EIP1271Wallet.ts:3](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/abi/src/ABI/ABI_EIP1271Wallet.ts#L3)
 
 ___
 
@@ -115,7 +115,7 @@ ___
 
 #### Defined in
 
-[ABI/ABI_ERC1271Handler.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_ERC1271Handler.ts#L3)
+[ABI/ABI_ERC1271Handler.ts:3](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/abi/src/ABI/ABI_ERC1271Handler.ts#L3)
 
 ___
 
@@ -125,7 +125,107 @@ ___
 
 #### Defined in
 
-[ABI/ABI_ERC20Paymaster.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_ERC20Paymaster.ts#L3)
+[ABI/ABI_ERC20Paymaster.ts:3](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/abi/src/ABI/ABI_ERC20Paymaster.ts#L3)
+
+___
+
+### ABI\_Elytro
+
+• **ABI\_Elytro**: (\{ `anonymous?`: `undefined` = false; `inputs`: \{ `internalType`: `string` = "address"; `name`: `string` = "\_entryPoint"; `type`: `string` = "address" }[] ; `name?`: `undefined` = "OwnableInvalidOwner"; `outputs?`: `undefined` ; `stateMutability`: `string` = "nonpayable"; `type`: `string` = "constructor" } \| \{ `anonymous?`: `undefined` = false; `inputs?`: `undefined` ; `name?`: `undefined` = "OwnableInvalidOwner"; `outputs?`: `undefined` ; `stateMutability`: `string` = "payable"; `type`: `string` = "fallback" } \| \{ `anonymous?`: `undefined` = false; `inputs`: (\{ `components`: \{ `internalType`: `string` = "address"; `name`: `string` = "sender"; `type`: `string` = "address" }[] ; `internalType`: `string` = "struct PackedUserOperation"; `name`: `string` = "userOp"; `type`: `string` = "tuple" } \| \{ `components?`: `undefined` ; `internalType`: `string` = "bytes32"; `name`: `string` = "userOpHash"; `type`: `string` = "bytes32" })[] ; `name`: `string` = "validateUserOp"; `outputs`: \{ `internalType`: `string` = "uint256"; `name`: `string` = "validationData"; `type`: `string` = "uint256" }[] ; `stateMutability`: `string` = "payable"; `type`: `string` = "function" } \| \{ `anonymous`: `boolean` = false; `inputs`: \{ `indexed`: `boolean` = true; `internalType`: `string` = "address"; `name`: `string` = "fallbackContract"; `type`: `string` = "address" }[] ; `name`: `string` = "FallbackChanged"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "event" } \| \{ `anonymous?`: `undefined` = false; `inputs`: `never`[] = []; `name`: `string` = "ADDRESS\_ALREADY\_EXISTS"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "error" })[]
+
+#### Defined in
+
+ABI/ABI_Elytro.ts:3
+
+___
+
+### ABI\_ElytroDefaultValidator
+
+• **ABI\_ElytroDefaultValidator**: (\{ `inputs`: (\{ `components`: \{ `internalType`: `string` = "address"; `name`: `string` = "sender"; `type`: `string` = "address" }[] ; `internalType`: `string` = "struct PackedUserOperation"; `name`: `string` = ""; `type`: `string` = "tuple" } \| \{ `components?`: `undefined` ; `internalType`: `string` = "bytes32"; `name`: `string` = "userOpHash"; `type`: `string` = "bytes32" })[] ; `name`: `string` = "validateUserOp"; `outputs`: \{ `internalType`: `string` = "uint256"; `name`: `string` = "validationData"; `type`: `string` = "uint256" }[] ; `stateMutability`: `string` = "view"; `type`: `string` = "function" } \| \{ `inputs`: `never`[] = []; `name`: `string` = "INVALID\_SIGNTYPE"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "error" })[]
+
+#### Defined in
+
+ABI/ABI_ElytroDefaultValidator.ts:3
+
+___
+
+### ABI\_ElytroFactory
+
+• **ABI\_ElytroFactory**: (\{ `anonymous?`: `undefined` = false; `inputs`: \{ `internalType`: `string` = "address"; `name`: `string` = "\_walletImpl"; `type`: `string` = "address" }[] ; `name?`: `undefined` = "OwnableInvalidOwner"; `outputs?`: `undefined` ; `stateMutability`: `string` = "nonpayable"; `type`: `string` = "constructor" } \| \{ `anonymous?`: `undefined` = false; `inputs`: \{ `internalType`: `string` = "bytes"; `name`: `string` = "\_initializer"; `type`: `string` = "bytes" }[] ; `name`: `string` = "createWallet"; `outputs`: \{ `internalType`: `string` = "address"; `name`: `string` = "proxy"; `type`: `string` = "address" }[] ; `stateMutability`: `string` = "nonpayable"; `type`: `string` = "function" } \| \{ `anonymous`: `boolean` = false; `inputs`: \{ `indexed`: `boolean` = true; `internalType`: `string` = "address"; `name`: `string` = "proxy"; `type`: `string` = "address" }[] ; `name`: `string` = "ElytroCreation"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "event" } \| \{ `anonymous?`: `undefined` = false; `inputs`: \{ `internalType`: `string` = "address"; `name`: `string` = "owner"; `type`: `string` = "address" }[] ; `name`: `string` = "OwnableInvalidOwner"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "error" })[]
+
+#### Defined in
+
+ABI/ABI_ElytroFactory.ts:3
+
+___
+
+### ABI\_ElytroHookManager
+
+• **ABI\_ElytroHookManager**: (\{ `anonymous?`: `undefined` = false; `inputs`: \{ `internalType`: `string` = "address"; `name`: `string` = "hook"; `type`: `string` = "address" }[] ; `name`: `string` = "isInstalledHook"; `outputs`: \{ `internalType`: `string` = "bool"; `name`: `string` = ""; `type`: `string` = "bool" }[] ; `stateMutability`: `string` = "view"; `type`: `string` = "function" } \| \{ `anonymous`: `boolean` = false; `inputs`: \{ `indexed`: `boolean` = false; `internalType`: `string` = "address"; `name`: `string` = "hook"; `type`: `string` = "address" }[] ; `name`: `string` = "HookInstalled"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "event" } \| \{ `anonymous?`: `undefined` = false; `inputs`: `never`[] = []; `name`: `string` = "ADDRESS\_ALREADY\_EXISTS"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "error" })[]
+
+#### Defined in
+
+ABI/ABI_ElytroHookManager.ts:3
+
+___
+
+### ABI\_ElytroInstence
+
+• **ABI\_ElytroInstence**: (\{ `inputs`: \{ `internalType`: `string` = "address"; `name`: `string` = "defaultCallbackHandler"; `type`: `string` = "address" }[] ; `name?`: `undefined` = "OwnableInvalidOwner"; `outputs?`: `undefined` ; `stateMutability`: `string` = "nonpayable"; `type`: `string` = "constructor" } \| \{ `inputs`: `never`[] = []; `name`: `string` = "elytro"; `outputs`: \{ `internalType`: `string` = "contract IElytro"; `name`: `string` = ""; `type`: `string` = "address" }[] ; `stateMutability`: `string` = "view"; `type`: `string` = "function" })[]
+
+#### Defined in
+
+ABI/ABI_ElytroInstence.ts:3
+
+___
+
+### ABI\_ElytroLogicInstence
+
+• **ABI\_ElytroLogicInstence**: (\{ `inputs`: \{ `internalType`: `string` = "address"; `name`: `string` = "\_entryPoint"; `type`: `string` = "address" }[] ; `name?`: `undefined` = "OwnableInvalidOwner"; `outputs?`: `undefined` ; `stateMutability`: `string` = "nonpayable"; `type`: `string` = "constructor" } \| \{ `inputs`: `never`[] = []; `name`: `string` = "elytroLogic"; `outputs`: \{ `internalType`: `string` = "contract Elytro"; `name`: `string` = ""; `type`: `string` = "address" }[] ; `stateMutability`: `string` = "view"; `type`: `string` = "function" })[]
+
+#### Defined in
+
+ABI/ABI_ElytroLogicInstence.ts:3
+
+___
+
+### ABI\_ElytroModuleManager
+
+• **ABI\_ElytroModuleManager**: (\{ `anonymous?`: `undefined` = false; `inputs`: \{ `internalType`: `string` = "address"; `name`: `string` = "module"; `type`: `string` = "address" }[] ; `name`: `string` = "isInstalledModule"; `outputs`: \{ `internalType`: `string` = "bool"; `name`: `string` = ""; `type`: `string` = "bool" }[] ; `stateMutability`: `string` = "view"; `type`: `string` = "function" } \| \{ `anonymous`: `boolean` = false; `inputs`: \{ `indexed`: `boolean` = false; `internalType`: `string` = "address"; `name`: `string` = "module"; `type`: `string` = "address" }[] ; `name`: `string` = "ModuleInstalled"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "event" } \| \{ `anonymous?`: `undefined` = false; `inputs`: `never`[] = []; `name`: `string` = "ADDRESS\_ALREADY\_EXISTS"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "error" })[]
+
+#### Defined in
+
+ABI/ABI_ElytroModuleManager.ts:3
+
+___
+
+### ABI\_ElytroOwnerManager
+
+• **ABI\_ElytroOwnerManager**: (\{ `anonymous?`: `undefined` = false; `inputs`: \{ `internalType`: `string` = "bytes32"; `name`: `string` = "owner"; `type`: `string` = "bytes32" }[] ; `name`: `string` = "isOwner"; `outputs`: \{ `internalType`: `string` = "bool"; `name`: `string` = ""; `type`: `string` = "bool" }[] ; `stateMutability`: `string` = "view"; `type`: `string` = "function" } \| \{ `anonymous`: `boolean` = false; `inputs`: \{ `indexed`: `boolean` = true; `internalType`: `string` = "bytes32"; `name`: `string` = "owner"; `type`: `string` = "bytes32" }[] ; `name`: `string` = "OwnerAdded"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "event" } \| \{ `anonymous?`: `undefined` = false; `inputs`: `never`[] = []; `name`: `string` = "CALLER\_MUST\_BE\_MODULE"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "error" })[]
+
+#### Defined in
+
+ABI/ABI_ElytroOwnerManager.ts:3
+
+___
+
+### ABI\_ElytroUpgradeManager
+
+• **ABI\_ElytroUpgradeManager**: (\{ `anonymous?`: `undefined` = false; `inputs`: \{ `internalType`: `string` = "address"; `name`: `string` = "oldImplementation"; `type`: `string` = "address" }[] ; `name`: `string` = "upgradeFrom"; `outputs`: `never`[] = []; `stateMutability`: `string` = "nonpayable"; `type`: `string` = "function" } \| \{ `anonymous`: `boolean` = false; `inputs`: \{ `indexed`: `boolean` = true; `internalType`: `string` = "address"; `name`: `string` = "oldImplementation"; `type`: `string` = "address" }[] ; `name`: `string` = "Upgraded"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "event" })[]
+
+#### Defined in
+
+ABI/ABI_ElytroUpgradeManager.ts:3
+
+___
+
+### ABI\_ElytroValidatorManager
+
+• **ABI\_ElytroValidatorManager**: (\{ `anonymous?`: `undefined` = false; `inputs`: \{ `internalType`: `string` = "bytes"; `name`: `string` = "validatorAndData"; `type`: `string` = "bytes" }[] ; `name`: `string` = "installValidator"; `outputs`: `never`[] = []; `stateMutability`: `string` = "nonpayable"; `type`: `string` = "function" } \| \{ `anonymous?`: `undefined` = false; `inputs`: `never`[] = []; `name`: `string` = "listValidator"; `outputs`: \{ `internalType`: `string` = "address[]"; `name`: `string` = "validators"; `type`: `string` = "address[]" }[] ; `stateMutability`: `string` = "view"; `type`: `string` = "function" } \| \{ `anonymous`: `boolean` = false; `inputs`: \{ `indexed`: `boolean` = false; `internalType`: `string` = "address"; `name`: `string` = "validator"; `type`: `string` = "address" }[] ; `name`: `string` = "ValidatorInstalled"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "event" } \| \{ `anonymous?`: `undefined` = false; `inputs`: `never`[] = []; `name`: `string` = "ADDRESS\_ALREADY\_EXISTS"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "error" })[]
+
+#### Defined in
+
+ABI/ABI_ElytroValidatorManager.ts:3
 
 ___
 
@@ -135,7 +235,7 @@ ___
 
 #### Defined in
 
-[ABI/ABI_EmailApprover.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_EmailApprover.ts#L3)
+[ABI/ABI_EmailApprover.ts:3](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/abi/src/ABI/ABI_EmailApprover.ts#L3)
 
 ___
 
@@ -145,7 +245,7 @@ ___
 
 #### Defined in
 
-[ABI/ABI_EmailApproverFactory.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_EmailApproverFactory.ts#L3)
+[ABI/ABI_EmailApproverFactory.ts:3](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/abi/src/ABI/ABI_EmailApproverFactory.ts#L3)
 
 ___
 
@@ -155,7 +255,7 @@ ___
 
 #### Defined in
 
-[ABI/ABI_EntryPoint.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_EntryPoint.ts#L3)
+[ABI/ABI_EntryPoint.ts:3](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/abi/src/ABI/ABI_EntryPoint.ts#L3)
 
 ___
 
@@ -165,7 +265,7 @@ ___
 
 #### Defined in
 
-[ABI/ABI_Errors.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_Errors.ts#L3)
+[ABI/ABI_Errors.ts:3](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/abi/src/ABI/ABI_Errors.ts#L3)
 
 ___
 
@@ -175,7 +275,7 @@ ___
 
 #### Defined in
 
-[ABI/ABI_HelloWorld.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_HelloWorld.ts#L3)
+[ABI/ABI_HelloWorld.ts:3](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/abi/src/ABI/ABI_HelloWorld.ts#L3)
 
 ___
 
@@ -185,7 +285,7 @@ ___
 
 #### Defined in
 
-[ABI/ABI_NewImplementation.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_NewImplementation.ts#L3)
+[ABI/ABI_NewImplementation.ts:3](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/abi/src/ABI/ABI_NewImplementation.ts#L3)
 
 ___
 
@@ -195,7 +295,7 @@ ___
 
 #### Defined in
 
-[ABI/ABI_ReceivePayment.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_ReceivePayment.ts#L3)
+[ABI/ABI_ReceivePayment.ts:3](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/abi/src/ABI/ABI_ReceivePayment.ts#L3)
 
 ___
 
@@ -205,107 +305,7 @@ ___
 
 #### Defined in
 
-[ABI/ABI_SocialRecoveryModule.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_SocialRecoveryModule.ts#L3)
-
-___
-
-### ABI\_SoulWallet
-
-• **ABI\_SoulWallet**: (\{ `anonymous?`: `undefined` = false; `inputs`: \{ `internalType`: `string` = "address"; `name`: `string` = "\_entryPoint"; `type`: `string` = "address" }[] ; `name?`: `undefined` = "OwnableInvalidOwner"; `outputs?`: `undefined` ; `stateMutability`: `string` = "nonpayable"; `type`: `string` = "constructor" } \| \{ `anonymous?`: `undefined` = false; `inputs?`: `undefined` ; `name?`: `undefined` = "OwnableInvalidOwner"; `outputs?`: `undefined` ; `stateMutability`: `string` = "payable"; `type`: `string` = "fallback" } \| \{ `anonymous?`: `undefined` = false; `inputs`: (\{ `components`: \{ `internalType`: `string` = "address"; `name`: `string` = "sender"; `type`: `string` = "address" }[] ; `internalType`: `string` = "struct PackedUserOperation"; `name`: `string` = "userOp"; `type`: `string` = "tuple" } \| \{ `components?`: `undefined` ; `internalType`: `string` = "bytes32"; `name`: `string` = "userOpHash"; `type`: `string` = "bytes32" })[] ; `name`: `string` = "validateUserOp"; `outputs`: \{ `internalType`: `string` = "uint256"; `name`: `string` = "validationData"; `type`: `string` = "uint256" }[] ; `stateMutability`: `string` = "payable"; `type`: `string` = "function" } \| \{ `anonymous`: `boolean` = false; `inputs`: \{ `indexed`: `boolean` = true; `internalType`: `string` = "address"; `name`: `string` = "fallbackContract"; `type`: `string` = "address" }[] ; `name`: `string` = "FallbackChanged"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "event" } \| \{ `anonymous?`: `undefined` = false; `inputs`: `never`[] = []; `name`: `string` = "ADDRESS\_ALREADY\_EXISTS"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "error" })[]
-
-#### Defined in
-
-[ABI/ABI_SoulWallet.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_SoulWallet.ts#L3)
-
-___
-
-### ABI\_SoulWalletDefaultValidator
-
-• **ABI\_SoulWalletDefaultValidator**: (\{ `inputs`: (\{ `components`: \{ `internalType`: `string` = "address"; `name`: `string` = "sender"; `type`: `string` = "address" }[] ; `internalType`: `string` = "struct PackedUserOperation"; `name`: `string` = ""; `type`: `string` = "tuple" } \| \{ `components?`: `undefined` ; `internalType`: `string` = "bytes32"; `name`: `string` = "userOpHash"; `type`: `string` = "bytes32" })[] ; `name`: `string` = "validateUserOp"; `outputs`: \{ `internalType`: `string` = "uint256"; `name`: `string` = "validationData"; `type`: `string` = "uint256" }[] ; `stateMutability`: `string` = "view"; `type`: `string` = "function" } \| \{ `inputs`: `never`[] = []; `name`: `string` = "INVALID\_SIGNTYPE"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "error" })[]
-
-#### Defined in
-
-[ABI/ABI_SoulWalletDefaultValidator.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_SoulWalletDefaultValidator.ts#L3)
-
-___
-
-### ABI\_SoulWalletFactory
-
-• **ABI\_SoulWalletFactory**: (\{ `anonymous?`: `undefined` = false; `inputs`: \{ `internalType`: `string` = "address"; `name`: `string` = "\_walletImpl"; `type`: `string` = "address" }[] ; `name?`: `undefined` = "OwnableInvalidOwner"; `outputs?`: `undefined` ; `stateMutability`: `string` = "nonpayable"; `type`: `string` = "constructor" } \| \{ `anonymous?`: `undefined` = false; `inputs`: \{ `internalType`: `string` = "bytes"; `name`: `string` = "\_initializer"; `type`: `string` = "bytes" }[] ; `name`: `string` = "createWallet"; `outputs`: \{ `internalType`: `string` = "address"; `name`: `string` = "proxy"; `type`: `string` = "address" }[] ; `stateMutability`: `string` = "nonpayable"; `type`: `string` = "function" } \| \{ `anonymous`: `boolean` = false; `inputs`: \{ `indexed`: `boolean` = true; `internalType`: `string` = "address"; `name`: `string` = "previousOwner"; `type`: `string` = "address" }[] ; `name`: `string` = "OwnershipTransferred"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "event" } \| \{ `anonymous?`: `undefined` = false; `inputs`: \{ `internalType`: `string` = "address"; `name`: `string` = "owner"; `type`: `string` = "address" }[] ; `name`: `string` = "OwnableInvalidOwner"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "error" })[]
-
-#### Defined in
-
-[ABI/ABI_SoulWalletFactory.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_SoulWalletFactory.ts#L3)
-
-___
-
-### ABI\_SoulWalletHookManager
-
-• **ABI\_SoulWalletHookManager**: (\{ `anonymous?`: `undefined` = false; `inputs`: \{ `internalType`: `string` = "address"; `name`: `string` = "hook"; `type`: `string` = "address" }[] ; `name`: `string` = "isInstalledHook"; `outputs`: \{ `internalType`: `string` = "bool"; `name`: `string` = ""; `type`: `string` = "bool" }[] ; `stateMutability`: `string` = "view"; `type`: `string` = "function" } \| \{ `anonymous`: `boolean` = false; `inputs`: \{ `indexed`: `boolean` = false; `internalType`: `string` = "address"; `name`: `string` = "hook"; `type`: `string` = "address" }[] ; `name`: `string` = "HookInstalled"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "event" } \| \{ `anonymous?`: `undefined` = false; `inputs`: `never`[] = []; `name`: `string` = "ADDRESS\_ALREADY\_EXISTS"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "error" })[]
-
-#### Defined in
-
-[ABI/ABI_SoulWalletHookManager.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_SoulWalletHookManager.ts#L3)
-
-___
-
-### ABI\_SoulWalletInstence
-
-• **ABI\_SoulWalletInstence**: (\{ `inputs`: \{ `internalType`: `string` = "address"; `name`: `string` = "defaultCallbackHandler"; `type`: `string` = "address" }[] ; `name?`: `undefined` = "OwnableInvalidOwner"; `outputs?`: `undefined` ; `stateMutability`: `string` = "nonpayable"; `type`: `string` = "constructor" } \| \{ `inputs`: `never`[] = []; `name`: `string` = "entryPoint"; `outputs`: \{ `internalType`: `string` = "contract EntryPoint"; `name`: `string` = ""; `type`: `string` = "address" }[] ; `stateMutability`: `string` = "view"; `type`: `string` = "function" })[]
-
-#### Defined in
-
-[ABI/ABI_SoulWalletInstence.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_SoulWalletInstence.ts#L3)
-
-___
-
-### ABI\_SoulWalletLogicInstence
-
-• **ABI\_SoulWalletLogicInstence**: (\{ `inputs`: \{ `internalType`: `string` = "address"; `name`: `string` = "\_entryPoint"; `type`: `string` = "address" }[] ; `name?`: `undefined` = "OwnableInvalidOwner"; `outputs?`: `undefined` ; `stateMutability`: `string` = "nonpayable"; `type`: `string` = "constructor" } \| \{ `inputs`: `never`[] = []; `name`: `string` = "soulWalletLogic"; `outputs`: \{ `internalType`: `string` = "contract SoulWallet"; `name`: `string` = ""; `type`: `string` = "address" }[] ; `stateMutability`: `string` = "view"; `type`: `string` = "function" })[]
-
-#### Defined in
-
-[ABI/ABI_SoulWalletLogicInstence.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_SoulWalletLogicInstence.ts#L3)
-
-___
-
-### ABI\_SoulWalletModuleManager
-
-• **ABI\_SoulWalletModuleManager**: (\{ `anonymous?`: `undefined` = false; `inputs`: \{ `internalType`: `string` = "address"; `name`: `string` = "module"; `type`: `string` = "address" }[] ; `name`: `string` = "isInstalledModule"; `outputs`: \{ `internalType`: `string` = "bool"; `name`: `string` = ""; `type`: `string` = "bool" }[] ; `stateMutability`: `string` = "view"; `type`: `string` = "function" } \| \{ `anonymous`: `boolean` = false; `inputs`: \{ `indexed`: `boolean` = false; `internalType`: `string` = "address"; `name`: `string` = "module"; `type`: `string` = "address" }[] ; `name`: `string` = "ModuleInstalled"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "event" } \| \{ `anonymous?`: `undefined` = false; `inputs`: `never`[] = []; `name`: `string` = "ADDRESS\_ALREADY\_EXISTS"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "error" })[]
-
-#### Defined in
-
-[ABI/ABI_SoulWalletModuleManager.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_SoulWalletModuleManager.ts#L3)
-
-___
-
-### ABI\_SoulWalletOwnerManager
-
-• **ABI\_SoulWalletOwnerManager**: (\{ `anonymous?`: `undefined` = false; `inputs`: \{ `internalType`: `string` = "bytes32"; `name`: `string` = "owner"; `type`: `string` = "bytes32" }[] ; `name`: `string` = "isOwner"; `outputs`: \{ `internalType`: `string` = "bool"; `name`: `string` = ""; `type`: `string` = "bool" }[] ; `stateMutability`: `string` = "view"; `type`: `string` = "function" } \| \{ `anonymous`: `boolean` = false; `inputs`: \{ `indexed`: `boolean` = true; `internalType`: `string` = "bytes32"; `name`: `string` = "owner"; `type`: `string` = "bytes32" }[] ; `name`: `string` = "OwnerAdded"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "event" } \| \{ `anonymous?`: `undefined` = false; `inputs`: `never`[] = []; `name`: `string` = "CALLER\_MUST\_BE\_MODULE"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "error" })[]
-
-#### Defined in
-
-[ABI/ABI_SoulWalletOwnerManager.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_SoulWalletOwnerManager.ts#L3)
-
-___
-
-### ABI\_SoulWalletUpgradeManager
-
-• **ABI\_SoulWalletUpgradeManager**: (\{ `anonymous?`: `undefined` = false; `inputs`: \{ `internalType`: `string` = "address"; `name`: `string` = "oldImplementation"; `type`: `string` = "address" }[] ; `name`: `string` = "upgradeFrom"; `outputs`: `never`[] = []; `stateMutability`: `string` = "nonpayable"; `type`: `string` = "function" } \| \{ `anonymous`: `boolean` = false; `inputs`: \{ `indexed`: `boolean` = true; `internalType`: `string` = "address"; `name`: `string` = "oldImplementation"; `type`: `string` = "address" }[] ; `name`: `string` = "Upgraded"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "event" })[]
-
-#### Defined in
-
-[ABI/ABI_SoulWalletUpgradeManager.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_SoulWalletUpgradeManager.ts#L3)
-
-___
-
-### ABI\_SoulWalletValidatorManager
-
-• **ABI\_SoulWalletValidatorManager**: (\{ `anonymous?`: `undefined` = false; `inputs`: \{ `internalType`: `string` = "bytes"; `name`: `string` = "validatorAndData"; `type`: `string` = "bytes" }[] ; `name`: `string` = "installValidator"; `outputs`: `never`[] = []; `stateMutability`: `string` = "nonpayable"; `type`: `string` = "function" } \| \{ `anonymous?`: `undefined` = false; `inputs`: `never`[] = []; `name`: `string` = "listValidator"; `outputs`: \{ `internalType`: `string` = "address[]"; `name`: `string` = "validators"; `type`: `string` = "address[]" }[] ; `stateMutability`: `string` = "view"; `type`: `string` = "function" } \| \{ `anonymous`: `boolean` = false; `inputs`: \{ `indexed`: `boolean` = false; `internalType`: `string` = "address"; `name`: `string` = "validator"; `type`: `string` = "address" }[] ; `name`: `string` = "ValidatorInstalled"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "event" } \| \{ `anonymous?`: `undefined` = false; `inputs`: `never`[] = []; `name`: `string` = "ADDRESS\_ALREADY\_EXISTS"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "view"; `type`: `string` = "error" })[]
-
-#### Defined in
-
-[ABI/ABI_SoulWalletValidatorManager.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_SoulWalletValidatorManager.ts#L3)
+[ABI/ABI_SocialRecoveryModule.ts:3](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/abi/src/ABI/ABI_SocialRecoveryModule.ts#L3)
 
 ___
 
@@ -315,7 +315,7 @@ ___
 
 #### Defined in
 
-[ABI/ABI_TestOracle.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_TestOracle.ts#L3)
+[ABI/ABI_TestOracle.ts:3](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/abi/src/ABI/ABI_TestOracle.ts#L3)
 
 ___
 
@@ -325,7 +325,7 @@ ___
 
 #### Defined in
 
-[ABI/ABI_TokenERC20.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_TokenERC20.ts#L3)
+[ABI/ABI_TokenERC20.ts:3](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/abi/src/ABI/ABI_TokenERC20.ts#L3)
 
 ___
 
@@ -335,4 +335,4 @@ ___
 
 #### Defined in
 
-[ABI/ABI_UpgradeModule.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/abi/src/ABI/ABI_UpgradeModule.ts#L3)
+[ABI/ABI_UpgradeModule.ts:3](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/abi/src/ABI/ABI_UpgradeModule.ts#L3)

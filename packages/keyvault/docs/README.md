@@ -11,8 +11,8 @@ A lightweight private key management library that uses CryptoKey in the browser 
 </p>
 
 <p align="center">
-    <a href="https://github.com/SoulWallet/elytro-wallet-lib/tree/develop/packages/soulwallet-keyvault"><b>Code</b></a> •
-    <a href="https://github.com/SoulWallet/elytro-wallet-lib/blob/develop/packages/soulwallet-keyvault/docs/modules.md"><b>Documentation</b></a>
+    <a href="https://github.com/SoulWallet/elytro-wallet-lib/tree/develop/packages/keyvault"><b>Code</b></a> •
+    <a href="https://github.com/SoulWallet/elytro-wallet-lib/blob/develop/packages/keyvault/docs/modules.md"><b>Documentation</b></a>
 </p>
 
 ## Table of Contents
@@ -55,7 +55,7 @@ import { Vault, VaultEvents, SignData } from "@elytro/keyvault";
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Vault, VaultEvents, SignData, Ok, Err, Result } from '@elytro/keyvault';
-import { SoulWallet } from '@elytro/sdk';
+import { Elytro } from '@elytro/sdk';
 @Component({
   selector: 'app-keyvault',
   templateUrl: './keyvault.page.html',

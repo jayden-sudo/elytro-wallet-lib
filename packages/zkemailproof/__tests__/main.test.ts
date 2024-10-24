@@ -4,7 +4,7 @@ import {
 } from '..';
 import { describe, expect, test } from '@jest/globals';
 
-describe('soulwallet-zkemail', () => {
+describe('elytro-zkemail', () => {
     test('EmailApproverFactory', async () => {
         const emailAddr = "xurigong@gmail.com";
         const commitment_rand = BigInt(12322);

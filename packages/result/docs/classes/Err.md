@@ -66,7 +66,7 @@ Err
 
 #### Defined in
 
-[Result.ts:86](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/result/src/Result.ts#L86)
+[Result.ts:86](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/result/src/Result.ts#L86)
 
 ## Properties
 
@@ -76,7 +76,7 @@ Err
 
 #### Defined in
 
-[Result.ts:79](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/result/src/Result.ts#L79)
+[Result.ts:79](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/result/src/Result.ts#L79)
 
 ## Accessors
 
@@ -96,7 +96,7 @@ Err
 
 #### Defined in
 
-[Result.ts:108](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/result/src/Result.ts#L108)
+[Result.ts:108](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/result/src/Result.ts#L108)
 
 ___
 
@@ -116,7 +116,7 @@ Err
 
 #### Defined in
 
-[Result.ts:97](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/result/src/Result.ts#L97)
+[Result.ts:97](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/result/src/Result.ts#L97)
 
 ## Methods
 
@@ -136,7 +136,7 @@ Err
 
 #### Defined in
 
-[Result.ts:128](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/result/src/Result.ts#L128)
+[Result.ts:128](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/result/src/Result.ts#L128)
 
 ___
 
@@ -156,4 +156,4 @@ Err
 
 #### Defined in
 
-[Result.ts:118](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/result/src/Result.ts#L118)
+[Result.ts:118](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/result/src/Result.ts#L118)

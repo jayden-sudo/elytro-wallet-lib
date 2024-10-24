@@ -11,13 +11,13 @@ if (!shell.which('forge')) {
 
 const __dirname = resolve();
 
-const elytrocontractDir = resolve(__dirname, '..', '..', 'soul-wallet-contract');
+const elytrocontractDir = resolve(__dirname, '..', '..', 'Elytro-wallet-contract');
 console.log('elytrocontractDir', elytrocontractDir);
 shell.cd(elytrocontractDir);
 shell.exec("forge build", { silent: false });
 const elytrowalletcontractOutDir = resolve(elytrocontractDir, 'out');
 if (!existsSync(elytrowalletcontractOutDir)) {
-    throw new Error('soul-wallet-contract/out not found,please run `cd soul-wallet-contract && forge build`');
+    throw new Error('Elytro-wallet-contract/out not found,please run `cd Elytro-wallet-contract && forge build`');
 }
 // delete old abi
 shell.rm('-rf', resolve(__dirname, 'src', 'ABI/*.ts'));

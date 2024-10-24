@@ -46,7 +46,7 @@ UserOpErrorCodes
 
 #### Defined in
 
-[packages/sdk/src/interface/IUserOpErrors.ts:47](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IUserOpErrors.ts#L47)
+[packages/sdk/src/interface/IUserOpErrors.ts:47](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/interface/IUserOpErrors.ts#L47)
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/interface/IUserOpErrors.ts:46](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IUserOpErrors.ts#L46)
+[packages/sdk/src/interface/IUserOpErrors.ts:46](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/interface/IUserOpErrors.ts#L46)
 
 ___
 
@@ -66,7 +66,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/interface/IUserOpErrors.ts:49](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IUserOpErrors.ts#L49)
+[packages/sdk/src/interface/IUserOpErrors.ts:49](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/interface/IUserOpErrors.ts#L49)
 
 ___
 
@@ -76,7 +76,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/interface/IUserOpErrors.ts:52](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IUserOpErrors.ts#L52)
+[packages/sdk/src/interface/IUserOpErrors.ts:52](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/interface/IUserOpErrors.ts#L52)
 
 ___
 
@@ -86,7 +86,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/interface/IUserOpErrors.ts:51](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IUserOpErrors.ts#L51)
+[packages/sdk/src/interface/IUserOpErrors.ts:51](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/interface/IUserOpErrors.ts#L51)
 
 ___
 
@@ -96,7 +96,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/interface/IUserOpErrors.ts:48](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IUserOpErrors.ts#L48)
+[packages/sdk/src/interface/IUserOpErrors.ts:48](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/interface/IUserOpErrors.ts#L48)
 
 ___
 
@@ -106,7 +106,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/interface/IUserOpErrors.ts:54](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IUserOpErrors.ts#L54)
+[packages/sdk/src/interface/IUserOpErrors.ts:54](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/interface/IUserOpErrors.ts#L54)
 
 ___
 
@@ -116,7 +116,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/interface/IUserOpErrors.ts:50](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IUserOpErrors.ts#L50)
+[packages/sdk/src/interface/IUserOpErrors.ts:50](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/interface/IUserOpErrors.ts#L50)
 
 ___
 
@@ -126,7 +126,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/interface/IUserOpErrors.ts:45](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IUserOpErrors.ts#L45)
+[packages/sdk/src/interface/IUserOpErrors.ts:45](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/interface/IUserOpErrors.ts#L45)
 
 ___
 
@@ -136,4 +136,4 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/interface/IUserOpErrors.ts:53](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IUserOpErrors.ts#L53)
+[packages/sdk/src/interface/IUserOpErrors.ts:53](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/interface/IUserOpErrors.ts#L53)

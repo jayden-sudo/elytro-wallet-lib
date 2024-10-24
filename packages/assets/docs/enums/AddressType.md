@@ -20,7 +20,7 @@
 
 #### Defined in
 
-[assets/src/interface/tokenInfo.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/assets/src/interface/tokenInfo.ts#L3)
+[assets/src/interface/tokenInfo.ts:3](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/assets/src/interface/tokenInfo.ts#L3)
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 #### Defined in
 
-[assets/src/interface/tokenInfo.ts:6](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/assets/src/interface/tokenInfo.ts#L6)
+[assets/src/interface/tokenInfo.ts:6](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/assets/src/interface/tokenInfo.ts#L6)
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 #### Defined in
 
-[assets/src/interface/tokenInfo.ts:4](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/assets/src/interface/tokenInfo.ts#L4)
+[assets/src/interface/tokenInfo.ts:4](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/assets/src/interface/tokenInfo.ts#L4)
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 #### Defined in
 
-[assets/src/interface/tokenInfo.ts:5](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/assets/src/interface/tokenInfo.ts#L5)
+[assets/src/interface/tokenInfo.ts:5](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/assets/src/interface/tokenInfo.ts#L5)
 
 ___
 
@@ -60,4 +60,4 @@ ___
 
 #### Defined in
 
-[assets/src/interface/tokenInfo.ts:2](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/assets/src/interface/tokenInfo.ts#L2)
+[assets/src/interface/tokenInfo.ts:2](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/assets/src/interface/tokenInfo.ts#L2)

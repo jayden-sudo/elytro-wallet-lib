@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[keyvault/src/interface/IVault.ts:4](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/keyvault/src/interface/IVault.ts#L4)
+[keyvault/src/interface/IVault.ts:4](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/keyvault/src/interface/IVault.ts#L4)
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 #### Defined in
 
-[keyvault/src/interface/IVault.ts:6](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/keyvault/src/interface/IVault.ts#L6)
+[keyvault/src/interface/IVault.ts:6](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/keyvault/src/interface/IVault.ts#L6)
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 #### Defined in
 
-[keyvault/src/interface/IVault.ts:5](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/keyvault/src/interface/IVault.ts#L5)
+[keyvault/src/interface/IVault.ts:5](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/keyvault/src/interface/IVault.ts#L5)
 
 ___
 
@@ -49,4 +49,4 @@ ___
 
 #### Defined in
 
-[keyvault/src/interface/IVault.ts:7](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/keyvault/src/interface/IVault.ts#L7)
+[keyvault/src/interface/IVault.ts:7](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/keyvault/src/interface/IVault.ts#L7)

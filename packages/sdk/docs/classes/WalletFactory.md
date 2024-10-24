@@ -45,7 +45,7 @@
 
 #### Defined in
 
-[packages/sdk/src/tools/walletFactory.ts:23](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/tools/walletFactory.ts#L23)
+[packages/sdk/src/tools/walletFactory.ts:23](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/tools/walletFactory.ts#L23)
 
 ___
 
@@ -78,7 +78,7 @@ WalletFactory
 
 #### Defined in
 
-[packages/sdk/src/tools/walletFactory.ts:45](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/tools/walletFactory.ts#L45)
+[packages/sdk/src/tools/walletFactory.ts:45](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/tools/walletFactory.ts#L45)
 
 ___
 
@@ -111,7 +111,7 @@ WalletFactory
 
 #### Defined in
 
-[packages/sdk/src/tools/walletFactory.ts:75](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/tools/walletFactory.ts#L75)
+[packages/sdk/src/tools/walletFactory.ts:75](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/tools/walletFactory.ts#L75)
 
 ___
 
@@ -145,7 +145,7 @@ WalletFactory
 
 #### Defined in
 
-[packages/sdk/src/tools/walletFactory.ts:99](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/tools/walletFactory.ts#L99)
+[packages/sdk/src/tools/walletFactory.ts:99](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/tools/walletFactory.ts#L99)
 
 ___
 
@@ -165,4 +165,4 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/tools/walletFactory.ts:6](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/tools/walletFactory.ts#L6)
+[packages/sdk/src/tools/walletFactory.ts:6](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/tools/walletFactory.ts#L6)

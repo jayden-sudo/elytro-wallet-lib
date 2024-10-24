@@ -62,4 +62,4 @@ ___
 
 #### Defined in
 
-[keyvault/src/interface/IVault.ts:10](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/keyvault/src/interface/IVault.ts#L10)
+[keyvault/src/interface/IVault.ts:10](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/keyvault/src/interface/IVault.ts#L10)

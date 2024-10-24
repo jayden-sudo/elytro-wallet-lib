@@ -8,6 +8,5 @@
   "baseBranch": "develop",
   "updateInternalDependencies": "patch",
   "ignore": [
-    "internal-test"
   ]
 }

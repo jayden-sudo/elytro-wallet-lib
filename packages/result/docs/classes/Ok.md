@@ -66,7 +66,7 @@ Ok
 
 #### Defined in
 
-[Result.ts:22](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/result/src/Result.ts#L22)
+[Result.ts:22](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/result/src/Result.ts#L22)
 
 ## Properties
 
@@ -76,7 +76,7 @@ Ok
 
 #### Defined in
 
-[Result.ts:15](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/result/src/Result.ts#L15)
+[Result.ts:15](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/result/src/Result.ts#L15)
 
 ## Accessors
 
@@ -96,7 +96,7 @@ Ok
 
 #### Defined in
 
-[Result.ts:44](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/result/src/Result.ts#L44)
+[Result.ts:44](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/result/src/Result.ts#L44)
 
 ___
 
@@ -116,7 +116,7 @@ Ok
 
 #### Defined in
 
-[Result.ts:33](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/result/src/Result.ts#L33)
+[Result.ts:33](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/result/src/Result.ts#L33)
 
 ## Methods
 
@@ -136,7 +136,7 @@ Ok
 
 #### Defined in
 
-[Result.ts:64](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/result/src/Result.ts#L64)
+[Result.ts:64](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/result/src/Result.ts#L64)
 
 ___
 
@@ -156,4 +156,4 @@ Ok
 
 #### Defined in
 
-[Result.ts:54](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/result/src/Result.ts#L54)
+[Result.ts:54](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/result/src/Result.ts#L54)
