@@ -1,6 +1,6 @@
 {
     "name": "@elytro/decoder",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "description": "A lib for decode userOp.calldata",
     "author": "Jayden@elytro",
     "homepage": "https://github.com/SoulWallet/elytro-wallet-lib#readme",
