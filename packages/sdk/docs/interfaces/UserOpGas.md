@@ -24,7 +24,7 @@ UserOpGas
 
 #### Defined in
 
-packages/sdk/src/interface/IBundler.ts:39
+[packages/sdk/src/interface/IBundler.ts:39](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IBundler.ts#L39)
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 #### Defined in
 
-packages/sdk/src/interface/IBundler.ts:40
+[packages/sdk/src/interface/IBundler.ts:40](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IBundler.ts#L40)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 #### Defined in
 
-packages/sdk/src/interface/IBundler.ts:41
+[packages/sdk/src/interface/IBundler.ts:41](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IBundler.ts#L41)
 
 ___
 
@@ -54,7 +54,7 @@ ___
 
 #### Defined in
 
-packages/sdk/src/interface/IBundler.ts:42
+[packages/sdk/src/interface/IBundler.ts:42](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IBundler.ts#L42)
 
 ___
 
@@ -64,4 +64,4 @@ ___
 
 #### Defined in
 
-packages/sdk/src/interface/IBundler.ts:43
+[packages/sdk/src/interface/IBundler.ts:43](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IBundler.ts#L43)

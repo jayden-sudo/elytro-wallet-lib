@@ -52,7 +52,7 @@ result/lib.esm/Result.d.ts:4
 
 ▸ **DecodeUserOp**(`chainId`, `entrypoint`, `userOperations`): `Promise`\<[`Result`](modules.md#result)\<[`DecodeResult`](interfaces/DecodeResult.md)[], `Error`\>\>
 
-Decode the transaction data (userOp.calldata, interaction from soulwallet contract only).
+Decode the transaction data (userOp.calldata, interaction from elytrowallet contract only).
 
 #### Parameters
 
@@ -76,4 +76,4 @@ Decoder
 
 #### Defined in
 
-decoder/src/decoder.ts:169
+[decoder/src/decoder.ts:169](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/decoder/src/decoder.ts#L169)

@@ -67,4 +67,4 @@ Get the token information from the token list.
 
 #### Defined in
 
-assets/src/asset.ts:14
+[assets/src/asset.ts:14](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/assets/src/asset.ts#L14)

@@ -51,7 +51,7 @@ calculate the key hash
 
 #### Defined in
 
-packages/sdk/src/tools/webauthn.ts:51
+[packages/sdk/src/tools/webauthn.ts:51](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/tools/webauthn.ts#L51)
 
 ___
 
@@ -81,7 +81,7 @@ P256
 
 #### Defined in
 
-packages/sdk/src/tools/webauthn.ts:95
+[packages/sdk/src/tools/webauthn.ts:95](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/tools/webauthn.ts#L95)
 
 ___
 
@@ -119,7 +119,7 @@ P256
 
 #### Defined in
 
-packages/sdk/src/tools/webauthn.ts:198
+[packages/sdk/src/tools/webauthn.ts:198](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/tools/webauthn.ts#L198)
 
 ___
 
@@ -160,7 +160,7 @@ WebAuthN
 
 #### Defined in
 
-packages/sdk/src/tools/webauthn.ts:125
+[packages/sdk/src/tools/webauthn.ts:125](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/tools/webauthn.ts#L125)
 
 ___
 
@@ -201,7 +201,7 @@ WebAuthN
 
 #### Defined in
 
-packages/sdk/src/tools/webauthn.ts:166
+[packages/sdk/src/tools/webauthn.ts:166](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/tools/webauthn.ts#L166)
 
 ___
 
@@ -227,4 +227,4 @@ calculate the key hash
 
 #### Defined in
 
-packages/sdk/src/tools/webauthn.ts:66
+[packages/sdk/src/tools/webauthn.ts:66](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/tools/webauthn.ts#L66)

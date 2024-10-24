@@ -33,7 +33,7 @@ DecodeResult
 
 #### Defined in
 
-decoder/src/interface/decodeData.ts:57
+[decoder/src/interface/decodeData.ts:57](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/decoder/src/interface/decodeData.ts#L57)
 
 ___
 
@@ -49,7 +49,7 @@ DecodeResult
 
 #### Defined in
 
-decoder/src/interface/decodeData.ts:65
+[decoder/src/interface/decodeData.ts:65](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/decoder/src/interface/decodeData.ts#L65)
 
 ___
 
@@ -65,7 +65,7 @@ DecodeResult
 
 #### Defined in
 
-decoder/src/interface/decodeData.ts:97
+[decoder/src/interface/decodeData.ts:97](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/decoder/src/interface/decodeData.ts#L97)
 
 ___
 
@@ -81,7 +81,7 @@ DecodeResult
 
 #### Defined in
 
-decoder/src/interface/decodeData.ts:73
+[decoder/src/interface/decodeData.ts:73](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/decoder/src/interface/decodeData.ts#L73)
 
 ___
 
@@ -97,7 +97,7 @@ DecodeResult
 
 #### Defined in
 
-decoder/src/interface/decodeData.ts:81
+[decoder/src/interface/decodeData.ts:81](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/decoder/src/interface/decodeData.ts#L81)
 
 ___
 
@@ -113,4 +113,4 @@ DecodeResult
 
 #### Defined in
 
-decoder/src/interface/decodeData.ts:89
+[decoder/src/interface/decodeData.ts:89](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/decoder/src/interface/decodeData.ts#L89)

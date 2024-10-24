@@ -48,7 +48,7 @@
 
 #### Defined in
 
-packages/sdk/src/socialRecovery.ts:12
+[packages/sdk/src/socialRecovery.ts:12](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/socialRecovery.ts#L12)
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 #### Defined in
 
-packages/sdk/src/socialRecovery.ts:13
+[packages/sdk/src/socialRecovery.ts:13](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/socialRecovery.ts#L13)
 
 ## Methods
 
@@ -82,7 +82,7 @@ pack SocialRecovery signature (EOA)
 
 #### Defined in
 
-packages/sdk/src/socialRecovery.ts:347
+[packages/sdk/src/socialRecovery.ts:347](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/socialRecovery.ts#L347)
 
 ___
 
@@ -112,7 +112,7 @@ pack SocialRecovery signature (P256)
 
 #### Defined in
 
-packages/sdk/src/socialRecovery.ts:367
+[packages/sdk/src/socialRecovery.ts:367](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/socialRecovery.ts#L367)
 
 ___
 
@@ -141,7 +141,7 @@ pack SocialRecovery signature (RS256)
 
 #### Defined in
 
-packages/sdk/src/socialRecovery.ts:395
+[packages/sdk/src/socialRecovery.ts:395](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/socialRecovery.ts#L395)
 
 ___
 
@@ -161,7 +161,7 @@ ___
 
 #### Defined in
 
-packages/sdk/src/socialRecovery.ts:258
+[packages/sdk/src/socialRecovery.ts:258](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/socialRecovery.ts#L258)
 
 ___
 
@@ -193,7 +193,7 @@ SocialRecovery
 
 #### Defined in
 
-packages/sdk/src/socialRecovery.ts:125
+[packages/sdk/src/socialRecovery.ts:125](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/socialRecovery.ts#L125)
 
 ___
 
@@ -223,7 +223,7 @@ SocialRecovery
 
 #### Defined in
 
-packages/sdk/src/socialRecovery.ts:77
+[packages/sdk/src/socialRecovery.ts:77](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/socialRecovery.ts#L77)
 
 ___
 
@@ -253,7 +253,7 @@ SocialRecovery
 
 #### Defined in
 
-packages/sdk/src/socialRecovery.ts:58
+[packages/sdk/src/socialRecovery.ts:58](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/socialRecovery.ts#L58)
 
 ___
 
@@ -300,7 +300,7 @@ socialRecovery
 
 #### Defined in
 
-packages/sdk/src/socialRecovery.ts:289
+[packages/sdk/src/socialRecovery.ts:289](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/socialRecovery.ts#L289)
 
 ___
 
@@ -320,7 +320,7 @@ ___
 
 #### Defined in
 
-packages/sdk/src/socialRecovery.ts:17
+[packages/sdk/src/socialRecovery.ts:17](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/socialRecovery.ts#L17)
 
 ___
 
@@ -350,4 +350,4 @@ SocialRecovery
 
 #### Defined in
 
-packages/sdk/src/socialRecovery.ts:145
+[packages/sdk/src/socialRecovery.ts:145](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/socialRecovery.ts#L145)

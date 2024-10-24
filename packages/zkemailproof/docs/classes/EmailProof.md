@@ -53,7 +53,7 @@ EmailProof
 
 #### Defined in
 
-emailProof.ts:45
+[emailProof.ts:45](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/zkemailproof/src/emailProof.ts#L45)
 
 ## Properties
 
@@ -63,7 +63,7 @@ emailProof.ts:45
 
 #### Defined in
 
-emailProof.ts:35
+[emailProof.ts:35](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/zkemailproof/src/emailProof.ts#L35)
 
 ___
 
@@ -73,7 +73,7 @@ ___
 
 #### Defined in
 
-emailProof.ts:30
+[emailProof.ts:30](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/zkemailproof/src/emailProof.ts#L30)
 
 ___
 
@@ -83,7 +83,7 @@ ___
 
 #### Defined in
 
-emailProof.ts:31
+[emailProof.ts:31](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/zkemailproof/src/emailProof.ts#L31)
 
 ___
 
@@ -93,7 +93,7 @@ ___
 
 #### Defined in
 
-emailProof.ts:185
+[emailProof.ts:185](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/zkemailproof/src/emailProof.ts#L185)
 
 ___
 
@@ -103,7 +103,7 @@ ___
 
 #### Defined in
 
-emailProof.ts:33
+[emailProof.ts:33](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/zkemailproof/src/emailProof.ts#L33)
 
 ___
 
@@ -113,7 +113,7 @@ ___
 
 #### Defined in
 
-emailProof.ts:34
+[emailProof.ts:34](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/zkemailproof/src/emailProof.ts#L34)
 
 ___
 
@@ -123,7 +123,7 @@ ___
 
 #### Defined in
 
-emailProof.ts:32
+[emailProof.ts:32](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/zkemailproof/src/emailProof.ts#L32)
 
 ## Methods
 
@@ -145,7 +145,7 @@ emailProof.ts:32
 
 #### Defined in
 
-emailProof.ts:190
+[emailProof.ts:190](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/zkemailproof/src/emailProof.ts#L190)
 
 ___
 
@@ -159,7 +159,7 @@ ___
 
 #### Defined in
 
-emailProof.ts:186
+[emailProof.ts:186](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/zkemailproof/src/emailProof.ts#L186)
 
 ___
 
@@ -187,7 +187,7 @@ EmailProof
 
 #### Defined in
 
-emailProof.ts:139
+[emailProof.ts:139](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/zkemailproof/src/emailProof.ts#L139)
 
 ___
 
@@ -216,4 +216,4 @@ EmailProof
 
 #### Defined in
 
-emailProof.ts:96
+[emailProof.ts:96](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/zkemailproof/src/emailProof.ts#L96)

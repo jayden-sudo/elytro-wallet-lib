@@ -44,7 +44,7 @@ UserOpDetail
 
 #### Defined in
 
-packages/sdk/src/interface/IBundler.ts:56
+[packages/sdk/src/interface/IBundler.ts:56](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IBundler.ts#L56)
 
 ___
 
@@ -54,7 +54,7 @@ ___
 
 #### Defined in
 
-packages/sdk/src/interface/IBundler.ts:55
+[packages/sdk/src/interface/IBundler.ts:55](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IBundler.ts#L55)
 
 ___
 
@@ -68,7 +68,7 @@ UserOperation.callData
 
 #### Defined in
 
-packages/sdk/src/interface/UserOperation.ts:9
+[packages/sdk/src/interface/UserOperation.ts:9](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/UserOperation.ts#L9)
 
 ___
 
@@ -82,7 +82,7 @@ UserOperation.callGasLimit
 
 #### Defined in
 
-packages/sdk/src/interface/UserOperation.ts:10
+[packages/sdk/src/interface/UserOperation.ts:10](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/UserOperation.ts#L10)
 
 ___
 
@@ -92,7 +92,7 @@ ___
 
 #### Defined in
 
-packages/sdk/src/interface/IBundler.ts:54
+[packages/sdk/src/interface/IBundler.ts:54](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IBundler.ts#L54)
 
 ___
 
@@ -106,7 +106,7 @@ UserOperation.factory
 
 #### Defined in
 
-packages/sdk/src/interface/UserOperation.ts:7
+[packages/sdk/src/interface/UserOperation.ts:7](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/UserOperation.ts#L7)
 
 ___
 
@@ -120,7 +120,7 @@ UserOperation.factoryData
 
 #### Defined in
 
-packages/sdk/src/interface/UserOperation.ts:8
+[packages/sdk/src/interface/UserOperation.ts:8](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/UserOperation.ts#L8)
 
 ___
 
@@ -134,7 +134,7 @@ UserOperation.maxFeePerGas
 
 #### Defined in
 
-packages/sdk/src/interface/UserOperation.ts:13
+[packages/sdk/src/interface/UserOperation.ts:13](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/UserOperation.ts#L13)
 
 ___
 
@@ -148,7 +148,7 @@ UserOperation.maxPriorityFeePerGas
 
 #### Defined in
 
-packages/sdk/src/interface/UserOperation.ts:14
+[packages/sdk/src/interface/UserOperation.ts:14](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/UserOperation.ts#L14)
 
 ___
 
@@ -162,7 +162,7 @@ UserOperation.nonce
 
 #### Defined in
 
-packages/sdk/src/interface/UserOperation.ts:6
+[packages/sdk/src/interface/UserOperation.ts:6](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/UserOperation.ts#L6)
 
 ___
 
@@ -176,7 +176,7 @@ UserOperation.paymaster
 
 #### Defined in
 
-packages/sdk/src/interface/UserOperation.ts:15
+[packages/sdk/src/interface/UserOperation.ts:15](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/UserOperation.ts#L15)
 
 ___
 
@@ -190,7 +190,7 @@ UserOperation.paymasterData
 
 #### Defined in
 
-packages/sdk/src/interface/UserOperation.ts:18
+[packages/sdk/src/interface/UserOperation.ts:18](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/UserOperation.ts#L18)
 
 ___
 
@@ -204,7 +204,7 @@ UserOperation.paymasterPostOpGasLimit
 
 #### Defined in
 
-packages/sdk/src/interface/UserOperation.ts:17
+[packages/sdk/src/interface/UserOperation.ts:17](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/UserOperation.ts#L17)
 
 ___
 
@@ -218,7 +218,7 @@ UserOperation.paymasterVerificationGasLimit
 
 #### Defined in
 
-packages/sdk/src/interface/UserOperation.ts:16
+[packages/sdk/src/interface/UserOperation.ts:16](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/UserOperation.ts#L16)
 
 ___
 
@@ -232,7 +232,7 @@ UserOperation.preVerificationGas
 
 #### Defined in
 
-packages/sdk/src/interface/UserOperation.ts:12
+[packages/sdk/src/interface/UserOperation.ts:12](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/UserOperation.ts#L12)
 
 ___
 
@@ -246,7 +246,7 @@ UserOperation.sender
 
 #### Defined in
 
-packages/sdk/src/interface/UserOperation.ts:5
+[packages/sdk/src/interface/UserOperation.ts:5](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/UserOperation.ts#L5)
 
 ___
 
@@ -260,7 +260,7 @@ UserOperation.signature
 
 #### Defined in
 
-packages/sdk/src/interface/UserOperation.ts:19
+[packages/sdk/src/interface/UserOperation.ts:19](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/UserOperation.ts#L19)
 
 ___
 
@@ -270,7 +270,7 @@ ___
 
 #### Defined in
 
-packages/sdk/src/interface/IBundler.ts:57
+[packages/sdk/src/interface/IBundler.ts:57](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IBundler.ts#L57)
 
 ___
 
@@ -284,4 +284,4 @@ UserOperation.verificationGasLimit
 
 #### Defined in
 
-packages/sdk/src/interface/UserOperation.ts:11
+[packages/sdk/src/interface/UserOperation.ts:11](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/UserOperation.ts#L11)

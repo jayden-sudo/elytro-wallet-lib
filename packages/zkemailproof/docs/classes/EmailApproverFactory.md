@@ -41,7 +41,7 @@
 
 #### Defined in
 
-emailApproverFactory.ts:48
+[emailApproverFactory.ts:48](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/zkemailproof/src/emailApproverFactory.ts#L48)
 
 ## Properties
 
@@ -51,7 +51,7 @@ emailApproverFactory.ts:48
 
 #### Defined in
 
-emailApproverFactory.ts:46
+[emailApproverFactory.ts:46](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/zkemailproof/src/emailApproverFactory.ts#L46)
 
 ___
 
@@ -61,7 +61,7 @@ ___
 
 #### Defined in
 
-emailApproverFactory.ts:45
+[emailApproverFactory.ts:45](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/zkemailproof/src/emailApproverFactory.ts#L45)
 
 ## Methods
 
@@ -82,7 +82,7 @@ emailApproverFactory.ts:45
 
 #### Defined in
 
-emailApproverFactory.ts:121
+[emailApproverFactory.ts:121](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/zkemailproof/src/emailApproverFactory.ts#L121)
 
 ___
 
@@ -112,7 +112,7 @@ EmailApproverFactory
 
 #### Defined in
 
-emailApproverFactory.ts:164
+[emailApproverFactory.ts:164](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/zkemailproof/src/emailApproverFactory.ts#L164)
 
 ___
 
@@ -141,7 +141,7 @@ EmailApproverFactory
 
 #### Defined in
 
-emailApproverFactory.ts:141
+[emailApproverFactory.ts:141](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/zkemailproof/src/emailApproverFactory.ts#L141)
 
 ___
 
@@ -162,7 +162,7 @@ ___
 
 #### Defined in
 
-emailApproverFactory.ts:171
+[emailApproverFactory.ts:171](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/zkemailproof/src/emailApproverFactory.ts#L171)
 
 ___
 
@@ -176,7 +176,7 @@ ___
 
 #### Defined in
 
-emailApproverFactory.ts:62
+[emailApproverFactory.ts:62](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/zkemailproof/src/emailApproverFactory.ts#L62)
 
 ___
 
@@ -207,4 +207,4 @@ EmailProof
 
 #### Defined in
 
-emailApproverFactory.ts:79
+[emailApproverFactory.ts:79](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/zkemailproof/src/emailApproverFactory.ts#L79)

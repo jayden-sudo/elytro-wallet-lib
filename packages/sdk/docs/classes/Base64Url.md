@@ -49,7 +49,7 @@ Base64Url
 
 #### Defined in
 
-packages/sdk/src/tools/base64Url.ts:10
+[packages/sdk/src/tools/base64Url.ts:10](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/tools/base64Url.ts#L10)
 
 ___
 
@@ -77,4 +77,4 @@ Base64Url
 
 #### Defined in
 
-packages/sdk/src/tools/base64Url.ts:22
+[packages/sdk/src/tools/base64Url.ts:22](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/tools/base64Url.ts#L22)

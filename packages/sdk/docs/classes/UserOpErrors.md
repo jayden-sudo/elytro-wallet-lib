@@ -59,7 +59,7 @@ Error.constructor
 
 #### Defined in
 
-packages/sdk/src/interface/IUserOpErrors.ts:27
+[packages/sdk/src/interface/IUserOpErrors.ts:27](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IUserOpErrors.ts#L27)
 
 ## Properties
 
@@ -75,7 +75,7 @@ UserOpErrors
 
 #### Defined in
 
-packages/sdk/src/interface/IUserOpErrors.ts:16
+[packages/sdk/src/interface/IUserOpErrors.ts:16](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IUserOpErrors.ts#L16)
 
 ___
 
@@ -91,7 +91,7 @@ UserOpErrors
 
 #### Defined in
 
-packages/sdk/src/interface/IUserOpErrors.ts:25
+[packages/sdk/src/interface/IUserOpErrors.ts:25](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IUserOpErrors.ts#L25)
 
 ___
 
@@ -196,7 +196,7 @@ node_modules/.pnpm/@types+node@20.16.7/node_modules/@types/node/globals.d.ts:100
 
 #### Defined in
 
-packages/sdk/src/interface/IUserOpErrors.ts:33
+[packages/sdk/src/interface/IUserOpErrors.ts:33](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IUserOpErrors.ts#L33)
 
 ___
 

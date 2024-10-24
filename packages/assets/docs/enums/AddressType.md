@@ -6,13 +6,23 @@
 
 ### Enumeration Members
 
+- [Elytro](AddressType.md#elytro)
 - [Erc1155](AddressType.md#erc1155)
 - [Erc20](AddressType.md#erc20)
 - [Erc721](AddressType.md#erc721)
-- [SoulWallet](AddressType.md#soulwallet)
 - [Unknown](AddressType.md#unknown)
 
 ## Enumeration Members
+
+### Elytro
+
+• **Elytro** = ``1``
+
+#### Defined in
+
+[assets/src/interface/tokenInfo.ts:3](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/assets/src/interface/tokenInfo.ts#L3)
+
+___
 
 ### Erc1155
 
@@ -20,7 +30,7 @@
 
 #### Defined in
 
-assets/src/interface/tokenInfo.ts:6
+[assets/src/interface/tokenInfo.ts:6](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/assets/src/interface/tokenInfo.ts#L6)
 
 ___
 
@@ -30,7 +40,7 @@ ___
 
 #### Defined in
 
-assets/src/interface/tokenInfo.ts:4
+[assets/src/interface/tokenInfo.ts:4](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/assets/src/interface/tokenInfo.ts#L4)
 
 ___
 
@@ -40,17 +50,7 @@ ___
 
 #### Defined in
 
-assets/src/interface/tokenInfo.ts:5
-
-___
-
-### SoulWallet
-
-• **SoulWallet** = ``1``
-
-#### Defined in
-
-assets/src/interface/tokenInfo.ts:3
+[assets/src/interface/tokenInfo.ts:5](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/assets/src/interface/tokenInfo.ts#L5)
 
 ___
 
@@ -60,4 +60,4 @@ ___
 
 #### Defined in
 
-assets/src/interface/tokenInfo.ts:2
+[assets/src/interface/tokenInfo.ts:2](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/assets/src/interface/tokenInfo.ts#L2)

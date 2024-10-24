@@ -43,7 +43,7 @@
 
 #### Defined in
 
-packages/sdk/src/bundler.ts:11
+[packages/sdk/src/bundler.ts:11](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/bundler.ts#L11)
 
 ## Properties
 
@@ -53,7 +53,7 @@ packages/sdk/src/bundler.ts:11
 
 #### Defined in
 
-packages/sdk/src/bundler.ts:9
+[packages/sdk/src/bundler.ts:9](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/bundler.ts#L9)
 
 ## Methods
 
@@ -71,7 +71,7 @@ IBundler.eth\_chainId
 
 #### Defined in
 
-packages/sdk/src/bundler.ts:148
+[packages/sdk/src/bundler.ts:148](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/bundler.ts#L148)
 
 ___
 
@@ -97,7 +97,7 @@ IBundler.eth\_estimateUserOperationGas
 
 #### Defined in
 
-packages/sdk/src/bundler.ts:46
+[packages/sdk/src/bundler.ts:46](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/bundler.ts#L46)
 
 ___
 
@@ -121,7 +121,7 @@ IBundler.eth\_getUserOperationByHash
 
 #### Defined in
 
-packages/sdk/src/bundler.ts:80
+[packages/sdk/src/bundler.ts:80](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/bundler.ts#L80)
 
 ___
 
@@ -145,7 +145,7 @@ IBundler.eth\_getUserOperationReceipt
 
 #### Defined in
 
-packages/sdk/src/bundler.ts:101
+[packages/sdk/src/bundler.ts:101](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/bundler.ts#L101)
 
 ___
 
@@ -170,7 +170,7 @@ IBundler.eth\_sendUserOperation
 
 #### Defined in
 
-packages/sdk/src/bundler.ts:21
+[packages/sdk/src/bundler.ts:21](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/bundler.ts#L21)
 
 ___
 
@@ -188,4 +188,4 @@ IBundler.eth\_supportedEntryPoints
 
 #### Defined in
 
-packages/sdk/src/bundler.ts:122
+[packages/sdk/src/bundler.ts:122](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/bundler.ts#L122)

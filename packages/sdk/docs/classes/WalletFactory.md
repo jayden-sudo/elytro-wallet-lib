@@ -45,7 +45,7 @@
 
 #### Defined in
 
-packages/sdk/src/tools/walletFactory.ts:23
+[packages/sdk/src/tools/walletFactory.ts:23](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/tools/walletFactory.ts#L23)
 
 ___
 
@@ -78,13 +78,13 @@ WalletFactory
 
 #### Defined in
 
-packages/sdk/src/tools/walletFactory.ts:45
+[packages/sdk/src/tools/walletFactory.ts:45](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/tools/walletFactory.ts#L45)
 
 ___
 
 ### getWalletAddress
 
-▸ **getWalletAddress**(`soulWalletFactoryAddress`, `implementation`, `initializer`, `salt`): `string`
+▸ **getWalletAddress**(`elytroWalletFactoryAddress`, `implementation`, `initializer`, `salt`): `string`
 
 get wallet address
 
@@ -92,7 +92,7 @@ get wallet address
 
 | Name | Type |
 | :------ | :------ |
-| `soulWalletFactoryAddress` | `string` |
+| `elytroWalletFactoryAddress` | `string` |
 | `implementation` | `string` |
 | `initializer` | `string` |
 | `salt` | `string` |
@@ -111,13 +111,13 @@ WalletFactory
 
 #### Defined in
 
-packages/sdk/src/tools/walletFactory.ts:75
+[packages/sdk/src/tools/walletFactory.ts:75](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/tools/walletFactory.ts#L75)
 
 ___
 
 ### getWalletAddressByIndex
 
-▸ **getWalletAddressByIndex**(`soulWalletFactoryAddress`, `implementation`, `initializer`, `index`, `chainId`): `string`
+▸ **getWalletAddressByIndex**(`elytroWalletFactoryAddress`, `implementation`, `initializer`, `index`, `chainId`): `string`
 
 get wallet address by readable index
 
@@ -125,7 +125,7 @@ get wallet address by readable index
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `soulWalletFactoryAddress` | `string` |  |
+| `elytroWalletFactoryAddress` | `string` |  |
 | `implementation` | `string` |  |
 | `initializer` | `string` |  |
 | `index` | `number` |  |
@@ -145,7 +145,7 @@ WalletFactory
 
 #### Defined in
 
-packages/sdk/src/tools/walletFactory.ts:99
+[packages/sdk/src/tools/walletFactory.ts:99](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/tools/walletFactory.ts#L99)
 
 ___
 
@@ -165,4 +165,4 @@ ___
 
 #### Defined in
 
-packages/sdk/src/tools/walletFactory.ts:6
+[packages/sdk/src/tools/walletFactory.ts:6](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/tools/walletFactory.ts#L6)

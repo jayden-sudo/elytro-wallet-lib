@@ -6,13 +6,23 @@
 
 ### Enumeration Members
 
+- [Elytro](AddressType.md#elytro)
 - [Erc1155](AddressType.md#erc1155)
 - [Erc20](AddressType.md#erc20)
 - [Erc721](AddressType.md#erc721)
-- [SoulWallet](AddressType.md#soulwallet)
 - [Unknown](AddressType.md#unknown)
 
 ## Enumeration Members
+
+### Elytro
+
+• **Elytro** = ``1``
+
+#### Defined in
+
+assets/lib.esm/interface/tokenInfo.d.ts:3
+
+___
 
 ### Erc1155
 
@@ -41,16 +51,6 @@ ___
 #### Defined in
 
 assets/lib.esm/interface/tokenInfo.d.ts:5
-
-___
-
-### SoulWallet
-
-• **SoulWallet** = ``1``
-
-#### Defined in
-
-assets/lib.esm/interface/tokenInfo.d.ts:3
 
 ___
 

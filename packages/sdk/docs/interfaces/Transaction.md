@@ -25,7 +25,7 @@ Transaction
 
 #### Defined in
 
-packages/sdk/src/interface/ISoulWallet.ts:17
+[packages/sdk/src/interface/IElytroWallet.ts:17](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IElytroWallet.ts#L17)
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 #### Defined in
 
-packages/sdk/src/interface/ISoulWallet.ts:18
+[packages/sdk/src/interface/IElytroWallet.ts:18](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IElytroWallet.ts#L18)
 
 ___
 
@@ -45,7 +45,7 @@ ___
 
 #### Defined in
 
-packages/sdk/src/interface/ISoulWallet.ts:15
+[packages/sdk/src/interface/IElytroWallet.ts:15](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IElytroWallet.ts#L15)
 
 ___
 
@@ -55,4 +55,4 @@ ___
 
 #### Defined in
 
-packages/sdk/src/interface/ISoulWallet.ts:16
+[packages/sdk/src/interface/IElytroWallet.ts:16](https://github.com/jayden-sudo/elytro-wallet-lib/blob/86ed41b3b7e27b9de5339986244a72cb1f25e2cf/packages/sdk/src/interface/IElytroWallet.ts#L16)
