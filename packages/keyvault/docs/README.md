@@ -11,8 +11,8 @@ A lightweight private key management library that uses CryptoKey in the browser 
 </p>
 
 <p align="center">
-    <a href="https://github.com/SoulWallet/elytro-wallet-lib/tree/develop/packages/keyvault"><b>Code</b></a> •
-    <a href="https://github.com/SoulWallet/elytro-wallet-lib/blob/develop/packages/keyvault/docs/modules.md"><b>Documentation</b></a>
+    <a href="https://github.com/Elytro-eth/elytro-wallet-lib/tree/develop/packages/keyvault"><b>Code</b></a> •
+    <a href="https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/keyvault/docs/modules.md"><b>Documentation</b></a>
 </p>
 
 ## Table of Contents

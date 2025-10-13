@@ -5,12 +5,12 @@
 </h1>
 
 <p align="center">
-soulwallet-contract ABI
+elytro-wallet-contract ABI
 </p>
 
 <p align="center">
-    <a href="https://github.com/SoulWallet/elytro-wallet-lib/tree/develop/packages/abi"><b>Code</b></a> •
-    <a href="https://github.com/SoulWallet/elytro-wallet-lib/blob/develop/packages/abi/docs/modules.md"><b>Documentation</b></a>
+    <a href="https://github.com/Elytro-eth/elytro-wallet-lib/tree/develop/packages/abi"><b>Code</b></a> •
+    <a href="https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/abi/docs/modules.md"><b>Documentation</b></a>
 </p>
 
 
