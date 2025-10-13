@@ -71,7 +71,6 @@ import {
     ABI_ArbKnownStateRootWithHistory,
     ABI_KeyStoreModule,
     ABI_KeystoreProof,
-    ABI_ERC20Paymaster,
     ABI_EntryPoint
 } from '@elytro/abi'
 ```

@@ -90,7 +90,7 @@ describe('ActivateWallet', () => {
             initialKeys.push(p256KeyHash);
         }
 
-        const _walletAddress = await ElytroWallet.calcWalletAddress(
+        const _walletAddress = await elytroWallet.calcWalletAddress(
             index,
             initialKeys,
             initialGuardianHash,
@@ -102,7 +102,7 @@ describe('ActivateWallet', () => {
         const code = await Web3RPC.getCode(walletAddress);
         if (code === '0x') {
             const calldata = "0x";
-            const _userOp = await ElytroWallet.createUnsignedDeployWalletUserOp(
+            const _userOp = await elytroWallet.createUnsignedDeployWalletUserOp(
                 index,
                 initialKeys,
                 initialGuardianHash,
@@ -125,7 +125,7 @@ describe('ActivateWallet', () => {
             }
 
             {
-                const re = await ElytroWallet.estimateUserOperationGas(ElytroWalletDefaultValidator, userOp, undefined, signkeyType);
+                const re = await elytroWallet.estimateUserOperationGas(ElytroWalletDefaultValidator, userOp, undefined, signkeyType);
                 if (userOp.callData === '0x') {
                     userOp.callGasLimit = 1;
                 }

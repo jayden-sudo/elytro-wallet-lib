@@ -30,4 +30,4 @@ Defines a Result type, which can be either Ok or Err.
 
 #### Defined in
 
-[Result.ts:4](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/result/src/Result.ts#L4)
+[Result.ts:4](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/result/src/Result.ts#L4)

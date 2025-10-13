@@ -918,16 +918,17 @@ export class ElytroWallet implements IElytroWallet {
         }
         /* 
             keccak256("ElytroMessage(bytes32 message)");
+            bytes32 private constant SOUL_WALLET_MSG_TYPEHASH =0x2d652e7a5ba03a42cab5874652cb801029a67205cd9567e07bf5768edde9f002;
             
             keccak256("EIP712Domain(uint256 chainId,address verifyingContract)");
-            
+            bytes32 private constant DOMAIN_SEPARATOR_TYPEHASH =0x47e79534a245952e8b16893a336b85a3d9ea9fa8c573f3d803afb92a79469218;
         */
         const domain: TypedDataDomain = {
             chainId: _onChainConfig.OK.chainId,
             verifyingContract: ethers.getAddress(walletAddr)
         };
         const types: Record<string, Array<TypedDataField>> = {
-            elytroWalletMessage: [
+            ElytroMessage: [
                 { name: "message", type: "bytes32" }
             ]
         };

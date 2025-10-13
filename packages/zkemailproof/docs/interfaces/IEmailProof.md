@@ -21,7 +21,7 @@
 
 #### Defined in
 
-[emailProof.ts:26](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/zkemailproof/src/emailProof.ts#L26)
+[emailProof.ts:26](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/zkemailproof/src/emailProof.ts#L26)
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 #### Defined in
 
-[emailProof.ts:25](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/zkemailproof/src/emailProof.ts#L25)
+[emailProof.ts:25](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/zkemailproof/src/emailProof.ts#L25)
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 #### Defined in
 
-[emailProof.ts:21](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/zkemailproof/src/emailProof.ts#L21)
+[emailProof.ts:21](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/zkemailproof/src/emailProof.ts#L21)
 
 ___
 
@@ -51,7 +51,7 @@ ___
 
 #### Defined in
 
-[emailProof.ts:22](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/zkemailproof/src/emailProof.ts#L22)
+[emailProof.ts:22](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/zkemailproof/src/emailProof.ts#L22)
 
 ___
 
@@ -61,7 +61,7 @@ ___
 
 #### Defined in
 
-[emailProof.ts:24](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/zkemailproof/src/emailProof.ts#L24)
+[emailProof.ts:24](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/zkemailproof/src/emailProof.ts#L24)
 
 ___
 
@@ -71,4 +71,4 @@ ___
 
 #### Defined in
 
-[emailProof.ts:23](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/zkemailproof/src/emailProof.ts#L23)
+[emailProof.ts:23](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/zkemailproof/src/emailProof.ts#L23)
