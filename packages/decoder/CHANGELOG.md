@@ -1,5 +1,15 @@
 # @elytro/decoder
 
+## 1.0.1
+
+### Patch Changes
+
+- 12198df: Update elytro npm package
+- Updated dependencies [12198df]
+  - @elytro/assets@1.0.1
+  - @elytro/result@1.0.1
+  - @elytro/abi@1.0.1
+
 ## 1.0.0
 
 ### Major Changes
