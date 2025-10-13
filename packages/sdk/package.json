@@ -1,6 +1,6 @@
 {
     "name": "@elytro/sdk",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "ElytroWalletSDK = {  Basic Functions,  Bundler, KeyStore,  SignatureTools }",
     "author": "Jayden@elytro",
     "homepage": "https://github.com/SoulWallet/elytro-wallet-lib#readme",
