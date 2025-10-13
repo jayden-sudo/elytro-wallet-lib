@@ -1,5 +1,11 @@
 # @elytro/sdk
 
+## 1.1.0
+
+### Minor Changes
+
+- 492f4fc: Added calcWalletAddressGeneric and createUnsignedDeployWalletUserOpGeneric methods to ElytroWallet and IElytroWallet for chain-agnostic wallet address calculation and deployment. Updated WalletFactory to support chainId as optional for salt calculation and wallet address generation. Deprecated older methods in favor of new generic versions.
+
 ## 1.0.1
 
 ### Patch Changes
