@@ -11,7 +11,7 @@ if (!shell.which('forge')) {
 
 const __dirname = resolve();
 
-const elytrocontractDir = resolve(__dirname, '..', '..', 'Elytro-wallet-contract');
+const elytrocontractDir = resolve(__dirname, '..', '..', 'dev', 'Elytro-wallet-contract');
 console.log('elytrocontractDir', elytrocontractDir);
 shell.cd(elytrocontractDir);
 shell.exec("forge build", { silent: false });
