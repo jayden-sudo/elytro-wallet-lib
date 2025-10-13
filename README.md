@@ -2,7 +2,7 @@
    <b>
         Elytro Lib
     </b>
-  <img alt="CI" src="https://github.com/SoulWallet/elytro-wallet-lib/actions/workflows/UnitTest.yml/badge.svg?branch=develop"/>
+  <img alt="CI" src="https://github.com/Elytro-eth/elytro-wallet-lib/actions/workflows/UnitTest.yml/badge.svg?branch=develop"/>
 </h1>
 
 <p align="center">
@@ -10,7 +10,7 @@ Library of the Elytro contract
 </p>
 
 <p align="center">
-    <a href="https://github.com/SoulWallet/elytro-wallet-lib/"><b>Code</b></a>
+    <a href="https://github.com/Elytro-eth/elytro-wallet-lib/"><b>Code</b></a>
 </p>
 
 ## Table of Contents

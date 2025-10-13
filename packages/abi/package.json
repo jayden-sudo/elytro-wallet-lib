@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "Elytro-contract ABI",
   "author": "Jayden@elytro",
-  "homepage": "https://github.com/SoulWallet/elytro-wallet-lib#readme",
+  "homepage": "https://github.com/Elytro-eth/elytro-wallet-lib#readme",
   "license": "GPL-3.0",
   "main": "./lib.cjs/main.js",
   "module": "./lib.esm/main.js",
@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SoulWallet/elytro-wallet-lib.git"
+    "url": "git+https://github.com/Elytro-eth/elytro-wallet-lib.git"
   },
   "scripts": {
     "typedoc": "typedoc",
@@ -33,7 +33,7 @@
     "test": "jest"
   },
   "bugs": {
-    "url": "https://github.com/SoulWallet/elytro-wallet-lib/issues"
+    "url": "https://github.com/Elytro-eth/elytro-wallet-lib/issues"
   },
   "devDependencies": {
     "@types/node": "^20.10.7",

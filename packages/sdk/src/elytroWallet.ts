@@ -259,16 +259,51 @@ export class ElytroWallet implements IElytroWallet {
     }
 
     /**
-     * get wallet address by index
-     *
-     * @param {number} index readable index
-     * @param {InitialKey[]} initialKeys initial keys
-     * @param {string} initialGuardianHash initial guardian hash
-     * @param {number} [initialGuardianSafePeriod] initial guardian safe period
-     * @param {(number | string)} [chainId] number or hex string(must start with 0x)
+     * calcuate the wallet address from the index, initialKey and initialGuardianHash, the address will be the same on different chain.
+     * @abstract
+     * @param {number} index
+     * @param {InitialKey[]} initialKeys
+     * @param {string} initialGuardianHash
+     * @param {number} [initialGuardianSafePeriod]
      * @return {*}  {Promise<Result<string, Error>>}
-     * @memberof ElytroWallet
+     * @memberof IElytroWallet
      */
+    async calcWalletAddressGeneric(
+        index: number,
+        initialKeys: InitialKey[],
+        initialGuardianHash: string,
+        initialGuardianSafePeriod?: number
+    ): Promise<Result<string, Error>> {
+        const _initializeDataRet = await this.initializeData(initialKeys, initialGuardianHash, initialGuardianSafePeriod);
+        if (_initializeDataRet.isErr() === true) {
+            return new Err(_initializeDataRet.ERR);
+        }
+        const _onChainConfig = await this.getOnChainConfig();
+        if (_onChainConfig.isErr() === true) {
+            throw new Err(_onChainConfig.ERR);
+        }
+        return new Ok(WalletFactory.getWalletAddressByIndex(
+            this.elytroWalletFactoryAddress,
+            _onChainConfig.OK.elytroWalletLogic,
+            _initializeDataRet.OK,
+            index,
+            undefined
+        ));
+    }
+
+
+    /**
+    * calcuate the wallet address from the index, initialKey and initialGuardianHash.
+    * @deprecated use calcWalletAddressGeneric instead
+    * @abstract
+    * @param {number} index
+    * @param {InitialKey[]} initialKeys
+    * @param {string} initialGuardianHash
+    * @param {number} [initialGuardianSafePeriod]
+    * @param {number|string} [chainId] number or hex string(must start with 0x)
+    * @return {*}  {Promise<Result<string, Error>>}
+    * @memberof IElytroWallet
+    */
     async calcWalletAddress(
         index: number,
         initialKeys: InitialKey[],
@@ -349,6 +384,16 @@ export class ElytroWallet implements IElytroWallet {
         }
     }
 
+    /**
+     * create unsigned deploy wallet UserOp.
+     * @deprecated use createUnsignedDeployWalletUserOpGeneric instead
+     * @param {number} index
+     * @param {InitialKey[]} initialKeys
+     * @param {string} initialGuardianHash
+     * @param {string} [callData]
+     * @param {number} [initialGuardianSafePeriod]
+     * @return {*}  {Promise<Result<UserOperation, Error>>}
+     */
     async createUnsignedDeployWalletUserOp(
         index: number,
         initialKeys: InitialKey[],
@@ -379,6 +424,67 @@ export class ElytroWallet implements IElytroWallet {
             .substring(2)
             }`.toLowerCase();
         const senderRet = await this.calcWalletAddress(index, initialKeys, initialGuardianHash, initialGuardianSafePeriod);
+        if (senderRet.isErr() === true) {
+            return new Err(senderRet.ERR);
+        }
+        const _userOperation: UserOperation = {
+            sender: senderRet.OK,
+            nonce: 0,
+            factory,
+            factoryData,
+            callData,
+            callGasLimit: 0,
+            verificationGasLimit: 0,
+            preVerificationGas: this.preVerificationGasDeploy,
+            maxFeePerGas: 2,
+            maxPriorityFeePerGas: 1,
+            paymaster: null,
+            paymasterVerificationGasLimit: null,
+            paymasterPostOpGasLimit: null,
+            paymasterData: null,
+            signature: "0x"
+        };
+
+        return new Ok(_userOperation);
+    }
+
+
+    /**
+     * create unsigned deploy wallet UserOp.
+     * @param {number} index
+     * @param {InitialKey[]} initialKeys
+     * @param {string} initialGuardianHash
+     * @param {string} [callData]
+     * @param {number} [initialGuardianSafePeriod]
+     * @return {*}  {Promise<Result<UserOperation, Error>>}
+     */
+    async createUnsignedDeployWalletUserOpGeneric(
+        index: number,
+        initialKeys: InitialKey[],
+        initialGuardianHash: string,
+        callData: string = "0x",
+        initialGuardianSafePeriod?: number
+    ): Promise<Result<UserOperation, Error>> {
+        const ret = TypeGuard.onlyBytes(callData);
+        if (ret.isErr() === true) {
+            return new Err(
+                new Error(ret.ERR)
+            );
+        }
+        const _initializeData = await this.initializeData(initialKeys, initialGuardianHash, initialGuardianSafePeriod);
+        if (_initializeData.isErr() === true) {
+            return new Err(_initializeData.ERR);
+        }
+
+        const factory = this.elytroWalletFactoryAddress;
+        const factoryData = `${new ethers.Interface(ABI_ElytroFactory)
+            .encodeFunctionData("createWallet", [_initializeData.OK,
+            WalletFactory.calcWalletAddressSalt(index, undefined)
+            ])
+            .substring(2)
+            }`.toLowerCase();
+
+        const senderRet = await this.calcWalletAddressGeneric(index, initialKeys, initialGuardianHash, initialGuardianSafePeriod);
         if (senderRet.isErr() === true) {
             return new Err(senderRet.ERR);
         }

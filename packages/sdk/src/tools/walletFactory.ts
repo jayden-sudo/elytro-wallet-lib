@@ -38,25 +38,28 @@ export class WalletFactory {
      * 
      * @static
      * @param {number} index readable index
-     * @param {(number|string)} chainId number or hex string(must start with 0x)
+     * @param {(number|string|undefined)} chainId number or hex string(must start with 0x), if undefined, baseSalt = 0
      * @return {*}  {string} bytes32 salt
      * @memberof WalletFactory
      */
-    static calcWalletAddressSalt(index: number, chainId: number | string): string {
-        let _chainId = '';
-        if (typeof chainId === 'number') {
-            _chainId = chainId.toString(16).toLowerCase();
-        } else {
-            if (!chainId.startsWith('0x')) {
-                throw new Error('chainId must start with 0x');
+    static calcWalletAddressSalt(index: number, chainId: number | string | undefined): string {
+        let baseSalt = BigInt(0);
+        if (chainId !== undefined) {
+            let _chainId = '';
+            if (typeof chainId === 'number') {
+                _chainId = chainId.toString(16).toLowerCase();
+            } else {
+                if (!chainId.startsWith('0x')) {
+                    throw new Error('chainId must start with 0x');
+                }
+                _chainId = chainId.substring(2).toLowerCase();
             }
-            _chainId = chainId.substring(2).toLowerCase();
+            if (_chainId.length % 2 === 1) {
+                _chainId = '0' + _chainId;
+            }
+            _chainId = '0x' + _chainId;
+            baseSalt = BigInt(ethers.keccak256(_chainId));
         }
-        if (_chainId.length % 2 === 1) {
-            _chainId = '0' + _chainId;
-        }
-        _chainId = '0x' + _chainId;
-        let baseSalt = BigInt(ethers.keccak256(_chainId));
         baseSalt += BigInt(index);
         return Hex.paddingZero(baseSalt, 32).toLowerCase();
     }
@@ -92,11 +95,11 @@ export class WalletFactory {
      * @param {string} implementation
      * @param {string} initializer
      * @param {number} index
-     * @param {(number | string)} chainId number or hex string(must start with 0x)
+     * @param {(number | string | undefined)} chainId number or hex string(must start with 0x), if undefined the wallet address will be same on all chains
      * @return {*}  {string}
      * @memberof WalletFactory
      */
-    static getWalletAddressByIndex(elytroWalletFactoryAddress: string, implementation: string, initializer: string, index: number, chainId: number | string): string {
+    static getWalletAddressByIndex(elytroWalletFactoryAddress: string, implementation: string, initializer: string, index: number, chainId: number | string | undefined): string {
         return WalletFactory.getWalletAddress(
             elytroWalletFactoryAddress,
             implementation,

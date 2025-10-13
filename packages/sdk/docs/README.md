@@ -11,8 +11,8 @@ ElytroSDK = {  Basic Functions,  Bundler, KeyStore,  SignatureTools }
 </p>
 
 <p align="center">
-    <a href="https://github.com/SoulWallet/elytro-wallet-lib/tree/develop/packages/sdk"><b>Code</b></a> •
-    <a href="https://github.com/SoulWallet/elytro-wallet-lib/blob/develop/packages/sdk/docs/modules.md"><b>Documentation</b></a>
+    <a href="https://github.com/Elytro-eth/elytro-wallet-lib/tree/develop/packages/sdk"><b>Code</b></a> •
+    <a href="https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/docs/modules.md"><b>Documentation</b></a>
 </p>
 
 ## Table of Contents
@@ -55,7 +55,7 @@ import { Elytro, Transaction, Bundler } from "@elytro/sdk";
 / #TODO
 ```
 - Elytro SDK usage instructions are still being compiled. In the meantime, you can refer to the examples below:
-[deploy.ts](https://github.com/SoulWallet/elytro-wallet-lib/blob/develop/packages/internal-test/src/deploy.ts)
+[deploy.ts](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/internal-test/src/deploy.ts)
 
 ## License
 

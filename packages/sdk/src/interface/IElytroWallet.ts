@@ -38,7 +38,26 @@ export abstract class IElytroWallet {
 
     /**
      * calcuate the wallet address from the index, initialKey and initialGuardianHash.
-     *
+     * @deprecated use calcWalletAddressGeneric instead
+     * @abstract
+     * @param {number} index
+     * @param {InitialKey[]} initialKeys
+     * @param {string} initialGuardianHash
+     * @param {number} [initialGuardianSafePeriod]
+     * @param {number|string} [chainId] number or hex string(must start with 0x)
+     * @return {*}  {Promise<Result<string, Error>>}
+     * @memberof IElytroWallet
+     */
+    abstract calcWalletAddress(
+        index: number,
+        initialKeys: InitialKey[],
+        initialGuardianHash: string,
+        initialGuardianSafePeriod?: number,
+        chainId?: number | string
+    ): Promise<Result<string, Error>>;
+
+    /**
+     * calcuate the wallet address from the index, initialKey and initialGuardianHash, the address will be the same on different chain.
      * @abstract
      * @param {number} index
      * @param {InitialKey[]} initialKeys
@@ -47,7 +66,7 @@ export abstract class IElytroWallet {
      * @return {*}  {Promise<Result<string, Error>>}
      * @memberof IElytroWallet
      */
-    abstract calcWalletAddress(
+    abstract calcWalletAddressGeneric(
         index: number,
         initialKeys: InitialKey[],
         initialGuardianHash: string,
@@ -57,7 +76,7 @@ export abstract class IElytroWallet {
 
     /**
      * create unsigned deploy wallet UserOp.
-     *
+     * @deprecated use createUnsignedDeployWalletUserOpGeneric instead
      * @abstract
      * @param {number} index
      * @param {InitialKey[]} initialKeys
@@ -68,6 +87,25 @@ export abstract class IElytroWallet {
      * @memberof IElytroWallet
      */
     abstract createUnsignedDeployWalletUserOp(
+        index: number,
+        initialKeys: InitialKey[],
+        initialGuardianHash: string,
+        callData?: string,
+        initialGuardianSafePeriod?: number
+    ): Promise<Result<UserOperation, Error>>;
+
+    /**
+     * create unsigned deploy wallet UserOp.
+     * @abstract
+     * @param {number} index
+     * @param {InitialKey[]} initialKeys
+     * @param {string} initialGuardianHash
+     * @param {string} [callData]
+     * @param {number} [initialGuardianSafePeriod]
+     * @return {*}  {Promise<Result<UserOperation, Error>>}
+     * @memberof IElytroWallet
+     */
+    abstract createUnsignedDeployWalletUserOpGeneric(
         index: number,
         initialKeys: InitialKey[],
         initialGuardianHash: string,
