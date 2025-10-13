@@ -34,7 +34,7 @@ TokenInfo
 
 #### Defined in
 
-[assets/src/interface/tokenInfo.ts:38](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/assets/src/interface/tokenInfo.ts#L38)
+[assets/src/interface/tokenInfo.ts:38](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/assets/src/interface/tokenInfo.ts#L38)
 
 ___
 
@@ -50,7 +50,7 @@ TokenInfo
 
 #### Defined in
 
-[assets/src/interface/tokenInfo.ts:30](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/assets/src/interface/tokenInfo.ts#L30)
+[assets/src/interface/tokenInfo.ts:30](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/assets/src/interface/tokenInfo.ts#L30)
 
 ___
 
@@ -66,7 +66,7 @@ TokenInfo
 
 #### Defined in
 
-[assets/src/interface/tokenInfo.ts:70](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/assets/src/interface/tokenInfo.ts#L70)
+[assets/src/interface/tokenInfo.ts:70](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/assets/src/interface/tokenInfo.ts#L70)
 
 ___
 
@@ -82,7 +82,7 @@ TokenInfo
 
 #### Defined in
 
-[assets/src/interface/tokenInfo.ts:78](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/assets/src/interface/tokenInfo.ts#L78)
+[assets/src/interface/tokenInfo.ts:78](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/assets/src/interface/tokenInfo.ts#L78)
 
 ___
 
@@ -98,7 +98,7 @@ TokenInfo
 
 #### Defined in
 
-[assets/src/interface/tokenInfo.ts:54](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/assets/src/interface/tokenInfo.ts#L54)
+[assets/src/interface/tokenInfo.ts:54](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/assets/src/interface/tokenInfo.ts#L54)
 
 ___
 
@@ -114,7 +114,7 @@ TokenInfo
 
 #### Defined in
 
-[assets/src/interface/tokenInfo.ts:62](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/assets/src/interface/tokenInfo.ts#L62)
+[assets/src/interface/tokenInfo.ts:62](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/assets/src/interface/tokenInfo.ts#L62)
 
 ___
 
@@ -130,4 +130,4 @@ TokenInfo
 
 #### Defined in
 
-[assets/src/interface/tokenInfo.ts:46](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/assets/src/interface/tokenInfo.ts#L46)
+[assets/src/interface/tokenInfo.ts:46](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/assets/src/interface/tokenInfo.ts#L46)

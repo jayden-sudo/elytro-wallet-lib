@@ -301,9 +301,9 @@ describe('SDK', () => {
             signature: '0xb0'
         };
 
-        const entrypointAddress = '0x0000000071727De22E5E9d8BAf0edAc6f37da032';
+        const entrypointAddress = '0x4337084D9E255Ff0702461CF8895CE9E3b5Ff108';
         const chainId = 1;
-        const userOpHash = '0xb52cfcae9bba87f372db89cc6e43d71d53f304be0cbda3db9f28c4d93c37949d';
+        const userOpHash = '0xad630688ac6ecbed27d4f621d4fe816e51eec658f20ae2d84b783b3ca28f00ce';
         {
             const _userOpHash = UserOpUtils.getUserOpHash(packedUserOp, entrypointAddress, chainId);
             expect(_userOpHash).toBe(userOpHash);
@@ -316,7 +316,7 @@ describe('SDK', () => {
 
     });
     // test('calcWalletAddress', async () => {
-    //     const soulwallet = new ElytroWallet(
+    //     const soulwallet = new SoulWallet(
     //         "https://sepolia-rollup.arbitrum.io/rpc",
     //         "https://api-dev.soulwallet.io/walletapi/bundler/arbitrum-sepolia/rpc",
     //         "0xF78Ae187CED0Ca5Fb98100d3F0EAB7a6461d6fC6",

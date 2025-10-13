@@ -28,7 +28,7 @@ ICreateEmailApproverArgs
 
 #### Defined in
 
-[emailApproverFactory.ts:40](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/zkemailproof/src/emailApproverFactory.ts#L40)
+[emailApproverFactory.ts:40](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/zkemailproof/src/emailApproverFactory.ts#L40)
 
 ___
 
@@ -44,7 +44,7 @@ ICreateEmailApproverArgs
 
 #### Defined in
 
-[emailApproverFactory.ts:32](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/zkemailproof/src/emailApproverFactory.ts#L32)
+[emailApproverFactory.ts:32](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/zkemailproof/src/emailApproverFactory.ts#L32)
 
 ___
 
@@ -60,4 +60,4 @@ ICreateEmailApproverArgs
 
 #### Defined in
 
-[emailApproverFactory.ts:24](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/zkemailproof/src/emailApproverFactory.ts#L24)
+[emailApproverFactory.ts:24](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/zkemailproof/src/emailApproverFactory.ts#L24)

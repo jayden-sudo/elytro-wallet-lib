@@ -67,4 +67,4 @@ Get the token information from the token list.
 
 #### Defined in
 
-[assets/src/asset.ts:14](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/assets/src/asset.ts#L14)
+[assets/src/asset.ts:14](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/assets/src/asset.ts#L14)

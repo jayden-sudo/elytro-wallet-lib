@@ -49,7 +49,7 @@ Base64Url
 
 #### Defined in
 
-[packages/sdk/src/tools/base64Url.ts:10](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/tools/base64Url.ts#L10)
+[packages/sdk/src/tools/base64Url.ts:10](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/tools/base64Url.ts#L10)
 
 ___
 
@@ -77,4 +77,4 @@ Base64Url
 
 #### Defined in
 
-[packages/sdk/src/tools/base64Url.ts:22](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/sdk/src/tools/base64Url.ts#L22)
+[packages/sdk/src/tools/base64Url.ts:22](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/tools/base64Url.ts#L22)

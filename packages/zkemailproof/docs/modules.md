@@ -39,4 +39,4 @@
 
 #### Defined in
 
-[emailProof.ts:9](https://github.com/SoulWallet/elytro-wallet-lib/blob/179e9ead428fdbe246d2e7c57356d8786d712066/packages/zkemailproof/src/emailProof.ts#L9)
+[emailProof.ts:9](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/zkemailproof/src/emailProof.ts#L9)

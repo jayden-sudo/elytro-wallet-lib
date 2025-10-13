@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
+import { BigNumberish, HexString, Bytes32, Address } from "../interface/types.js";
 import { UserOperation, PackedUserOperation } from "../interface/UserOperation.js";
-import { Address, BigNumberish, HexString, Bytes32 } from "../interface/types.js";
 import { Hex } from "./hex.js";
 
 function bigIntToNumber(value: bigint): number {
