@@ -38,7 +38,6 @@ export abstract class IElytroWallet {
 
     /**
      * calcuate the wallet address from the index, initialKey and initialGuardianHash.
-     * @deprecated use calcWalletAddressGeneric instead
      * @abstract
      * @param {number} index
      * @param {InitialKey[]} initialKeys
@@ -76,7 +75,6 @@ export abstract class IElytroWallet {
 
     /**
      * create unsigned deploy wallet UserOp.
-     * @deprecated use createUnsignedDeployWalletUserOpGeneric instead
      * @abstract
      * @param {number} index
      * @param {InitialKey[]} initialKeys

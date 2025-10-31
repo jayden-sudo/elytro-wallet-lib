@@ -294,7 +294,6 @@ export class ElytroWallet implements IElytroWallet {
 
     /**
     * calcuate the wallet address from the index, initialKey and initialGuardianHash.
-    * @deprecated use calcWalletAddressGeneric instead
     * @abstract
     * @param {number} index
     * @param {InitialKey[]} initialKeys
@@ -386,7 +385,6 @@ export class ElytroWallet implements IElytroWallet {
 
     /**
      * create unsigned deploy wallet UserOp.
-     * @deprecated use createUnsignedDeployWalletUserOpGeneric instead
      * @param {number} index
      * @param {InitialKey[]} initialKeys
      * @param {string} initialGuardianHash
@@ -544,12 +542,15 @@ export class ElytroWallet implements IElytroWallet {
         );
     }
 
-    private async guardHookList(walletAddress: string): Promise<Result<string[], Error>> {
+    private async hookList(walletAddress: string): Promise<Result<{ preIsValidSignatureHooks: string[]; preUserOpValidationHooks: string[]; }, Error>> {
         try {
             const _elytroWallet = new ethers.Contract(walletAddress, ABI_Elytro, this.provider);
-            // function listPlugin(uint8 hookType) external view returns (address[] memory plugins);
-            const _guardHookList = await _elytroWallet.listPlugin(1 /* uint8 private constant _GUARD_HOOK = 1 << 0; */);
-            return new Ok(_guardHookList);
+            const { preIsValidSignatureHooks, preUserOpValidationHooks }: {
+                preIsValidSignatureHooks: string[],
+                preUserOpValidationHooks: string[]
+            } = await _elytroWallet.listHook();
+
+            return new Ok({ preIsValidSignatureHooks, preUserOpValidationHooks });
         } catch (error: unknown) {
             if (error instanceof Error) {
                 return new Err(error);
@@ -569,11 +570,11 @@ export class ElytroWallet implements IElytroWallet {
                 throw new Error(`invalid sender: ${guardHookInputData.sender}`);
             }
             hookInputData = new HookInputData();
-            const guardHooksRet = await this.guardHookList(guardHookInputData.sender);
+            const guardHooksRet = await this.hookList(guardHookInputData.sender);
             if (guardHooksRet.isErr() === true) {
                 return new Err(guardHooksRet.ERR);
             }
-            hookInputData.guardHooks = guardHooksRet.OK;
+            hookInputData.guardHooks = guardHooksRet.OK.preUserOpValidationHooks;
             hookInputData.inputData = guardHookInputData.inputData;
         }
         return new Ok(hookInputData);
@@ -680,7 +681,7 @@ export class ElytroWallet implements IElytroWallet {
                     new UserOpErrors(UserOpErrorCodes.UnknownError, `invalid sender: ${semiValidGuardHookInputData.sender}`)
                 );
             }
-            if (userOp.factory === null || userOp.factory === "" || userOp.factory === "0x" || userOp.factory === ethers.ZeroAddress) {
+            if (typeof userOp.factory === 'string' &&  userOp.factory.length>=42 && userOp.factory !== ethers.ZeroAddress ) {
                 return new Err(
                     new UserOpErrors(UserOpErrorCodes.UnknownError, `cannot set semiValidGuardHookInputData when the contract wallet is not deployed`)
                 );
