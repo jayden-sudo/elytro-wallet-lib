@@ -171,19 +171,19 @@ export class Signature {
             const inputData: Record<string, string> = {};
             {
                 for (let i = 0; i < guardHookInputData.guardHooks.length; i++) {
-                    const guardianHookPluginAddress: string = guardHookInputData.guardHooks[i].toLocaleLowerCase()
+                    const guardianHookPluginAddress: string = guardHookInputData.guardHooks[i].toLowerCase()
                     if (TypeGuard.onlyAddress(guardianHookPluginAddress).isErr() === true) throw new Error('invalid guardHookInputData');
                     guardHooks.push(guardianHookPluginAddress);
                 }
                 for (const key in guardHookInputData.inputData) {
-                    const guardianHookPluginAddress: string = key.toLocaleLowerCase();
+                    const guardianHookPluginAddress: string = key.toLowerCase();
                     if (TypeGuard.onlyAddress(guardianHookPluginAddress).isErr() === true) throw new Error('invalid guardHookInputData');
-                    if (!guardHooks.includes(key)) {
+                    if (!guardHooks.includes(guardianHookPluginAddress)) {
                         throw new Error('invalid guardHookInputData');
                     }
-                    const inputDataValue = guardHookInputData.inputData[key].toLocaleLowerCase();
+                    const inputDataValue = guardHookInputData.inputData[key].toLowerCase();
                     if (TypeGuard.onlyBytes(inputDataValue).isErr() === true) throw new Error('invalid guardHookInputData');
-                    inputData[key] = inputDataValue;
+                    inputData[guardianHookPluginAddress] = inputDataValue;
                 }
             }
 
@@ -198,7 +198,7 @@ export class Signature {
                 } else if (guardHookInputDataLength === 0) {
                     throw new Error('invalid guardHookInputData');
                 }
-                guardHookInputDataBytes += guardHookInputDataLength.toString(16).padStart(12, '0');
+                guardHookInputDataBytes += guardHookInputDataLength.toString(16).padStart(8, '0');
                 guardHookInputDataBytes += inputData[guardianHookPluginAddress].substring(2);
             }
         }
@@ -215,15 +215,15 @@ export class Signature {
      * @param {string} validatorAddress validator contract address
      * @param {string} signature signature signature 65 bytes signature
      * @param {string} [validationData] validationData validationData 32 bytes validationData
-     * @param {HookInputData} [guardHookInputData] key: guardHookPlugin address, value: input data. 
+     * @param {HookInputData} [hookInputData] key: hookPlugin address, value: input data. 
      * @return {*}  {string}
      * @memberof Signature
      */
     static packEOASignature(
         validatorAddress: string,
-        signature: string, validationData: string, guardHookInputData?: HookInputData): string {
+        signature: string, validationData: string, hookInputData?: HookInputData): string {
         Signature.onlyEOASignature(signature);
-        return Signature.packSignature(validatorAddress, SignkeyType.EOA, signature, validationData, guardHookInputData);
+        return Signature.packSignature(validatorAddress, SignkeyType.EOA, signature, validationData, hookInputData);
     }
 
     /**

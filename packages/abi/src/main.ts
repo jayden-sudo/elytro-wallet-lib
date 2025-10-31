@@ -17,6 +17,7 @@ import ABI_ElytroUpgradeManager from "./ABI/ABI_ElytroUpgradeManager.js";
 import ABI_ElytroValidatorManager from "./ABI/ABI_ElytroValidatorManager.js";
 import ABI_Errors from "./ABI/ABI_Errors.js";
 import ABI_NewImplementation from "./ABI/ABI_NewImplementation.js";
+import ABI_SecurityHook from "./ABI/ABI_SecurityHook.js";
 import ABI_SocialRecoveryModule from "./ABI/ABI_SocialRecoveryModule.js";
 import ABI_UpgradeModule from "./ABI/ABI_UpgradeModule.js";
 import ABI_UpgradeModuleRegistry from "./ABI/ABI_UpgradeModuleRegistry.js";
@@ -45,6 +46,7 @@ export {
     ABI_ElytroValidatorManager,
     ABI_Errors,
     ABI_NewImplementation,
+    ABI_SecurityHook,
     ABI_SocialRecoveryModule,
     ABI_UpgradeModule,
     ABI_UpgradeModuleRegistry,
