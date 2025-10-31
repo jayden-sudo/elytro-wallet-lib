@@ -1,5 +1,12 @@
 # @elytro/zkemail-proof
 
+## 1.0.2
+
+### Patch Changes
+
+- Updated dependencies [f425389]
+  - @elytro/abi@1.1.0
+
 ## 1.0.1
 
 ### Patch Changes
