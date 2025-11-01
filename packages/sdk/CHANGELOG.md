@@ -1,5 +1,11 @@
 # @elytro/sdk
 
+## 1.2.1
+
+### Patch Changes
+
+- d8aec84: Replaces GuardHookInputData with HookInputDataItem for hook input data, updates method signatures and documentation to require sorted hook input data arrays, and removes unused gasOverhead.ts. Gas estimation now adjusts verificationGasLimit based on hook input data and key type. Improves clarity and consistency in hook signature packing and usage.
+
 ## 1.2.0
 
 ### Minor Changes
