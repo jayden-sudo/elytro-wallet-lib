@@ -22,7 +22,7 @@ Key type
 
 #### Defined in
 
-[packages/sdk/src/interface/IElytroWallet.ts:251](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/interface/IElytroWallet.ts#L251)
+[packages/sdk/src/interface/IElytroWallet.ts:276](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/interface/IElytroWallet.ts#L276)
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/interface/IElytroWallet.ts:252](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/interface/IElytroWallet.ts#L252)
+[packages/sdk/src/interface/IElytroWallet.ts:277](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/interface/IElytroWallet.ts#L277)
 
 ___
 
@@ -42,4 +42,4 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/interface/IElytroWallet.ts:253](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/interface/IElytroWallet.ts#L253)
+[packages/sdk/src/interface/IElytroWallet.ts:278](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/interface/IElytroWallet.ts#L278)

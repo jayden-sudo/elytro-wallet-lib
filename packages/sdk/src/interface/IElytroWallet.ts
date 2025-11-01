@@ -152,11 +152,17 @@ export abstract class IElytroWallet {
      * @param {UserOperation} userOp UserOperation
      * @param {Record<string, StateOverride>} [stateOverride] stateOverride
      * @param {SignkeyType} [signkeyType] default: SignkeyType.EOA
-     * @param {GuardHookInputData} [semiValidGuardHookInputData]  sender: wallet address, inputData: key: guardHookPlugin address, value: input data
+     * @param {HookInputDataItem[]} [semiValidHookInputData] 
      * @return {*}  {Promise<Result<UserOpGas, UserOpErrors>>}
      * @memberof IElytroWallet
      */
-    abstract estimateUserOperationGas(validatorAddress: string, userOp: UserOperation, stateOverride?: Record<string, StateOverride>, signkeyType?: SignkeyType, semiValidGuardHookInputData?: GuardHookInputData): Promise<Result<UserOpGas, UserOpErrors>>;
+    abstract estimateUserOperationGas(
+        validatorAddress: string,
+        userOp: UserOperation,
+        stateOverride?: Record<string, StateOverride>,
+        signkeyType?: SignkeyType,
+        semiValidHookInputData?: HookInputDataItem[]
+    ): Promise<Result<UserOpGas, UserOpErrors>>;
 
     /**
      * broadcast the userOp.
@@ -246,29 +252,12 @@ export abstract class IElytroWallet {
 
 }
 
-
 /**
- * GuardHookInputData is the input data for the guardHook.
- *
- * @export
- * @class GuardHookInputData
+ * Hook input data item
  */
-export class GuardHookInputData {
-
-    /**
-     * 
-     *
-     * @type {string} wallet address
-     * @memberof GuardHookInputData
-     */
-    sender: string = "";
-    /**
-     *
-     *
-     * @type {Record<string, string>} key: guardHook address, value: input data
-     * @memberof GuardHookInputData
-     */
-    inputData: Record<string, string> = {};
+export interface HookInputDataItem {
+    hookAddress: string;
+    inputData: string;
 }
 
 /**

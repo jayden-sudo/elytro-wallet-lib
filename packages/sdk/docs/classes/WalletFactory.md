@@ -62,7 +62,7 @@ Salt = baseSalt + index
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `index` | `number` | readable index |
-| `chainId` | `string` \| `number` | number or hex string(must start with 0x) |
+| `chainId` | `undefined` \| `string` \| `number` | number or hex string(must start with 0x), if undefined, baseSalt = 0 |
 
 #### Returns
 
@@ -111,7 +111,7 @@ WalletFactory
 
 #### Defined in
 
-[packages/sdk/src/tools/walletFactory.ts:75](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/tools/walletFactory.ts#L75)
+[packages/sdk/src/tools/walletFactory.ts:78](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/tools/walletFactory.ts#L78)
 
 ___
 
@@ -129,7 +129,7 @@ get wallet address by readable index
 | `implementation` | `string` |  |
 | `initializer` | `string` |  |
 | `index` | `number` |  |
-| `chainId` | `string` \| `number` | number or hex string(must start with 0x) |
+| `chainId` | `undefined` \| `string` \| `number` | number or hex string(must start with 0x), if undefined the wallet address will be same on all chains |
 
 #### Returns
 
@@ -145,7 +145,7 @@ WalletFactory
 
 #### Defined in
 
-[packages/sdk/src/tools/walletFactory.ts:99](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/tools/walletFactory.ts#L99)
+[packages/sdk/src/tools/walletFactory.ts:102](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/tools/walletFactory.ts#L102)
 
 ___
 

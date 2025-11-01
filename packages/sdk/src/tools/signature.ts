@@ -1,26 +1,8 @@
 import { TypeGuard } from './typeGuard.js';
 import { Hex } from "./hex.js";
 import { ethers } from 'ethers';
-import { SignkeyType } from '../interface/IElytroWallet.js';
+import { HookInputDataItem, SignkeyType } from '../interface/IElytroWallet.js';
 import { ECCPoint, RSAPublicKey, WebAuthN } from './webauthn.js';
-
-export class HookInputData {
-    /**
-     * most important is guardHook address order
-     *
-     * @type {string[]}
-     * @memberof HookInputData
-     */
-    guardHooks: string[] = [];
-
-    /**
-     *
-     *
-     * @type {Record<string, string>} key: guardHook address, value: input data
-     * @memberof HookInputData
-     */
-    inputData: Record<string, string> = {};
-}
 
 export class Signature {
     /*
@@ -76,29 +58,29 @@ export class Signature {
     |                  data type dynamic data                       |
     |                                                               |
     +-------------------------+-------------------------------------+
-    | dynamic data length     | multi-guardHookInputData            |
+    | dynamic data length     | multi-hookInputData            |
     +-------------------------+-------------------------------------+
     | uint256 32 bytes        | dynamic data without length header  |
     +-------------------------+-------------------------------------+
 
 
     +--------------------------------------------------------------------------------+
-    |                            multi-guardHookInputData                            |
+    |                            multi-hookInputData                            |
     +--------------------------------------------------------------------------------+
-    |   guardHookInputData  |  guardHookInputData   |   ...  |  guardHookInputData   |
+    |   hookInputData  |  hookInputData   |   ...  |  hookInputData   |
     +-----------------------+-----------------------+--------+-----------------------+
     |     dynamic data      |     dynamic data      |   ...  |     dynamic data      |
     +--------------------------------------------------------------------------------+
 
     +----------------------------------------------------------------------+
-    |                                guardHookInputData                    |
+    |                                hookInputData                    |
     +----------------------------------------------------------------------+
-    |   guardHook address  |   input data length   |      input data       |
+    |   hook address  |   input data length   |      input data       |
     +----------------------+-----------------------+-----------------------+
     |        20bytes       |     6bytes(uint48)    |         bytes         |
     +----------------------------------------------------------------------+
 
-    Note: The order of guardHookInputData must be the same as the order in PluginManager.guardHook()!
+    Note: The order of hookInputData must be the same as the order in HookManager.listHook()!
 
      */
 
@@ -115,7 +97,7 @@ export class Signature {
         signkeyType: SignkeyType,
         rawSignature: string,
         validationData: string,
-        guardHookInputData?: HookInputData): string {
+        sortedHookInputDataItem?: HookInputDataItem[]): string {
         if (TypeGuard.onlyAddress(validatorAddress).isErr() === true) throw new Error('invalid validatorAddress');
 
         // `Signature`:
@@ -158,52 +140,30 @@ export class Signature {
         packedSignature += validatorSignature;
         // `hook signature`:
 
-        let guardHookInputDataBytes: string = '';
-        if (guardHookInputData !== undefined) {
-            // guardHookInputData.guardHookInputData.key ∈ guardHookInputData.guardHooks
-
-            // foreach guardHookInputData.guardHooks
-            if (guardHookInputData.guardHooks.length === 0) {
-                throw new Error('invalid guardHookInputData');
-            }
-
-            const guardHooks: string[] = [];
-            const inputData: Record<string, string> = {};
-            {
-                for (let i = 0; i < guardHookInputData.guardHooks.length; i++) {
-                    const guardianHookPluginAddress: string = guardHookInputData.guardHooks[i].toLowerCase()
-                    if (TypeGuard.onlyAddress(guardianHookPluginAddress).isErr() === true) throw new Error('invalid guardHookInputData');
-                    guardHooks.push(guardianHookPluginAddress);
+        let hookInputDataBytes: string = '';
+        if (sortedHookInputDataItem !== undefined && sortedHookInputDataItem.length > 0) {
+            for (let i = 0; i < sortedHookInputDataItem.length; i++) {
+                const inputItem = sortedHookInputDataItem[i];
+                if (TypeGuard.onlyAddress(inputItem.hookAddress).isErr() === true) throw new Error('invalid sortedHookInputDataItem');
+                if (inputItem.inputData.length < 4 /* 0x, 0x? */) {
+                    continue;
                 }
-                for (const key in guardHookInputData.inputData) {
-                    const guardianHookPluginAddress: string = key.toLowerCase();
-                    if (TypeGuard.onlyAddress(guardianHookPluginAddress).isErr() === true) throw new Error('invalid guardHookInputData');
-                    if (!guardHooks.includes(guardianHookPluginAddress)) {
-                        throw new Error('invalid guardHookInputData');
-                    }
-                    const inputDataValue = guardHookInputData.inputData[key].toLowerCase();
-                    if (TypeGuard.onlyBytes(inputDataValue).isErr() === true) throw new Error('invalid guardHookInputData');
-                    inputData[guardianHookPluginAddress] = inputDataValue;
-                }
-            }
+                if (TypeGuard.onlyBytes(inputItem.inputData).isErr() === true) throw new Error('invalid sortedHookInputDataItem');
 
-            for (let i = 0; i < guardHooks.length; i++) {
-                const guardianHookPluginAddress: string = guardHooks[i];
-
-                guardHookInputDataBytes += guardianHookPluginAddress.slice(2);
-                const guardHookInputData = inputData[guardianHookPluginAddress].substring(2);
-                const guardHookInputDataLength = guardHookInputData.length / 2;
-                if (guardHookInputDataLength > Math.pow(2, 48 - 2)) {
-                    throw new Error('invalid guardHookInputData');
-                } else if (guardHookInputDataLength === 0) {
-                    throw new Error('invalid guardHookInputData');
+                hookInputDataBytes += inputItem.hookAddress.slice(2);
+                const hookInputData = inputItem.inputData.substring(2);
+                const hookInputDataLength = hookInputData.length / 2;
+                if (hookInputDataLength > Math.pow(2, 48 - 2)) {
+                    throw new Error('invalid hookInputData');
+                } else if (hookInputDataLength === 0) {
+                    throw new Error('invalid hookInputData');
                 }
-                guardHookInputDataBytes += guardHookInputDataLength.toString(16).padStart(8, '0');
-                guardHookInputDataBytes += inputData[guardianHookPluginAddress].substring(2);
+                hookInputDataBytes += hookInputDataLength.toString(16).padStart(8, '0');
+                hookInputDataBytes += inputItem.inputData.substring(2);
             }
         }
 
-        packedSignature += guardHookInputDataBytes;
+        packedSignature += hookInputDataBytes;
         return packedSignature.toLowerCase();
     }
 
@@ -215,15 +175,24 @@ export class Signature {
      * @param {string} validatorAddress validator contract address
      * @param {string} signature signature signature 65 bytes signature
      * @param {string} [validationData] validationData validationData 32 bytes validationData
-     * @param {HookInputData} [hookInputData] key: hookPlugin address, value: input data. 
+     * @param {HookInputDataItem[]} [sortedHookInputDataItem] 
+     * Hint: The SortedHookInputData array **must be sorted exactly in the same order** as returned by the contract interface listHook().
+     * Example code:
+     * ```
+     * const elytroWallet = new ethers.Contract(walletAddress, ABI_Elytro, this.provider);
+     * const { preIsValidSignatureHooks, preUserOpValidationHooks } = await elytroWallet.listHook();
+     * ```
+     * 1. If you need to **pack a userOp signature**, you must sort the SortedHookInputData array in the **same order** as the preUserOpValidationHooks array.
+     * 2. If you need to **pack an EIP-1271 signature**, you must sort the SortedHookInputData array in the **same order** as the preIsValidSignatureHooks array.
+     * 
      * @return {*}  {string}
      * @memberof Signature
      */
     static packEOASignature(
         validatorAddress: string,
-        signature: string, validationData: string, hookInputData?: HookInputData): string {
+        signature: string, validationData: string, sortedHookInputDataItem?: HookInputDataItem[]): string {
         Signature.onlyEOASignature(signature);
-        return Signature.packSignature(validatorAddress, SignkeyType.EOA, signature, validationData, hookInputData);
+        return Signature.packSignature(validatorAddress, SignkeyType.EOA, signature, validationData, sortedHookInputDataItem);
     }
 
     /**
@@ -240,7 +209,16 @@ export class Signature {
      *             clientDataSuffix: string
      *         }} signatureData
      * @param {string} validationData
-     * @param {HookInputData} [guardHookInputData]
+     * @param {HookInputDataItem[]} [sortedHookInputDataItem] 
+     * Hint: The SortedHookInputData array **must be sorted exactly in the same order** as returned by the contract interface listHook().
+     * Example code:
+     * ```
+     * const elytroWallet = new ethers.Contract(walletAddress, ABI_Elytro, this.provider);
+     * const { preIsValidSignatureHooks, preUserOpValidationHooks } = await elytroWallet.listHook();
+     * ```
+     * 1. If you need to **pack a userOp signature**, you must sort the SortedHookInputData array in the **same order** as the preUserOpValidationHooks array.
+     * 2. If you need to **pack an EIP-1271 signature**, you must sort the SortedHookInputData array in the **same order** as the preIsValidSignatureHooks array.
+     * 
      * @return {*}  {string}
      * @memberof Signature
      */
@@ -255,7 +233,7 @@ export class Signature {
             clientDataSuffix: string
         },
         validationData: string,
-        guardHookInputData?: HookInputData
+        sortedHookInputDataItem?: HookInputDataItem[]
     ): string {
         if (TypeGuard.onlyBytes32(signatureData.messageHash).isErr() === true) throw new Error('invalid messageHash');
         let publicKeyhash = '';
@@ -321,7 +299,7 @@ export class Signature {
         rawSignature += _authenticatorData;
         rawSignature += ethers.hexlify(ethers.toUtf8Bytes(signatureData.clientDataSuffix)).slice(2);
 
-        return Signature.packSignature(validatorAddress, SignkeyType.P256, rawSignature, validationData, guardHookInputData);
+        return Signature.packSignature(validatorAddress, SignkeyType.P256, rawSignature, validationData, sortedHookInputDataItem);
     }
 
 
@@ -331,18 +309,27 @@ export class Signature {
      * @static
      * @param {string} validator contract address
      * @param {{
-    *             messageHash:string,
-    *             publicKey: InitialKey,
-    *             r: string,
-    *             s: string,
-    *             authenticatorData: string,
-    *             clientDataSuffix: string
-    *         }} signatureData
-    * @param {string} validationData
-    * @param {HookInputData} [guardHookInputData]
-    * @return {*}  {string}
-    * @memberof Signature
-    */
+     *             messageHash:string,
+     *             publicKey: InitialKey,
+     *             r: string,
+     *             s: string,
+     *             authenticatorData: string,
+     *             clientDataSuffix: string
+     *         }} signatureData
+     * @param {string} validationData
+     * @param {HookInputDataItem[]} [sortedHookInputDataItem] 
+     * Hint: The SortedHookInputData array **must be sorted exactly in the same order** as returned by the contract interface listHook().
+     * Example code:
+     * ```
+     * const elytroWallet = new ethers.Contract(walletAddress, ABI_Elytro, this.provider);
+     * const { preIsValidSignatureHooks, preUserOpValidationHooks } = await elytroWallet.listHook();
+     * ```
+     * 1. If you need to **pack a userOp signature**, you must sort the SortedHookInputData array in the **same order** as the preUserOpValidationHooks array.
+     * 2. If you need to **pack an EIP-1271 signature**, you must sort the SortedHookInputData array in the **same order** as the preIsValidSignatureHooks array.
+     * 
+     * @return {*}  {string}
+     * @memberof Signature
+     */
     static packRS256Signature(
         validatorAddress: string,
         signatureData: {
@@ -353,7 +340,7 @@ export class Signature {
             clientDataSuffix: string
         },
         validationData: string,
-        guardHookInputData?: HookInputData
+        sortedHookInputDataItem?: HookInputDataItem[]
     ): string {
         if (TypeGuard.onlyBytes32(signatureData.messageHash).isErr() === true) throw new Error('invalid messageHash');
         if (TypeGuard.onlyHex(signatureData.publicKey.e).isErr() === true) {
@@ -421,7 +408,7 @@ export class Signature {
         // 8. clientDataSuffix
         rawSignature += ethers.hexlify(ethers.toUtf8Bytes(signatureData.clientDataSuffix)).slice(2);
 
-        return Signature.packSignature(validatorAddress, SignkeyType.RS256, rawSignature, validationData, guardHookInputData);
+        return Signature.packSignature(validatorAddress, SignkeyType.RS256, rawSignature, validationData, sortedHookInputDataItem);
     }
 
     static getSignatureType(EOASigner: boolean, validAfter?: number, validUntil?: number) {
