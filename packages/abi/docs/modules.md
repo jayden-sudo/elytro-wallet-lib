@@ -28,6 +28,7 @@
 - [ABI\_EntryPoint](modules.md#abi_entrypoint)
 - [ABI\_Errors](modules.md#abi_errors)
 - [ABI\_NewImplementation](modules.md#abi_newimplementation)
+- [ABI\_SecurityHook](modules.md#abi_securityhook)
 - [ABI\_SocialRecoveryModule](modules.md#abi_socialrecoverymodule)
 - [ABI\_UpgradeModule](modules.md#abi_upgrademodule)
 - [ABI\_UpgradeModuleRegistry](modules.md#abi_upgrademoduleregistry)
@@ -70,7 +71,7 @@ ___
 
 #### Defined in
 
-ABI/ABI_DailyERC20SpendingLimitHook.ts:3
+[ABI/ABI_DailyERC20SpendingLimitHook.ts:3](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/abi/src/ABI/ABI_DailyERC20SpendingLimitHook.ts#L3)
 
 ___
 
@@ -140,7 +141,7 @@ ___
 
 #### Defined in
 
-ABI/ABI_ElytroInfoRecorder.ts:3
+[ABI/ABI_ElytroInfoRecorder.ts:3](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/abi/src/ABI/ABI_ElytroInfoRecorder.ts#L3)
 
 ___
 
@@ -254,6 +255,16 @@ ___
 
 ___
 
+### ABI\_SecurityHook
+
+• **ABI\_SecurityHook**: (\{ `anonymous?`: `undefined` = false; `inputs`: \{ `internalType`: `string` = "address"; `name`: `string` = "initialOwner"; `type`: `string` = "address" }[] ; `name?`: `undefined` = "ElytroETHReceived"; `outputs?`: `undefined` ; `stateMutability`: `string` = "nonpayable"; `type`: `string` = "constructor" } \| \{ `anonymous?`: `undefined` = false; `inputs`: (\{ `components`: \{ `internalType`: `string` = "address"; `name`: `string` = "sender"; `type`: `string` = "address" }[] ; `internalType`: `string` = "struct PackedUserOperation"; `name`: `string` = "userOp"; `type`: `string` = "tuple" } \| \{ `components?`: `undefined` ; `internalType`: `string` = "bytes32"; `name`: `string` = "userOpHash"; `type`: `string` = "bytes32" })[] ; `name`: `string` = "preUserOpValidationHook"; `outputs`: `never`[] = []; `stateMutability`: `string` = "view"; `type`: `string` = "function" } \| \{ `anonymous?`: `undefined` = false; `inputs`: \{ `internalType`: `string` = "address"; `name`: `string` = ""; `type`: `string` = "address" }[] ; `name`: `string` = "signers"; `outputs`: \{ `internalType`: `string` = "bool"; `name`: `string` = ""; `type`: `string` = "bool" }[] ; `stateMutability`: `string` = "view"; `type`: `string` = "function" } \| \{ `anonymous`: `boolean` = false; `inputs`: \{ `indexed`: `boolean` = true; `internalType`: `string` = "address"; `name`: `string` = "previousOwner"; `type`: `string` = "address" }[] ; `name`: `string` = "OwnershipTransferred"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "pure"; `type`: `string` = "event" } \| \{ `anonymous?`: `undefined` = false; `inputs`: \{ `internalType`: `string` = "uint256"; `name`: `string` = "length"; `type`: `string` = "uint256" }[] ; `name`: `string` = "ECDSAInvalidSignatureLength"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "pure"; `type`: `string` = "error" })[]
+
+#### Defined in
+
+[ABI/ABI_SecurityHook.ts:3](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/abi/src/ABI/ABI_SecurityHook.ts#L3)
+
+___
+
 ### ABI\_SocialRecoveryModule
 
 • **ABI\_SocialRecoveryModule**: (\{ `anonymous?`: `undefined` = false; `inputs`: `never`[] = []; `name?`: `undefined` = "ElytroETHReceived"; `outputs?`: `undefined` ; `stateMutability`: `string` = "nonpayable"; `type`: `string` = "constructor" } \| \{ `anonymous?`: `undefined` = false; `inputs`: \{ `internalType`: `string` = "bytes32"; `name`: `string` = ""; `type`: `string` = "bytes32" }[] ; `name`: `string` = "approvedHashes"; `outputs`: \{ `internalType`: `string` = "uint256"; `name`: `string` = ""; `type`: `string` = "uint256" }[] ; `stateMutability`: `string` = "view"; `type`: `string` = "function" } \| \{ `anonymous`: `boolean` = false; `inputs`: \{ `indexed`: `boolean` = true; `internalType`: `string` = "address"; `name`: `string` = "guardian"; `type`: `string` = "address" }[] ; `name`: `string` = "ApproveHash"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "pure"; `type`: `string` = "event" } \| \{ `anonymous?`: `undefined` = false; `inputs`: \{ `internalType`: `string` = "uint256"; `name`: `string` = "length"; `type`: `string` = "uint256" }[] ; `name`: `string` = "ECDSAInvalidSignatureLength"; `outputs?`: `undefined` ; `stateMutability?`: `undefined` = "pure"; `type`: `string` = "error" })[]
@@ -280,4 +291,4 @@ ___
 
 #### Defined in
 
-ABI/ABI_UpgradeModuleRegistry.ts:3
+[ABI/ABI_UpgradeModuleRegistry.ts:3](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/abi/src/ABI/ABI_UpgradeModuleRegistry.ts#L3)

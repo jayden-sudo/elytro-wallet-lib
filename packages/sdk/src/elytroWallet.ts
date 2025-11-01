@@ -1,10 +1,10 @@
 import { TypedDataDomain, TypedDataField, ethers } from "ethers";
-import { GuardHookInputData, IElytroWallet, InitialKey, SignkeyType, Transaction } from "./interface/IElytroWallet.js";
+import { HookInputDataItem, IElytroWallet, InitialKey, SignkeyType, Transaction } from "./interface/IElytroWallet.js";
 import { UserOperation } from "./interface/UserOperation.js";
 import { TypeGuard } from "./tools/typeGuard.js";
 import { MemCache } from "./tools/memCache.js";
 import { ABI_ElytroFactory, ABI_Elytro, ABI_EntryPoint } from "@elytro/abi";
-import { HookInputData, Signature } from "./tools/signature.js";
+import { Signature } from "./tools/signature.js";
 // import { Hex } from "./tools/hex.js";
 // import { GasOverhead } from "./tools/gasOverhead.js";
 import { UserOpErrors, UserOpErrorCodes } from "./interface/IUserOpErrors.js";
@@ -542,63 +542,30 @@ export class ElytroWallet implements IElytroWallet {
         );
     }
 
-    private async hookList(walletAddress: string): Promise<Result<{ preIsValidSignatureHooks: string[]; preUserOpValidationHooks: string[]; }, Error>> {
-        try {
-            const _elytroWallet = new ethers.Contract(walletAddress, ABI_Elytro, this.provider);
-            const { preIsValidSignatureHooks, preUserOpValidationHooks }: {
-                preIsValidSignatureHooks: string[],
-                preUserOpValidationHooks: string[]
-            } = await _elytroWallet.listHook();
-
-            return new Ok({ preIsValidSignatureHooks, preUserOpValidationHooks });
-        } catch (error: unknown) {
-            if (error instanceof Error) {
-                return new Err(error);
-            } else {
-                return new Err(
-                    new Error("unknown error")
-                );
-            }
-        }
-    }
-
-    private async prePackUserOpSignature(guardHookInputData?: GuardHookInputData): Promise<Result<HookInputData | undefined, Error>> {
-        let hookInputData: HookInputData | undefined = undefined;
-        if (guardHookInputData !== undefined) {
-            const ret = TypeGuard.onlyAddress(guardHookInputData.sender);
-            if (ret.isErr() === true) {
-                throw new Error(`invalid sender: ${guardHookInputData.sender}`);
-            }
-            hookInputData = new HookInputData();
-            const guardHooksRet = await this.hookList(guardHookInputData.sender);
-            if (guardHooksRet.isErr() === true) {
-                return new Err(guardHooksRet.ERR);
-            }
-            hookInputData.guardHooks = guardHooksRet.OK.preUserOpValidationHooks;
-            hookInputData.inputData = guardHookInputData.inputData;
-        }
-        return new Ok(hookInputData);
-    }
-
     /**
      * pack userOp signature (EOA)
      *
      * @param {string} validatorAddress validator contract address
      * @param {string} signature EOA signature
      * @param {string} validationData validation data
-     * @param {GuardHookInputData} [guardHookInputData] 
+     * @param {HookInputDataItem[]} [sortedHookInputData] 
+     * Hint: The SortedHookInputData array **must be sorted exactly in the same order** as returned by the contract interface listHook().
+     * Example code:
+     * ```
+     * const elytroWallet = new ethers.Contract(walletAddress, ABI_Elytro, this.provider);
+     * const { preIsValidSignatureHooks, preUserOpValidationHooks } = await elytroWallet.listHook();
+     * ```
+     * 1. If you need to **pack a userOp signature**, you must sort the SortedHookInputData array in the **same order** as the preUserOpValidationHooks array.
+     * 2. If you need to **pack an EIP-1271 signature**, you must sort the SortedHookInputData array in the **same order** as the preIsValidSignatureHooks array.
+     * 
      * @return {*}  {Promise<Result<string, Error>>}
      * @memberof ElytroWallet
      */
     async packUserOpEOASignature(
         validatorAddress: string,
-        signature: string, validationData: string, guardHookInputData?: GuardHookInputData): Promise<Result<string, Error>> {
-        const hookInputData = await this.prePackUserOpSignature(guardHookInputData);
-        if (hookInputData.isErr() === true) {
-            return new Err(hookInputData.ERR);
-        }
+        signature: string, validationData: string, sortedHookInputData?: HookInputDataItem[]): Promise<Result<string, Error>> {
         return new Ok(
-            Signature.packEOASignature(validatorAddress, signature, validationData, hookInputData.OK)
+            Signature.packEOASignature(validatorAddress, signature, validationData, sortedHookInputData)
         );
     }
 
@@ -615,7 +582,16 @@ export class ElytroWallet implements IElytroWallet {
      *         clientDataSuffix: string
      *     }} signatureData signature data, messageHash is userOp hash(packed userOp hash)
      * @param {string} validationData validation data
-     * @param {GuardHookInputData} [guardHookInputData]
+     * @param {HookInputDataItem[]} [sortedHookInputData] 
+     * Hint: The SortedHookInputData array **must be sorted exactly in the same order** as returned by the contract interface listHook().
+     * Example code:
+     * ```
+     * const elytroWallet = new ethers.Contract(walletAddress, ABI_Elytro, this.provider);
+     * const { preIsValidSignatureHooks, preUserOpValidationHooks } = await elytroWallet.listHook();
+     * ```
+     * 1. If you need to **pack a userOp signature**, you must sort the SortedHookInputData array in the **same order** as the preUserOpValidationHooks array.
+     * 2. If you need to **pack an EIP-1271 signature**, you must sort the SortedHookInputData array in the **same order** as the preIsValidSignatureHooks array.
+     * 
      * @return {*}  {Promise<Result<string, Error>>}
      * @memberof ElytroWallet
      */
@@ -628,13 +604,9 @@ export class ElytroWallet implements IElytroWallet {
             s: string,
             authenticatorData: string,
             clientDataSuffix: string
-        }, validationData: string, guardHookInputData?: GuardHookInputData): Promise<Result<string, Error>> {
-        const hookInputData = await this.prePackUserOpSignature(guardHookInputData);
-        if (hookInputData.isErr() === true) {
-            return new Err(hookInputData.ERR);
-        }
+        }, validationData: string, sortedHookInputData?: HookInputDataItem[]): Promise<Result<string, Error>> {
         return new Ok(
-            Signature.packP256Signature(validatorAddress, signatureData, validationData, hookInputData.OK)
+            Signature.packP256Signature(validatorAddress, signatureData, validationData, sortedHookInputData)
         );
     }
 
@@ -651,7 +623,16 @@ export class ElytroWallet implements IElytroWallet {
      *             clientDataSuffix: string
      *         }} signatureData
      * @param {string} validationData
-     * @param {HookInputData} [guardHookInputData]
+     * @param {HookInputDataItem[]} [sortedHookInputData] 
+     * Hint: The SortedHookInputData array **must be sorted exactly in the same order** as returned by the contract interface listHook().
+     * Example code:
+     * ```
+     * const elytroWallet = new ethers.Contract(walletAddress, ABI_Elytro, this.provider);
+     * const { preIsValidSignatureHooks, preUserOpValidationHooks } = await elytroWallet.listHook();
+     * ```
+     * 1. If you need to **pack a userOp signature**, you must sort the SortedHookInputData array in the **same order** as the preUserOpValidationHooks array.
+     * 2. If you need to **pack an EIP-1271 signature**, you must sort the SortedHookInputData array in the **same order** as the preIsValidSignatureHooks array.
+     * 
      * @return {*}  {Promise<Result<string, Error>>}
      * @memberof ElytroWallet
      */
@@ -664,26 +645,17 @@ export class ElytroWallet implements IElytroWallet {
             authenticatorData: string,
             clientDataSuffix: string
         },
-        validationData: string, guardHookInputData?: GuardHookInputData): Promise<Result<string, Error>> {
-        const hookInputData = await this.prePackUserOpSignature(guardHookInputData);
-        if (hookInputData.isErr() === true) {
-            return new Err(hookInputData.ERR);
-        }
+        validationData: string, sortedHookInputData?: HookInputDataItem[]): Promise<Result<string, Error>> {
         return new Ok(
-            Signature.packRS256Signature(validatorAddress, signatureData, validationData, hookInputData.OK)
+            Signature.packRS256Signature(validatorAddress, signatureData, validationData, sortedHookInputData)
         );
     }
 
-    async getSemiValidSignature(validatorAddress: string, userOp: UserOperation, signkeyType?: SignkeyType, semiValidGuardHookInputData?: GuardHookInputData): Promise<Result<string, UserOpErrors>> {
-        if (semiValidGuardHookInputData !== undefined) {
-            if (semiValidGuardHookInputData.sender.toLowerCase() !== userOp.sender.toLowerCase()) {
+    async getSemiValidSignature(validatorAddress: string, userOp: UserOperation, signkeyType?: SignkeyType, semiValidHookInputData?: HookInputDataItem[]): Promise<Result<string, UserOpErrors>> {
+        if (semiValidHookInputData !== undefined) {
+            if (typeof userOp.factory === 'string' && userOp.factory.length >= 42 && userOp.factory !== ethers.ZeroAddress) {
                 return new Err(
-                    new UserOpErrors(UserOpErrorCodes.UnknownError, `invalid sender: ${semiValidGuardHookInputData.sender}`)
-                );
-            }
-            if (typeof userOp.factory === 'string' &&  userOp.factory.length>=42 && userOp.factory !== ethers.ZeroAddress ) {
-                return new Err(
-                    new UserOpErrors(UserOpErrorCodes.UnknownError, `cannot set semiValidGuardHookInputData when the contract wallet is not deployed`)
+                    new UserOpErrors(UserOpErrorCodes.UnknownError, `cannot set semiValidHookInputData when the contract wallet is not deployed`)
                 );
             }
         }
@@ -705,7 +677,7 @@ export class ElytroWallet implements IElytroWallet {
                     clientDataSuffix: "\",\"origin\":\"http://localhost:5500\",\"crossOrigin\":false}"
                 },
                 `0x${validationData.toString(16)}`,
-                semiValidGuardHookInputData
+                semiValidHookInputData
             );
         } else if (signkeyType === SignkeyType.RS256) {
             signatureRet = await this.packUserOpRS256Signature(
@@ -721,11 +693,11 @@ export class ElytroWallet implements IElytroWallet {
                     clientDataSuffix: "\",\"origin\":\"http://localhost:5500\",\"crossOrigin\":false}"
                 },
                 `0x${validationData.toString(16)}`,
-                semiValidGuardHookInputData
+                semiValidHookInputData
             );
         } else {
             const signature = "0xb91467e570a6466aa9e9876cbcd013baba02900b8979d43fe208a4a4f339f5fd6007e74cd82e037b800186422fc2da167c747ef045e5d18a5f5d4300f8e1a0291c";
-            signatureRet = await this.packUserOpEOASignature(validatorAddress, signature, `0x${validationData.toString(16)}`, semiValidGuardHookInputData);
+            signatureRet = await this.packUserOpEOASignature(validatorAddress, signature, `0x${validationData.toString(16)}`, semiValidHookInputData);
         }
         if (signatureRet.isErr() === true) {
             return new Err(
@@ -735,7 +707,7 @@ export class ElytroWallet implements IElytroWallet {
         return new Ok(signatureRet.OK);
     }
 
-    async estimateUserOperationGas(validatorAddress: string, userOp: UserOperation, stateOverride?: Record<string, StateOverride>, signkeyType?: SignkeyType, semiValidGuardHookInputData?: GuardHookInputData): Promise<Result<UserOpGas, UserOpErrors>> {
+    async estimateUserOperationGas(validatorAddress: string, userOp: UserOperation, stateOverride?: Record<string, StateOverride>, signkeyType?: SignkeyType, semiValidHookInputData?: HookInputDataItem[]): Promise<Result<UserOpGas, UserOpErrors>> {
         const semiValidSignature = userOp.signature === "0x";
         const _onChainConfig = await this.getOnChainConfig();
         if (_onChainConfig.isErr() === true) {
@@ -743,7 +715,7 @@ export class ElytroWallet implements IElytroWallet {
         }
         try {
             if (semiValidSignature) {
-                const re = await this.getSemiValidSignature(validatorAddress, userOp, signkeyType, semiValidGuardHookInputData);
+                const re = await this.getSemiValidSignature(validatorAddress, userOp, signkeyType, semiValidHookInputData);
                 if (re.isErr() === true) {
                     return new Err(re.ERR);
                 }
@@ -754,16 +726,35 @@ export class ElytroWallet implements IElytroWallet {
                 return new Err(userOpGasRet.ERR);
             }
 
-            // userOp.callGasLimit = `0x${BigInt(userOpGasRet.OK.callGasLimit).toString(16)}`;
-            // userOp.paymasterPostOpGasLimit = `0x${BigInt(userOpGasRet.OK.paymasterPostOpGasLimit).toString(16)}`;
-            // userOp.paymasterVerificationGasLimit = `0x${BigInt(userOpGasRet.OK.paymasterVerificationGasLimit).toString(16)}`;
-            // userOp.preVerificationGas = `0x${BigInt(userOpGasRet.OK.preVerificationGas).toString(16)}`;
-            // userOp.verificationGasLimit = `0x${BigInt(userOpGasRet.OK.verificationGasLimit).toString(16)}`;
-
-            //GasOverhead.calcGasOverhead(userOp, signkeyType);
-
-            return new Ok(userOpGasRet.OK);
-
+            /**
+             * Note: If an invalid Hook signature is used, the `validateUserOp` function will not be executed 
+             * during `estimateUserOperationGas`, resulting in a lower `verificationGasLimit` than the actual value.
+             * When using ECDSA signatures, the estimated value will be about 3000gas lower than the real cost.
+             * For other types of keys, the difference may be even larger depending on the complexity of the signature verification.
+             */
+            const gasRet = userOpGasRet.OK;
+            if (semiValidHookInputData !== undefined && semiValidHookInputData.length > 0) {
+                let _gas = 0;
+                switch (signkeyType) {
+                    case undefined:
+                    case SignkeyType.EOA:
+                        _gas = 2000 + 3000;
+                        break;
+                    case SignkeyType.P256:
+                        // EIP-7951
+                        _gas = 2000 + 10200;
+                        // No address(0x100)
+                        // _gas = 2000 + 300000;
+                        break;
+                    case SignkeyType.RS256:
+                        _gas = 2000 + 11000;
+                        break
+                    default:
+                        throw new Error("invalid signkeyType");
+                }
+                gasRet.verificationGasLimit = `0x${(BigInt(gasRet.verificationGasLimit) + BigInt(_gas)).toString(16)}`;
+            }
+            return new Ok(gasRet);
         }
         catch (error: unknown) {
             if (error instanceof Error) {

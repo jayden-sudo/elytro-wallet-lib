@@ -95,7 +95,7 @@ ECCPoint, RSAPublicKey, EOA or packed bytes32
 
 #### Defined in
 
-[packages/sdk/src/interface/IElytroWallet.ts:242](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/interface/IElytroWallet.ts#L242)
+[packages/sdk/src/interface/IElytroWallet.ts:267](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/interface/IElytroWallet.ts#L267)
 
 ___
 

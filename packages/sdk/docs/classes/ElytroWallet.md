@@ -35,7 +35,9 @@ ElytroWallet
 ### Methods
 
 - [calcWalletAddress](ElytroWallet.md#calcwalletaddress)
+- [calcWalletAddressGeneric](ElytroWallet.md#calcwalletaddressgeneric)
 - [createUnsignedDeployWalletUserOp](ElytroWallet.md#createunsigneddeploywalletuserop)
+- [createUnsignedDeployWalletUserOpGeneric](ElytroWallet.md#createunsigneddeploywalletuseropgeneric)
 - [entryPoint](ElytroWallet.md#entrypoint)
 - [estimateUserOperationGas](ElytroWallet.md#estimateuseroperationgas)
 - [fromTransaction](ElytroWallet.md#fromtransaction)
@@ -44,7 +46,6 @@ ElytroWallet
 - [getNonce](ElytroWallet.md#getnonce)
 - [getOnChainConfig](ElytroWallet.md#getonchainconfig)
 - [getSemiValidSignature](ElytroWallet.md#getsemivalidsignature)
-- [guardHookList](ElytroWallet.md#guardhooklist)
 - [initializeData](ElytroWallet.md#initializedata)
 - [packRawHash](ElytroWallet.md#packrawhash)
 - [packUserOpEOASignature](ElytroWallet.md#packuseropeoasignature)
@@ -52,7 +53,6 @@ ElytroWallet
 - [packUserOpP256Signature](ElytroWallet.md#packuseropp256signature)
 - [packUserOpRS256Signature](ElytroWallet.md#packuseroprs256signature)
 - [preFund](ElytroWallet.md#prefund)
-- [prePackUserOpSignature](ElytroWallet.md#prepackuseropsignature)
 - [sendUserOperation](ElytroWallet.md#senduseroperation)
 - [userOpHash](ElytroWallet.md#userophash)
 - [walletDeployed](ElytroWallet.md#walletdeployed)
@@ -185,16 +185,16 @@ ___
 
 ▸ **calcWalletAddress**(`index`, `initialKeys`, `initialGuardianHash`, `initialGuardianSafePeriod?`, `chainId?`): `Promise`\<[`Result`](../modules.md#result)\<`string`, `Error`\>\>
 
-get wallet address by index
+calcuate the wallet address from the index, initialKey and initialGuardianHash.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `index` | `number` | readable index |
-| `initialKeys` | [`InitialKey`](../modules.md#initialkey)[] | initial keys |
-| `initialGuardianHash` | `string` | initial guardian hash |
-| `initialGuardianSafePeriod?` | `number` | initial guardian safe period |
+| `index` | `number` |  |
+| `initialKeys` | [`InitialKey`](../modules.md#initialkey)[] |  |
+| `initialGuardianHash` | `string` |  |
+| `initialGuardianSafePeriod?` | `number` |  |
 | `chainId?` | `string` \| `number` | number or hex string(must start with 0x) |
 
 #### Returns
@@ -203,9 +203,11 @@ get wallet address by index
 
 {Promise<Result<string, Error>>}
 
+**`Abstract`**
+
 **`Memberof`**
 
-ElytroWallet
+IElytroWallet
 
 #### Implementation of
 
@@ -213,13 +215,52 @@ IElytroWallet.calcWalletAddress
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:272](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L272)
+[packages/sdk/src/elytroWallet.ts:306](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L306)
+
+___
+
+### calcWalletAddressGeneric
+
+▸ **calcWalletAddressGeneric**(`index`, `initialKeys`, `initialGuardianHash`, `initialGuardianSafePeriod?`): `Promise`\<[`Result`](../modules.md#result)\<`string`, `Error`\>\>
+
+calcuate the wallet address from the index, initialKey and initialGuardianHash, the address will be the same on different chain.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `index` | `number` |
+| `initialKeys` | [`InitialKey`](../modules.md#initialkey)[] |
+| `initialGuardianHash` | `string` |
+| `initialGuardianSafePeriod?` | `number` |
+
+#### Returns
+
+`Promise`\<[`Result`](../modules.md#result)\<`string`, `Error`\>\>
+
+{Promise<Result<string, Error>>}
+
+**`Abstract`**
+
+**`Memberof`**
+
+IElytroWallet
+
+#### Implementation of
+
+IElytroWallet.calcWalletAddressGeneric
+
+#### Defined in
+
+[packages/sdk/src/elytroWallet.ts:271](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L271)
 
 ___
 
 ### createUnsignedDeployWalletUserOp
 
 ▸ **createUnsignedDeployWalletUserOp**(`index`, `initialKeys`, `initialGuardianHash`, `callData?`, `initialGuardianSafePeriod?`): `Promise`\<[`Result`](../modules.md#result)\<[`UserOperation`](../modules.md#useroperation), `Error`\>\>
+
+create unsigned deploy wallet UserOp.
 
 #### Parameters
 
@@ -228,12 +269,14 @@ ___
 | `index` | `number` | `undefined` |
 | `initialKeys` | [`InitialKey`](../modules.md#initialkey)[] | `undefined` |
 | `initialGuardianHash` | `string` | `undefined` |
-| `callData` | `string` | `"0x"` |
+| `callData?` | `string` | `"0x"` |
 | `initialGuardianSafePeriod?` | `number` | `undefined` |
 
 #### Returns
 
 `Promise`\<[`Result`](../modules.md#result)\<[`UserOperation`](../modules.md#useroperation), `Error`\>\>
+
+{Promise<Result<UserOperation, Error>>}
 
 #### Implementation of
 
@@ -241,7 +284,39 @@ IElytroWallet.createUnsignedDeployWalletUserOp
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:352](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L352)
+[packages/sdk/src/elytroWallet.ts:395](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L395)
+
+___
+
+### createUnsignedDeployWalletUserOpGeneric
+
+▸ **createUnsignedDeployWalletUserOpGeneric**(`index`, `initialKeys`, `initialGuardianHash`, `callData?`, `initialGuardianSafePeriod?`): `Promise`\<[`Result`](../modules.md#result)\<[`UserOperation`](../modules.md#useroperation), `Error`\>\>
+
+create unsigned deploy wallet UserOp.
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `index` | `number` | `undefined` |
+| `initialKeys` | [`InitialKey`](../modules.md#initialkey)[] | `undefined` |
+| `initialGuardianHash` | `string` | `undefined` |
+| `callData?` | `string` | `"0x"` |
+| `initialGuardianSafePeriod?` | `number` | `undefined` |
+
+#### Returns
+
+`Promise`\<[`Result`](../modules.md#result)\<[`UserOperation`](../modules.md#useroperation), `Error`\>\>
+
+{Promise<Result<UserOperation, Error>>}
+
+#### Implementation of
+
+IElytroWallet.createUnsignedDeployWalletUserOpGeneric
+
+#### Defined in
+
+[packages/sdk/src/elytroWallet.ts:459](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L459)
 
 ___
 
@@ -265,7 +340,7 @@ ___
 
 ### estimateUserOperationGas
 
-▸ **estimateUserOperationGas**(`validatorAddress`, `userOp`, `stateOverride?`, `signkeyType?`, `semiValidGuardHookInputData?`): `Promise`\<[`Result`](../modules.md#result)\<[`UserOpGas`](../interfaces/UserOpGas.md), [`UserOpErrors`](UserOpErrors.md)\>\>
+▸ **estimateUserOperationGas**(`validatorAddress`, `userOp`, `stateOverride?`, `signkeyType?`, `semiValidHookInputData?`): `Promise`\<[`Result`](../modules.md#result)\<[`UserOpGas`](../interfaces/UserOpGas.md), [`UserOpErrors`](UserOpErrors.md)\>\>
 
 #### Parameters
 
@@ -275,7 +350,7 @@ ___
 | `userOp` | [`UserOperation`](../modules.md#useroperation) |
 | `stateOverride?` | `Record`\<`string`, `StateOverride`\> |
 | `signkeyType?` | [`SignkeyType`](../enums/SignkeyType.md) |
-| `semiValidGuardHookInputData?` | `GuardHookInputData` |
+| `semiValidHookInputData?` | `HookInputDataItem`[] |
 
 #### Returns
 
@@ -287,7 +362,7 @@ IElytroWallet.estimateUserOperationGas
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:631](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L631)
+[packages/sdk/src/elytroWallet.ts:710](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L710)
 
 ___
 
@@ -317,7 +392,7 @@ IElytroWallet.fromTransaction
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:758](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L758)
+[packages/sdk/src/elytroWallet.ts:856](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L856)
 
 ___
 
@@ -358,7 +433,7 @@ IElytroWallet.getEIP1271TypedData
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:905](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L905)
+[packages/sdk/src/elytroWallet.ts:1003](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L1003)
 
 ___
 
@@ -397,7 +472,7 @@ IElytroWallet.getNonce
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:701](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L701)
+[packages/sdk/src/elytroWallet.ts:799](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L799)
 
 ___
 
@@ -417,7 +492,7 @@ ___
 
 ### getSemiValidSignature
 
-▸ **getSemiValidSignature**(`validatorAddress`, `userOp`, `signkeyType?`, `semiValidGuardHookInputData?`): `Promise`\<[`Result`](../modules.md#result)\<`string`, [`UserOpErrors`](UserOpErrors.md)\>\>
+▸ **getSemiValidSignature**(`validatorAddress`, `userOp`, `signkeyType?`, `semiValidHookInputData?`): `Promise`\<[`Result`](../modules.md#result)\<`string`, [`UserOpErrors`](UserOpErrors.md)\>\>
 
 #### Parameters
 
@@ -426,7 +501,7 @@ ___
 | `validatorAddress` | `string` |
 | `userOp` | [`UserOperation`](../modules.md#useroperation) |
 | `signkeyType?` | [`SignkeyType`](../enums/SignkeyType.md) |
-| `semiValidGuardHookInputData?` | `GuardHookInputData` |
+| `semiValidHookInputData?` | `HookInputDataItem`[] |
 
 #### Returns
 
@@ -434,27 +509,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:570](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L570)
-
-___
-
-### guardHookList
-
-▸ **guardHookList**(`walletAddress`): `Promise`\<[`Result`](../modules.md#result)\<`string`[], `Error`\>\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `walletAddress` | `string` |
-
-#### Returns
-
-`Promise`\<[`Result`](../modules.md#result)\<`string`[], `Error`\>\>
-
-#### Defined in
-
-[packages/sdk/src/elytroWallet.ts:441](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L441)
+[packages/sdk/src/elytroWallet.ts:654](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L654)
 
 ___
 
@@ -498,13 +553,13 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:427](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L427)
+[packages/sdk/src/elytroWallet.ts:531](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L531)
 
 ___
 
 ### packUserOpEOASignature
 
-▸ **packUserOpEOASignature**(`validatorAddress`, `signature`, `validationData`, `guardHookInputData?`): `Promise`\<[`Result`](../modules.md#result)\<`string`, `Error`\>\>
+▸ **packUserOpEOASignature**(`validatorAddress`, `signature`, `validationData`, `sortedHookInputData?`): `Promise`\<[`Result`](../modules.md#result)\<`string`, `Error`\>\>
 
 pack userOp signature (EOA)
 
@@ -515,7 +570,7 @@ pack userOp signature (EOA)
 | `validatorAddress` | `string` | validator contract address |
 | `signature` | `string` | EOA signature |
 | `validationData` | `string` | validation data |
-| `guardHookInputData?` | `GuardHookInputData` |  |
+| `sortedHookInputData?` | `HookInputDataItem`[] | Hint: The SortedHookInputData array **must be sorted exactly in the same order** as returned by the contract interface listHook(). Example code: ``` const elytroWallet = new ethers.Contract(walletAddress, ABI_Elytro, this.provider); const { preIsValidSignatureHooks, preUserOpValidationHooks } = await elytroWallet.listHook(); ``` 1. If you need to **pack a userOp signature**, you must sort the SortedHookInputData array in the **same order** as the preUserOpValidationHooks array. 2. If you need to **pack an EIP-1271 signature**, you must sort the SortedHookInputData array in the **same order** as the preIsValidSignatureHooks array. |
 
 #### Returns
 
@@ -529,7 +584,7 @@ ElytroWallet
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:486](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L486)
+[packages/sdk/src/elytroWallet.ts:564](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L564)
 
 ___
 
@@ -555,13 +610,13 @@ IElytroWallet.packUserOpHash
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:415](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L415)
+[packages/sdk/src/elytroWallet.ts:519](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L519)
 
 ___
 
 ### packUserOpP256Signature
 
-▸ **packUserOpP256Signature**(`validatorAddress`, `signatureData`, `validationData`, `guardHookInputData?`): `Promise`\<[`Result`](../modules.md#result)\<`string`, `Error`\>\>
+▸ **packUserOpP256Signature**(`validatorAddress`, `signatureData`, `validationData`, `sortedHookInputData?`): `Promise`\<[`Result`](../modules.md#result)\<`string`, `Error`\>\>
 
 pack userOp signature (P256)
 
@@ -578,7 +633,7 @@ pack userOp signature (P256)
 | `signatureData.r` | `string` | - |
 | `signatureData.s` | `string` | - |
 | `validationData` | `string` | validation data |
-| `guardHookInputData?` | `GuardHookInputData` |  |
+| `sortedHookInputData?` | `HookInputDataItem`[] | Hint: The SortedHookInputData array **must be sorted exactly in the same order** as returned by the contract interface listHook(). Example code: ``` const elytroWallet = new ethers.Contract(walletAddress, ABI_Elytro, this.provider); const { preIsValidSignatureHooks, preUserOpValidationHooks } = await elytroWallet.listHook(); ``` 1. If you need to **pack a userOp signature**, you must sort the SortedHookInputData array in the **same order** as the preUserOpValidationHooks array. 2. If you need to **pack an EIP-1271 signature**, you must sort the SortedHookInputData array in the **same order** as the preIsValidSignatureHooks array. |
 
 #### Returns
 
@@ -592,13 +647,13 @@ ElytroWallet
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:515](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L515)
+[packages/sdk/src/elytroWallet.ts:598](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L598)
 
 ___
 
 ### packUserOpRS256Signature
 
-▸ **packUserOpRS256Signature**(`validatorAddress`, `signatureData`, `validationData`, `guardHookInputData?`): `Promise`\<[`Result`](../modules.md#result)\<`string`, `Error`\>\>
+▸ **packUserOpRS256Signature**(`validatorAddress`, `signatureData`, `validationData`, `sortedHookInputData?`): `Promise`\<[`Result`](../modules.md#result)\<`string`, `Error`\>\>
 
 pack userOp signature (RS256)
 
@@ -614,7 +669,7 @@ pack userOp signature (RS256)
 | `signatureData.publicKey` | [`RSAPublicKey`](../interfaces/RSAPublicKey.md) | - |
 | `signatureData.signature` | `string` | - |
 | `validationData` | `string` |  |
-| `guardHookInputData?` | `GuardHookInputData` |  |
+| `sortedHookInputData?` | `HookInputDataItem`[] | Hint: The SortedHookInputData array **must be sorted exactly in the same order** as returned by the contract interface listHook(). Example code: ``` const elytroWallet = new ethers.Contract(walletAddress, ABI_Elytro, this.provider); const { preIsValidSignatureHooks, preUserOpValidationHooks } = await elytroWallet.listHook(); ``` 1. If you need to **pack a userOp signature**, you must sort the SortedHookInputData array in the **same order** as the preUserOpValidationHooks array. 2. If you need to **pack an EIP-1271 signature**, you must sort the SortedHookInputData array in the **same order** as the preIsValidSignatureHooks array. |
 
 #### Returns
 
@@ -628,7 +683,7 @@ ElytroWallet
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:551](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L551)
+[packages/sdk/src/elytroWallet.ts:639](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L639)
 
 ___
 
@@ -652,27 +707,7 @@ IElytroWallet.preFund
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:296](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L296)
-
-___
-
-### prePackUserOpSignature
-
-▸ **prePackUserOpSignature**(`guardHookInputData?`): `Promise`\<[`Result`](../modules.md#result)\<`undefined` \| `HookInputData`, `Error`\>\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `guardHookInputData?` | `GuardHookInputData` |
-
-#### Returns
-
-`Promise`\<[`Result`](../modules.md#result)\<`undefined` \| `HookInputData`, `Error`\>\>
-
-#### Defined in
-
-[packages/sdk/src/elytroWallet.ts:458](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L458)
+[packages/sdk/src/elytroWallet.ts:330](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L330)
 
 ___
 
@@ -696,7 +731,7 @@ IElytroWallet.sendUserOperation
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:679](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L679)
+[packages/sdk/src/elytroWallet.ts:777](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L777)
 
 ___
 
@@ -720,7 +755,7 @@ IElytroWallet.userOpHash
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:406](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L406)
+[packages/sdk/src/elytroWallet.ts:510](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L510)
 
 ___
 
@@ -740,7 +775,7 @@ ___
 
 #### Defined in
 
-[packages/sdk/src/elytroWallet.ts:730](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L730)
+[packages/sdk/src/elytroWallet.ts:828](https://github.com/Elytro-eth/elytro-wallet-lib/blob/develop/packages/sdk/src/elytroWallet.ts#L828)
 
 ___
 
