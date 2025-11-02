@@ -43,6 +43,22 @@ export class Bundler implements IBundler {
         }
     }
 
+    /**
+     * 
+     * @param entryPoint 
+     * @param userOp 
+     * @param stateOverride The `stateOverride` field is used to modify the blockchain state during gas estimation.
+     * 1. When the wallet has no ETH balance, gas estimation will fail due to insufficient funds.
+     *    In such cases, you can use `stateOverride` to temporarily set the account balance to 1 ETH
+     *    during the simulation to ensure a successful estimation.
+     *
+     * 2. When the wallet uses a hook, the simulation may fail to execute `validateUserOp`
+     *    because the hook signature is invalid during estimation. As a result, the simulated
+     *    `verificationGasLimit` will be lower than the actual required value. To address this,
+     *    you can use `stateOverride` to replace the hook contract bytecode with a non-reverting
+     *    mock version that consumes a similar amount of gas before calling `estimateUserOperationGas`.
+     * @returns 
+     */
     async eth_estimateUserOperationGas(entryPoint: string, userOp: UserOperation, stateOverride?: Record<string, StateOverride>): Promise<Result<UserOpGas, UserOpErrors>> {
         try {
             const params = [
@@ -61,7 +77,6 @@ export class Bundler implements IBundler {
             } else {
                 return new Ok(userOpGas);
             }
-
         } catch (error: unknown) {
             if (error instanceof Error) {
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any

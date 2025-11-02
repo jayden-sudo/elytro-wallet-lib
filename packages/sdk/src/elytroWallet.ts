@@ -725,36 +725,7 @@ export class ElytroWallet implements IElytroWallet {
             if (userOpGasRet.isErr() === true) {
                 return new Err(userOpGasRet.ERR);
             }
-
-            /**
-             * Note: If an invalid Hook signature is used, the `validateUserOp` function will not be executed 
-             * during `estimateUserOperationGas`, resulting in a lower `verificationGasLimit` than the actual value.
-             * When using ECDSA signatures, the estimated value will be about 3000gas lower than the real cost.
-             * For other types of keys, the difference may be even larger depending on the complexity of the signature verification.
-             */
-            const gasRet = userOpGasRet.OK;
-            if (semiValidHookInputData !== undefined && semiValidHookInputData.length > 0) {
-                let _gas = 0;
-                switch (signkeyType) {
-                    case undefined:
-                    case SignkeyType.EOA:
-                        _gas = 2000 + 3000;
-                        break;
-                    case SignkeyType.P256:
-                        // EIP-7951
-                        _gas = 2000 + 10200;
-                        // No address(0x100)
-                        // _gas = 2000 + 300000;
-                        break;
-                    case SignkeyType.RS256:
-                        _gas = 2000 + 11000;
-                        break
-                    default:
-                        throw new Error("invalid signkeyType");
-                }
-                gasRet.verificationGasLimit = `0x${(BigInt(gasRet.verificationGasLimit) + BigInt(_gas)).toString(16)}`;
-            }
-            return new Ok(gasRet);
+            return new Ok(userOpGasRet.OK);
         }
         catch (error: unknown) {
             if (error instanceof Error) {
